@@ -1,0 +1,405 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Grand Travel Club — handpicked luxury hotels and resorts with private rates and a personal travel expert."
+    />
+    <title>Hotels — Grand Travel Club</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="css/index.css" />
+  </head>
+  <body>
+    <div data-site-header></div>
+
+    <main id="top">
+      <section class="site-hero" style="--hero-image: url('https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=2000&q=80')">
+        <div class="container site-hero__content">
+          <span class="eyebrow eyebrow--light">Stays worth the journey</span>
+          <h1>Exceptional hotels,<br />personally chosen</h1>
+        </div>
+        <form class="search-form flight-search flight-search--initial container" id="search" data-hotel-search>
+          <div class="search-form__top">
+            <h2>Where would you like to stay?</h2>
+          </div>
+          <div class="search-form__fields flight-search__fields home-search__hotel-fields">
+            <label class="search-form__field flight-search__field" data-hotel-city-field>
+              <span class="sr-only">Destination</span>
+              <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7Zm0 10a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z" /></svg>
+              <input name="destination" type="text" placeholder="City, hotel or resort" autocomplete="off" aria-expanded="false" required />
+            </label>
+            <div class="search-form__field flight-search__field" data-hotel-date-range-field>
+              <span class="sr-only">Check-in — Check-out</span>
+              <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M7 2h2v2h6V2h2v2h3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h3V2Zm13 8H4v10h16V10ZM4 8h16V6H4v2Z" /></svg>
+              <input data-hotel-date-display aria-label="Check-in and check-out dates" aria-expanded="false" readonly />
+              <input name="checkin" type="hidden" data-hotel-checkin />
+              <input name="checkout" type="hidden" data-hotel-checkout />
+            </div>
+            <label class="search-form__field flight-search__field">
+              <span class="sr-only">Guests</span>
+              <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10Zm0-2a3 3 0 1 1 0-6 3 3 0 0 1 0 6Zm0 3c-5 0-9 2.5-9 6v2h18v-2c0-3.5-4-6-9-6Zm-7 6c0-2 3-4 7-4s7 2 7 4H5Z" /></svg>
+              <select name="guests" aria-label="Guests">
+                <option>1 guest</option>
+                <option selected>2 guests</option>
+                <option>3 guests</option>
+                <option>4 guests</option>
+              </select>
+              <span class="ui-chevron ui-chevron--down" aria-hidden="true"></span>
+            </label>
+            <button class="button button--primary" type="submit">Search hotels <span class="ui-chevron ui-chevron--right" aria-hidden="true"></span></button>
+          </div>
+
+
+          <p class="search-form__message" role="status"></p>
+        </form>
+      </section>
+
+      <section class="paris-deals" id="best-deals" aria-labelledby="hotel-deals-title">
+        <div class="container">
+          <div class="paris-deals__heading"><h2 id="hotel-deals-title">Featured stays</h2><p>Handpicked hotels and resorts. Rates and dates below are illustrative, not live offers.</p></div>
+          <div class="paris-deals__grid" aria-live="polite" data-deals-grid>
+            <article class="hotel-card" data-paris-deal-card="islands" data-price="890" data-rating="9.6">
+              <div class="hotel-card__media">
+                <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=85" alt="Soneva Fushi" loading="lazy" />
+              </div>
+              <div class="hotel-card__body">
+                <span class="hotel-card__stars" aria-label="5 stars">★★★★★</span>
+                <h3>Soneva Fushi</h3>
+                <p class="hotel-card__loc">Baa Atoll, Maldives</p>
+                <div class="hotel-card__chips"><span>Breakfast</span><span>Seaplane transfer</span><span>Free cancellation</span></div>
+                <div class="hotel-card__bottom"><div><small>Per night from</small><strong>€890</strong></div><a href="#search" data-hotel-destination="Maldives">Find stay</a></div>
+              </div>
+            </article>
+            <article class="hotel-card" data-paris-deal-card="europe" data-price="520" data-rating="9.2">
+              <div class="hotel-card__media">
+                <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=800&q=85" alt="Maison Paris" loading="lazy" />
+              </div>
+              <div class="hotel-card__body">
+                <span class="hotel-card__stars" aria-label="5 stars">★★★★★</span>
+                <h3>Maison Paris</h3>
+                <p class="hotel-card__loc">Saint-Germain, Paris</p>
+                <div class="hotel-card__chips"><span>Breakfast</span><span>Late checkout</span><span>Upgrade on arrival</span></div>
+                <div class="hotel-card__bottom"><div><small>Per night from</small><strong>€520</strong></div><a href="#search" data-hotel-destination="Paris, France">Find stay</a></div>
+              </div>
+            </article>
+            <article class="hotel-card" data-paris-deal-card="middle-east" data-price="610" data-rating="9.0">
+              <div class="hotel-card__media">
+                <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=800&q=85" alt="Desert Palm" loading="lazy" />
+              </div>
+              <div class="hotel-card__body">
+                <span class="hotel-card__stars" aria-label="5 stars">★★★★★</span>
+                <h3>Desert Palm</h3>
+                <p class="hotel-card__loc">Al Barsha, Dubai</p>
+                <div class="hotel-card__chips"><span>Airport transfer</span><span>Private pool</span><span>Spa credit</span></div>
+                <div class="hotel-card__bottom"><div><small>Per night from</small><strong>€610</strong></div><a href="#search" data-hotel-destination="Dubai, UAE">Find stay</a></div>
+              </div>
+            </article>
+            <article class="hotel-card" data-paris-deal-card="asia" data-price="390" data-rating="9.4">
+              <div class="hotel-card__media">
+                <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=800&q=85" alt="Ubud Retreat" loading="lazy" />
+              </div>
+              <div class="hotel-card__body">
+                <span class="hotel-card__stars" aria-label="5 stars">★★★★★</span>
+                <h3>Ubud Retreat</h3>
+                <p class="hotel-card__loc">Ubud, Bali</p>
+                <div class="hotel-card__chips"><span>Breakfast</span><span>Daily spa credit</span><span>Morning yoga</span></div>
+                <div class="hotel-card__bottom"><div><small>Per night from</small><strong>€390</strong></div><a href="#search" data-hotel-destination="Bali, Indonesia">Find stay</a></div>
+              </div>
+            </article>
+            <article class="hotel-card" data-paris-deal-card="europe" data-price="470" data-rating="8.9">
+              <div class="hotel-card__media">
+                <img src="https://images.unsplash.com/photo-1455587734955-081b22074882?auto=format&fit=crop&w=800&q=85" alt="The Kensington" loading="lazy" />
+              </div>
+              <div class="hotel-card__body">
+                <span class="hotel-card__stars" aria-label="5 stars">★★★★★</span>
+                <h3>The Kensington</h3>
+                <p class="hotel-card__loc">Kensington, London</p>
+                <div class="hotel-card__chips"><span>Breakfast</span><span>Late checkout</span><span>Free cancellation</span></div>
+                <div class="hotel-card__bottom"><div><small>Per night from</small><strong>€470</strong></div><a href="#search" data-hotel-destination="London, United Kingdom">Find stay</a></div>
+              </div>
+            </article>
+            <article class="hotel-card" data-paris-deal-card="europe" data-price="580" data-rating="9.3">
+              <div class="hotel-card__media">
+                <img src="https://images.unsplash.com/photo-1445019980597-93fa8acb246c?auto=format&fit=crop&w=800&q=85" alt="Aegean House" loading="lazy" />
+              </div>
+              <div class="hotel-card__body">
+                <span class="hotel-card__stars" aria-label="5 stars">★★★★★</span>
+                <h3>Aegean House</h3>
+                <p class="hotel-card__loc">Oia, Santorini</p>
+                <div class="hotel-card__chips"><span>Private plunge pool</span><span>Breakfast</span><span>Airport transfer</span></div>
+                <div class="hotel-card__bottom"><div><small>Per night from</small><strong>€580</strong></div><a href="#search" data-hotel-destination="Santorini, Greece">Find stay</a></div>
+              </div>
+            </article>
+          </div>
+          <button class="button paris-deals__more" type="button" data-deals-more hidden>Show more stays</button>
+        </div>
+      </section>
+
+      <section class="hotel-destinations" aria-labelledby="hotel-destinations-title">
+        <div class="container">
+          <div class="home-journey__sub">
+            <h2 id="hotel-destinations-title">Popular destinations</h2>
+            <a href="all-hotels.html">All hotels →</a>
+          </div>
+          <div class="home-journey__destinations">
+            <article class="hotel-card place-card place-card--small">
+              <div class="hotel-card__media"><img src="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=800&q=85" alt="Maldives" loading="lazy" /></div>
+              <div class="hotel-card__body">
+                <span class="place-card__eyebrow">Indian Ocean</span>
+                <h3>Maldives</h3>
+                <div class="hotel-card__bottom"><div><small>Per night from</small><strong>€390</strong></div><a href="#search" data-hotel-destination="Maldives" aria-label="Explore hotels in Maldives">Explore</a></div>
+              </div>
+            </article>
+            <article class="hotel-card place-card place-card--small">
+              <div class="hotel-card__media"><img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=800&q=85" alt="Paris" loading="lazy" /></div>
+              <div class="hotel-card__body">
+                <span class="place-card__eyebrow">France · Europe</span>
+                <h3>Paris</h3>
+                <div class="hotel-card__bottom"><div><small>Per night from</small><strong>€220</strong></div><a href="#search" data-hotel-destination="Paris, France" aria-label="Explore hotels in Paris">Explore</a></div>
+              </div>
+            </article>
+            <article class="hotel-card place-card place-card--small">
+              <div class="hotel-card__media"><img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=800&q=85" alt="Dubai" loading="lazy" /></div>
+              <div class="hotel-card__body">
+                <span class="place-card__eyebrow">UAE · Middle East</span>
+                <h3>Dubai</h3>
+                <div class="hotel-card__bottom"><div><small>Per night from</small><strong>€260</strong></div><a href="#search" data-hotel-destination="Dubai, UAE" aria-label="Explore hotels in Dubai">Explore</a></div>
+              </div>
+            </article>
+            <article class="hotel-card place-card place-card--small">
+              <div class="hotel-card__media"><img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=800&q=85" alt="Bali" loading="lazy" /></div>
+              <div class="hotel-card__body">
+                <span class="place-card__eyebrow">Indonesia · Asia</span>
+                <h3>Bali</h3>
+                <div class="hotel-card__bottom"><div><small>Per night from</small><strong>€180</strong></div><a href="#search" data-hotel-destination="Bali, Indonesia" aria-label="Explore hotels in Bali">Explore</a></div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="why-us" aria-labelledby="why-us-title">
+        <div class="container why-us__inner">
+          <div class="why-us__intro">
+            <span class="eyebrow">Why book with us</span>
+            <h2 id="why-us-title">Hotels, booked the smart way</h2>
+            <p>We know the hotels we recommend. Your expert finds the right room, asks for the extras and stays in touch until you check out.</p>
+            <a class="button" href="contacts.html">Talk to an expert <span class="ui-chevron ui-chevron--right" aria-hidden="true"></span></a>
+          </div>
+          <ul class="why-us__list">
+            <li>
+              <svg aria-hidden="true" viewBox="0 0 48 48">
+                <path class="why-us__fill" d="M8 13h32a2 2 0 0 1 2 2v5.5a3.5 3.5 0 0 0 0 7V33a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-5.5a3.5 3.5 0 0 0 0-7V15a2 2 0 0 1 2-2Z" />
+                <path d="M32 16v16" stroke-dasharray="2 3" />
+                <path class="why-us__solid" d="m19 17.5 1.9 3.9 4.3.6-3.1 3 .7 4.3-3.8-2-3.8 2 .7-4.3-3.1-3 4.3-.6Z" />
+              </svg>
+              <h3>Private rates</h3>
+              <p>Negotiated hotel rates you will not find on public booking sites.</p>
+            </li>
+            <li>
+              <svg aria-hidden="true" viewBox="0 0 48 48">
+                <rect class="why-us__fill" x="7" y="21" width="34" height="21" rx="3" />
+                <rect class="why-us__fill" x="5" y="14" width="38" height="8" rx="2" />
+                <path d="M24 14v28" />
+                <path d="M24 14c-3-6-11-6-11-1 0 3 6 2 11 1Zm0 0c3-6 11-6 11-1 0 3-6 2-11 1Z" />
+              </svg>
+              <h3>Extras on request</h3>
+              <p>We ask for breakfast, upgrades or late checkout whenever the hotel can offer them.</p>
+            </li>
+            <li>
+              <svg aria-hidden="true" viewBox="0 0 48 48">
+                <circle class="why-us__fill" cx="24" cy="19" r="7" />
+                <path d="M10 41a14 14 0 0 1 28 0" />
+                <path d="M14.5 20a9.5 9.5 0 0 1 19 0" />
+                <rect class="why-us__solid" x="12" y="18" width="5" height="8" rx="2.5" />
+                <rect class="why-us__solid" x="31" y="18" width="5" height="8" rx="2.5" />
+                <path d="M33.5 26c0 4-3 6.5-7 6.5H25" />
+              </svg>
+              <h3>Your personal expert</h3>
+              <p>One person handles your stay from the first quote to checkout and replies within 20 minutes.</p>
+            </li>
+            <li>
+              <svg aria-hidden="true" viewBox="0 0 48 48">
+                <circle class="why-us__fill" cx="24" cy="24" r="11" />
+                <path d="M24 18v6.5l4 2.5" />
+                <path d="M8.03 18.19A17 17 0 1 1 18.19 39.97" />
+                <path class="why-us__solid" d="M13.02 36.98 19.99 36.85 16.39 43.09Z" />
+              </svg>
+              <h3>Support around the clock</h3>
+              <p>A late arrival, a room that is not right or a change of plans: we sort it out, day or night.</p>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="stay-types" aria-labelledby="stay-types-title">
+        <div class="container">
+          <span class="eyebrow">Your kind of stay</span>
+          <h2 id="stay-types-title">From city suites to island villas</h2>
+          <ul class="stay-types__grid">
+            <li>
+              <img src="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=600&q=80" alt="Overwater villas in the Maldives" loading="lazy" />
+              <div>
+                <h3>Beach resorts</h3>
+                <p>Overwater villas and private beaches in the Maldives, Bali and the Aegean.</p>
+                <a href="#search" data-hotel-destination="Maldives">See stays →</a>
+              </div>
+            </li>
+            <li>
+              <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=600&q=80" alt="Luxury hotel room in Paris" loading="lazy" />
+              <div>
+                <h3>City hotels</h3>
+                <p>Grand addresses within walking distance of the best of Paris, London and Dubai.</p>
+                <a href="#search" data-hotel-destination="Paris, France">See stays →</a>
+              </div>
+            </li>
+            <li>
+              <img src="https://images.unsplash.com/photo-1445019980597-93fa8acb246c?auto=format&fit=crop&w=600&q=80" alt="Private villa with a pool in Santorini" loading="lazy" />
+              <div>
+                <h3>Private villas</h3>
+                <p>Space for family or friends, with a pool, a chef and a host on call.</p>
+                <a href="#search" data-hotel-destination="Santorini, Greece">See stays →</a>
+              </div>
+            </li>
+            <li>
+              <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=600&q=80" alt="Tropical wellness retreat in Bali" loading="lazy" />
+              <div>
+                <h3>Wellness retreats</h3>
+                <p>Spa resorts with daily treatments, yoga and quiet, green surroundings.</p>
+                <a href="#search" data-hotel-destination="Bali, Indonesia">See stays →</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="fare-alert" aria-labelledby="fare-alert-title">
+        <div class="container fare-alert__inner">
+          <div>
+            <h2 id="fare-alert-title">Get hotel deals</h2>
+            <p>We will email you when rates at the best hotels in your destination drop. No spam, unsubscribe in one click.</p>
+          </div>
+          <form class="fare-alert__form" data-fare-alert="hotel rates">
+            <label class="sr-only" for="alertDestination">Destination</label>
+            <input id="alertDestination" name="destination" type="text" placeholder="Destination, e.g. Dubai" required />
+            <label class="sr-only" for="alertEmail">Email</label>
+            <input id="alertEmail" name="email" type="email" placeholder="Your email" autocomplete="email" required />
+            <button class="button" type="submit">
+              <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M6 16v-5a6 6 0 0 1 12 0v5l2 2H4l2-2ZM10 20a2 2 0 0 0 4 0" /></svg>
+              Notify me
+            </button>
+            <p class="fare-alert__status" role="status"></p>
+          </form>
+        </div>
+      </section>
+
+      <section id="faq">
+        <div class="container faq">
+          <div>
+            <span class="eyebrow">Questions & answers</span>
+            <h2>Everything you need to know</h2>
+            <p>Still have questions? Our team is available around the clock.</p>
+            <div class="faq-contact">
+              <h3>Prefer to talk?</h3>
+              <a href="tel:+37322888088">
+                <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z" /></svg>
+                +373 22 888 088<small>24/7</small>
+              </a>
+              <a href="https://wa.me/37322888088" target="_blank" rel="noopener">
+                <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4V5Z" /><path d="M8 10h8M8 13h5" /></svg>
+                WhatsApp<small>~ 5 min</small>
+              </a>
+              <a href="contacts.html">
+                <svg aria-hidden="true" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2" /><path d="m3 7 9 6 9-6" /></svg>
+                Write to us<small>~ 20 min</small>
+              </a>
+              <a class="button" href="contacts.html">Request a callback</a>
+            </div>
+          </div>
+          <div class="accordion">
+            <article>
+              <button type="button" aria-expanded="false">
+                Why are your hotel rates lower? <span>+</span>
+              </button>
+              <p>
+                We work with hotels and partner networks that give us private
+                rates which are not published on public booking sites.
+              </p>
+            </article>
+            <article>
+              <button type="button" aria-expanded="false">
+                Is breakfast included? <span>+</span>
+              </button>
+              <p>
+                It depends on the hotel and the rate. Your quote always says what
+                is included, and we ask for breakfast when it is not.
+              </p>
+            </article>
+            <article>
+              <button type="button" aria-expanded="false">
+                Can I cancel or change my booking? <span>+</span>
+              </button>
+              <p>
+                Many of our rates allow free cancellation until a set date. Your
+                expert explains the terms before you confirm and handles any
+                change for you.
+              </p>
+            </article>
+            <article>
+              <button type="button" aria-expanded="false">
+                Can you arrange an early check-in or a transfer? <span>+</span>
+              </button>
+              <p>
+                Yes. Tell us your arrival time and we arrange an airport transfer
+                and ask the hotel for an early check-in.
+              </p>
+            </article>
+            <article>
+              <button type="button" aria-expanded="false">
+                Can you combine the hotel with my flights? <span>+</span>
+              </button>
+              <p>
+                Of course. One expert can plan your flights, hotel and transfers
+                as one trip, with a single point of contact.
+              </p>
+            </article>
+            <article>
+              <button type="button" aria-expanded="false">
+                When do I pay for the hotel? <span>+</span>
+              </button>
+              <p>
+                We hold your room first. Once you confirm, you pay securely by
+                card or bank transfer, or at the hotel when the rate allows it.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div class="search-sticky" data-search-sticky aria-label="Current search">
+      <div class="container search-sticky__inner">
+        <span><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7Zm0 10a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z" /></svg><b data-sticky-fields="[name='destination']" data-sticky-city data-sticky-empty="Anywhere"></b></span>
+        <span><svg aria-hidden="true" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15" rx="2" /><path d="M3.5 10h17M8 3v4M16 3v4" /></svg><b data-sticky-fields="[data-hotel-date-display]" data-sticky-empty="Any dates"></b></span>
+        <span><svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4" /><path d="M4.5 20a7.5 7.5 0 0 1 15 0" /></svg><b data-sticky-fields="[name='guests']"></b></span>
+        <a class="button" href="#search" data-sticky-edit data-focus="[name='destination']">Change search</a>
+      </div>
+    </div>
+
+    <nav class="contact-bar" data-contact-bar aria-label="Contact a travel expert">
+      <a href="tel:+37322888088"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z" /></svg>Call</a>
+      <a href="https://wa.me/37322888088" target="_blank" rel="noopener"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4V5Z" /><path d="M8 10h8M8 13h5" /></svg>WhatsApp</a>
+    </nav>
+
+    <div data-site-footer></div>
+    <script src="js/components.js"></script>
+    <script src="js/date-range-calendar.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/custom-selects.js"></script>
+    <script src="js/paris.js"></script>
+    <script src="js/search-helpers.js"></script>
+  </body>
+</html>

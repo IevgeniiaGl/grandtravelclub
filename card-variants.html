@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Card variants — Premium Flights</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="css/index.css" />
+    <style>
+      .cv-page { padding: var(--s7) 0 var(--s8); background: #f6faf8; }
+      .cv-intro { max-width: 760px; margin-bottom: var(--s6); }
+      .cv-intro p { color: var(--muted); }
+      .cv-group-title { margin: var(--s7) 0 var(--s2); padding-bottom: var(--s2); border-bottom: 2px solid var(--primary); font-size: 30px; }
+      .cv-variant { margin-top: var(--s6); }
+      .cv-variant header { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px; margin-bottom: var(--s3); }
+      .cv-tag { padding: 4px 10px; border-radius: 8px; background: var(--dark); color: var(--primary); font-size: 12px; font-weight: 800; letter-spacing: 0.08em; }
+      .cv-variant h3 { font-size: 20px; }
+      .cv-variant header p { flex-basis: 100%; margin: 0; color: var(--muted); font-size: 13px; }
+      .cv-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s3); }
+      .cv-grid--list { grid-template-columns: 1fr; }
+      .cv-grid--two { grid-template-columns: repeat(2, 1fr); }
+      @media (max-width: 980px) { .cv-grid { grid-template-columns: 1fr 1fr; } }
+      @media (max-width: 720px) { .cv-grid, .cv-grid--two { grid-template-columns: 1fr; } }
+
+      .cv-btn { display: inline-flex; align-items: center; justify-content: center; min-height: 42px; padding: 0 18px; border-radius: 10px; background: var(--primary); color: var(--dark); font-size: 12px; font-weight: 700; text-decoration: none; text-transform: uppercase; letter-spacing: 0.04em; transition: background 0.2s; white-space: nowrap; }
+      .cv-btn:hover { background: var(--primary-dark); }
+      .cv-btn--ghost { border: 1px solid rgba(255,255,255,0.6); background: transparent; color: var(--white); }
+      .cv-btn--ghost:hover { border-color: var(--primary); background: var(--primary); color: var(--dark); }
+      .cv-price small { display: block; color: var(--muted); font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; }
+      .cv-price strong { color: var(--dark); font-size: 24px; line-height: 1.1; }
+      .cv-badge { position: absolute; z-index: 3; top: 16px; left: 16px; padding: 6px 11px; border-radius: 8px; background: rgba(17,34,17,0.72); color: var(--primary); font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; backdrop-filter: blur(4px); }
+      .cv-media { position: relative; overflow: hidden; }
+      .cv-media img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
+      article:hover .cv-media img { transform: scale(1.045); }
+
+      /* F1 — photo on top, details below */
+      .f1 { overflow: hidden; border-radius: 20px; background: var(--white); box-shadow: var(--shadow); }
+      .f1 .cv-media { aspect-ratio: 16 / 10; }
+      .f1__body { padding: 22px; }
+      .f1__meta { color: var(--primary-dark); font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; }
+      .f1 h4 { margin: 4px 0 12px; font-size: 24px; }
+      .f1__facts { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 18px; padding: 0; list-style: none; }
+      .f1__facts li { padding: 5px 10px; border-radius: 8px; background: var(--light); color: var(--dark); font-size: 11px; font-weight: 600; }
+      .f1__bottom { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; padding-top: 16px; border-top: 1px solid var(--border); }
+
+      /* F2 — boarding pass */
+      .f2 { display: grid; grid-template-columns: 38% 1fr auto; overflow: hidden; border-radius: 20px; background: var(--white); box-shadow: var(--shadow); }
+      .f2 .cv-media { min-height: 170px; }
+      .f2__route { display: grid; align-content: center; gap: 14px; padding: 24px 28px; }
+      .f2__cities { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 16px; }
+      .f2__cities b { display: block; color: var(--dark); font-size: 28px; line-height: 1; }
+      .f2__cities span { color: var(--muted); font-size: 11px; }
+      .f2__line { position: relative; height: 2px; background: repeating-linear-gradient(90deg, var(--primary-dark) 0 6px, transparent 6px 12px); }
+      .f2__line svg { position: absolute; top: 50%; left: 50%; width: 22px; height: 22px; padding: 2px; background: var(--white); fill: var(--primary-dark); transform: translate(-50%, -50%) rotate(90deg); }
+      .f2__info { display: flex; flex-wrap: wrap; gap: 6px 18px; color: var(--muted); font-size: 12px; }
+      .f2__info strong { color: var(--dark); }
+      .f2__stub { position: relative; display: grid; align-content: center; justify-items: center; gap: 12px; min-width: 190px; padding: 24px; border-left: 2px dashed var(--border); text-align: center; }
+      .f2__stub::before, .f2__stub::after { content: ""; position: absolute; left: -12px; width: 22px; height: 22px; border-radius: 50%; background: #f6faf8; }
+      .f2__stub::before { top: -11px; } .f2__stub::after { bottom: -11px; }
+      @media (max-width: 860px) {
+        .f2 { grid-template-columns: 1fr; }
+        .f2__stub { border-left: 0; border-top: 2px dashed var(--border); }
+        .f2__stub::before, .f2__stub::after { display: none; }
+      }
+
+      /* F3 — tall overlay with glass panel */
+      .f3 { position: relative; overflow: hidden; aspect-ratio: 3 / 4; border-radius: 22px; }
+      .f3 .cv-media { position: absolute; inset: 0; }
+      .f3__panel { position: absolute; z-index: 2; right: 14px; bottom: 14px; left: 14px; padding: 18px 20px; border: 1px solid rgba(255,255,255,0.28); border-radius: 16px; background: rgba(17,34,17,0.55); color: var(--white); backdrop-filter: blur(10px); }
+      .f3__panel span { color: var(--primary); font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; }
+      .f3__panel h4 { margin: 2px 0 10px; color: var(--white); font-size: 26px; }
+      .f3__row { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+      .f3__row p { margin: 0; color: #d8e0db; font-size: 11px; line-height: 1.3; }
+      .f3__row strong { display: block; color: var(--white); font-size: 22px; }
+
+      /* F4 — featured mosaic */
+      .f4-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; grid-template-rows: 230px 230px; gap: var(--s3); }
+      .f4 { position: relative; overflow: hidden; border-radius: 20px; }
+      .f4:first-child { grid-row: span 2; }
+      .f4 .cv-media { position: absolute; inset: 0; }
+      .f4::after { content: ""; position: absolute; inset: 0; background: linear-gradient(transparent 40%, rgba(7,18,11,0.82)); }
+      .f4__text { position: absolute; z-index: 2; right: 20px; bottom: 18px; left: 20px; display: flex; align-items: flex-end; justify-content: space-between; gap: 10px; color: var(--white); }
+      .f4 h4 { color: var(--white); font-size: 22px; }
+      .f4:first-child h4 { font-size: 40px; }
+      .f4__text p { margin: 0; color: #d8e0db; font-size: 11px; }
+      .f4__price { padding: 8px 12px; border-radius: 10px; background: var(--primary); color: var(--dark); font-size: 15px; font-weight: 800; white-space: nowrap; }
+      @media (max-width: 860px) {
+        .f4-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 300px 200px 200px; }
+        .f4:first-child { grid-column: span 2; grid-row: auto; }
+      }
+      @media (max-width: 560px) {
+        .f4-grid { grid-template-columns: 1fr; grid-template-rows: none; grid-auto-rows: 220px; }
+        .f4:first-child { grid-column: auto; }
+      }
+
+      /* H1 — classic hotel card with rating */
+      .h1 { overflow: hidden; border-radius: 20px; background: var(--white); box-shadow: var(--shadow); }
+      .h1 .cv-media { aspect-ratio: 4 / 3; }
+      .h1__score { position: absolute; z-index: 3; top: 16px; right: 16px; display: grid; place-items: center; width: 46px; height: 46px; border-radius: 12px 12px 12px 2px; background: var(--white); color: var(--dark); font-size: 15px; font-weight: 800; box-shadow: var(--shadow); }
+      .h1__body { padding: 20px 22px 22px; }
+      .h1__stars { color: #e0b440; font-size: 12px; letter-spacing: 2px; }
+      .h1 h4 { margin: 2px 0; font-size: 21px; }
+      .h1__loc { margin: 0 0 14px; color: var(--muted); font-size: 12px; }
+      .h1__perks { display: grid; gap: 6px; margin: 0 0 18px; padding: 0; list-style: none; font-size: 12px; }
+      .h1__perks li::before { content: "✓"; margin-right: 8px; color: var(--primary-dark); font-weight: 800; }
+      .h1__bottom { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; padding-top: 16px; border-top: 1px solid var(--border); }
+
+      /* H2 — horizontal list card */
+      .h2 { display: grid; grid-template-columns: 300px 1fr 220px; overflow: hidden; border-radius: 20px; background: var(--white); box-shadow: var(--shadow); }
+      .h2 .cv-media { min-height: 210px; }
+      .h2__main { padding: 24px 28px; }
+      .h2__main h4 { font-size: 24px; }
+      .h2__main > p { margin: 4px 0 12px; color: var(--muted); font-size: 12px; }
+      .h2__desc { margin: 0 0 14px; font-size: 13px; line-height: 1.55; }
+      .h2__tags { display: flex; flex-wrap: wrap; gap: 6px; }
+      .h2__tags span { padding: 5px 10px; border: 1px solid var(--border); border-radius: 20px; font-size: 11px; font-weight: 600; }
+      .h2__side { display: grid; align-content: space-between; justify-items: end; gap: 16px; padding: 24px; background: var(--light); text-align: right; }
+      .h2__rating { display: flex; align-items: center; gap: 10px; }
+      .h2__rating b { padding: 7px 10px; border-radius: 10px; background: var(--dark); color: var(--white); font-size: 15px; }
+      .h2__rating span { color: var(--dark); font-size: 12px; font-weight: 700; line-height: 1.2; }
+      .h2__rating small { display: block; color: var(--muted); font-weight: 500; }
+      @media (max-width: 900px) {
+        .h2 { grid-template-columns: 1fr; }
+        .h2 .cv-media { aspect-ratio: 16 / 9; }
+        .h2__side { grid-template-columns: 1fr auto; align-items: center; justify-items: start; text-align: left; }
+      }
+
+      /* H3 — gallery strip + overlay */
+      .h3 { position: relative; overflow: hidden; aspect-ratio: 4 / 5; border-radius: 22px; color: var(--white); }
+      .h3 .cv-media { position: absolute; inset: 0; }
+      .h3::after { content: ""; position: absolute; inset: 0; background: linear-gradient(rgba(7,18,11,0.1), transparent 30%, rgba(7,18,11,0.85) 75%); }
+      .h3__dots { position: absolute; z-index: 3; top: 18px; right: 18px; display: flex; gap: 5px; }
+      .h3__dots i { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,0.55); }
+      .h3__dots i:first-child { width: 18px; border-radius: 4px; background: var(--white); }
+      .h3__text { position: absolute; z-index: 2; right: 22px; bottom: 22px; left: 22px; }
+      .h3__text h4 { color: var(--white); font-size: 26px; }
+      .h3__text > p { margin: 2px 0 14px; color: #d8e0db; font-size: 12px; }
+      .h3__row { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,0.22); }
+      .h3__row strong { font-size: 22px; } .h3__row small { color: #d8e0db; font-size: 11px; }
+      .h3__score { color: var(--primary); font-size: 12px; font-weight: 700; }
+
+      /* H4 — flight + hotel package */
+      .h4 { overflow: hidden; border-radius: 20px; background: var(--white); box-shadow: var(--shadow); }
+      .h4__top { display: grid; grid-template-columns: 1fr 1fr; height: 200px; }
+      .h4__top .cv-media { height: 200px; }
+      .h4__body { padding: 22px; }
+      .h4__label { display: inline-block; margin-bottom: 8px; padding: 4px 10px; border-radius: 8px; background: var(--light); color: var(--primary-dark); font-size: 10px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; }
+      .h4 h4 { font-size: 22px; }
+      .h4__parts { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 14px 0 18px; }
+      .h4__parts div { padding: 12px; border: 1px solid var(--border); border-radius: 12px; font-size: 11px; color: var(--muted); }
+      .h4__parts strong { display: block; color: var(--dark); font-size: 13px; }
+      .h4__bottom { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; }
+      .h4__old { margin-left: 6px; color: var(--muted); font-size: 13px; text-decoration: line-through; }
+    </style>
+  </head>
+  <body>
+    <div data-site-header></div>
+    <main class="cv-page">
+      <div class="container">
+        <div class="cv-intro">
+          <span class="eyebrow">Design review</span>
+          <h1 style="color: var(--dark); font-size: clamp(34px, 5vw, 54px)">Card variants</h1>
+          <p>Варианты карточек для перелётов и отелей. Сейчас на Destinations используется полноэкранное фото с ценой поверх (4:5) — ниже альтернативы для сравнения.</p>
+        </div>
+
+        <!-- ================= FLIGHTS ================= -->
+        <h2 class="cv-group-title">Flights</h2>
+
+        <section class="cv-variant" style="padding: 0">
+          <header><span class="cv-tag">F1</span><h3>Фото сверху + детали рейса</h3><p>Белая карточка, факты о перелёте чипами, цена отделена линией. Лучше читается, больше информации.</p></header>
+          <div class="cv-grid">
+            <article class="f1">
+              <div class="cv-media"><span class="cv-badge">Best price</span><img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=800&q=85" alt="Paris" /></div>
+              <div class="f1__body">
+                <span class="f1__meta">France · Europe</span>
+                <h4>Paris</h4>
+                <ul class="f1__facts"><li>≈ 3 h 05 min</li><li>Direct</li><li>Air France</li></ul>
+                <div class="f1__bottom"><div class="cv-price"><small>Business from</small><strong>€1,190</strong></div><a class="cv-btn" href="#">Explore</a></div>
+              </div>
+            </article>
+            <article class="f1">
+              <div class="cv-media"><img src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=800&q=85" alt="Tokyo" /></div>
+              <div class="f1__body">
+                <span class="f1__meta">Japan · Asia</span>
+                <h4>Tokyo</h4>
+                <ul class="f1__facts"><li>≈ 15 h 40 min</li><li>1 stop · IST</li><li>Turkish</li></ul>
+                <div class="f1__bottom"><div class="cv-price"><small>Business from</small><strong>€2,480</strong></div><a class="cv-btn" href="#">Explore</a></div>
+              </div>
+            </article>
+            <article class="f1">
+              <div class="cv-media"><span class="cv-badge">Popular</span><img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=800&q=85" alt="Dubai" /></div>
+              <div class="f1__body">
+                <span class="f1__meta">UAE · Middle East</span>
+                <h4>Dubai</h4>
+                <ul class="f1__facts"><li>≈ 4 h 30 min</li><li>Direct</li><li>flydubai</li></ul>
+                <div class="f1__bottom"><div class="cv-price"><small>Business from</small><strong>€1,690</strong></div><a class="cv-btn" href="#">Explore</a></div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="cv-variant" style="padding: 0">
+          <header><span class="cv-tag">F2</span><h3>Посадочный талон</h3><p>Горизонтальная карточка-билет с маршрутом RMO → CDG и «отрывным» корешком с ценой. Подходит для списка и страницы Flights.</p></header>
+          <div class="cv-grid cv-grid--list">
+            <article class="f2">
+              <div class="cv-media"><img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=800&q=85" alt="Paris" /></div>
+              <div class="f2__route">
+                <div class="f2__cities">
+                  <div><b>RMO</b><span>Chișinău</span></div>
+                  <div class="f2__line"><svg viewBox="0 0 24 24"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5Z" /></svg></div>
+                  <div style="text-align: right"><b>CDG</b><span>Paris</span></div>
+                </div>
+                <div class="f2__info"><span><strong>3 h 05 min</strong> · Direct</span><span>Air France</span><span>Business · 2 bags</span></div>
+              </div>
+              <div class="f2__stub"><div class="cv-price"><small>Round trip from</small><strong>€1,190</strong></div><a class="cv-btn" href="#">Select dates</a></div>
+            </article>
+            <article class="f2">
+              <div class="cv-media"><img src="https://images.unsplash.com/photo-1485871981521-5b1fd3805eee?auto=format&fit=crop&w=800&q=85" alt="New York" /></div>
+              <div class="f2__route">
+                <div class="f2__cities">
+                  <div><b>RMO</b><span>Chișinău</span></div>
+                  <div class="f2__line"><svg viewBox="0 0 24 24"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5Z" /></svg></div>
+                  <div style="text-align: right"><b>JFK</b><span>New York</span></div>
+                </div>
+                <div class="f2__info"><span><strong>13 h 20 min</strong> · 1 stop</span><span>Lufthansa</span><span>Business · 2 bags</span></div>
+              </div>
+              <div class="f2__stub"><div class="cv-price"><small>Round trip from</small><strong>€2,090</strong></div><a class="cv-btn" href="#">Select dates</a></div>
+            </article>
+          </div>
+        </section>
+
+        <section class="cv-variant" style="padding: 0">
+          <header><span class="cv-tag">F3</span><h3>Фото + стеклянная панель</h3><p>Близко к текущему стилю, но текст на матовой подложке — фото остаётся главным, а цена читается на любом снимке.</p></header>
+          <div class="cv-grid">
+            <article class="f3">
+              <div class="cv-media"><img src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=800&q=85" alt="London" /></div>
+              <div class="f3__panel"><span>UK · Europe</span><h4>London</h4><div class="f3__row"><p>Business from<strong>€1,240</strong></p><a class="cv-btn" href="#">Explore</a></div></div>
+            </article>
+            <article class="f3">
+              <div class="cv-media"><img src="https://images.unsplash.com/photo-1525625293386-3f8f99389edd?auto=format&fit=crop&w=800&q=85" alt="Singapore" /></div>
+              <div class="f3__panel"><span>Singapore · Asia</span><h4>Singapore</h4><div class="f3__row"><p>Business from<strong>€2,290</strong></p><a class="cv-btn" href="#">Explore</a></div></div>
+            </article>
+            <article class="f3">
+              <div class="cv-media"><img src="https://images.unsplash.com/photo-1485871981521-5b1fd3805eee?auto=format&fit=crop&w=800&q=85" alt="New York" /></div>
+              <div class="f3__panel"><span>USA · Americas</span><h4>New York</h4><div class="f3__row"><p>Business from<strong>€2,090</strong></p><a class="cv-btn" href="#">Explore</a></div></div>
+            </article>
+          </div>
+        </section>
+
+        <section class="cv-variant" style="padding: 0">
+          <header><span class="cv-tag">F4</span><h3>Мозаика с главным направлением</h3><p>Одно направление крупно, остальные — компактно. Хорошо для «All destinations» и сезонных подборок.</p></header>
+          <div class="f4-grid">
+            <article class="f4"><div class="cv-media"><img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=1200&q=85" alt="Paris" /></div><span class="cv-badge">Destination of the month</span><div class="f4__text"><div><p>France · Direct · 3 h 05 min</p><h4>Paris</h4></div><span class="f4__price">from €1,190</span></div></article>
+            <article class="f4"><div class="cv-media"><img src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=800&q=85" alt="Tokyo" /></div><div class="f4__text"><div><p>Japan</p><h4>Tokyo</h4></div><span class="f4__price">€2,480</span></div></article>
+            <article class="f4"><div class="cv-media"><img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=800&q=85" alt="Dubai" /></div><div class="f4__text"><div><p>UAE</p><h4>Dubai</h4></div><span class="f4__price">€1,690</span></div></article>
+            <article class="f4"><div class="cv-media"><img src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=800&q=85" alt="London" /></div><div class="f4__text"><div><p>UK</p><h4>London</h4></div><span class="f4__price">€1,240</span></div></article>
+            <article class="f4"><div class="cv-media"><img src="https://images.unsplash.com/photo-1525625293386-3f8f99389edd?auto=format&fit=crop&w=800&q=85" alt="Singapore" /></div><div class="f4__text"><div><p>Singapore</p><h4>Singapore</h4></div><span class="f4__price">€2,290</span></div></article>
+          </div>
+        </section>
+
+        <!-- ================= HOTELS ================= -->
+        <h2 class="cv-group-title">Hotels</h2>
+
+        <section class="cv-variant" style="padding: 0">
+          <header><span class="cv-tag">H1</span><h3>Классическая карточка отеля</h3><p>Оценка на фото, звёзды, 2–3 привилегии списком, цена за ночь внизу.</p></header>
+          <div class="cv-grid">
+            <article class="h1">
+              <div class="cv-media"><span class="cv-badge">Beach villa</span><span class="h1__score">9.6</span><img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=85" alt="Soneva Fushi" /></div>
+              <div class="h1__body"><span class="h1__stars">★★★★★</span><h4>Soneva Fushi</h4><p class="h1__loc">Baa Atoll, Maldives</p>
+                <ul class="h1__perks"><li>Breakfast included</li><li>Seaplane transfer</li><li>Free cancellation</li></ul>
+                <div class="h1__bottom"><div class="cv-price"><small>Per night from</small><strong>€890</strong></div><a class="cv-btn" href="#">Find stay</a></div></div>
+            </article>
+            <article class="h1">
+              <div class="cv-media"><span class="h1__score">9.2</span><img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=800&q=85" alt="Maison Paris" /></div>
+              <div class="h1__body"><span class="h1__stars">★★★★★</span><h4>Maison Paris</h4><p class="h1__loc">Saint-Germain, Paris</p>
+                <ul class="h1__perks"><li>Breakfast included</li><li>Late checkout</li><li>Room upgrade on arrival</li></ul>
+                <div class="h1__bottom"><div class="cv-price"><small>Per night from</small><strong>€520</strong></div><a class="cv-btn" href="#">Find stay</a></div></div>
+            </article>
+            <article class="h1">
+              <div class="cv-media"><span class="cv-badge">Pool suite</span><span class="h1__score">9.0</span><img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=800&q=85" alt="Desert Palm" /></div>
+              <div class="h1__body"><span class="h1__stars">★★★★★</span><h4>Desert Palm</h4><p class="h1__loc">Al Barsha, Dubai</p>
+                <ul class="h1__perks"><li>Airport transfer</li><li>Private pool</li><li>Spa credit €100</li></ul>
+                <div class="h1__bottom"><div class="cv-price"><small>Per night from</small><strong>€610</strong></div><a class="cv-btn" href="#">Find stay</a></div></div>
+            </article>
+          </div>
+        </section>
+
+        <section class="cv-variant" style="padding: 0">
+          <header><span class="cv-tag">H2</span><h3>Горизонтальная карточка для списка</h3><p>Фото, описание и теги удобств, справа — рейтинг и цена на светлой плашке. Для страницы результатов поиска отелей.</p></header>
+          <div class="cv-grid cv-grid--list">
+            <article class="h2">
+              <div class="cv-media"><img src="https://images.unsplash.com/photo-1445019980597-93fa8acb246c?auto=format&fit=crop&w=800&q=85" alt="Aegean House" /></div>
+              <div class="h2__main"><span class="h1__stars">★★★★★</span><h4>Aegean House</h4><p>Oia, Santorini · 1.2 km from the caldera viewpoint</p>
+                <p class="h2__desc">Whitewashed suites carved into the cliff, each with a private plunge pool and sunset views over the Aegean.</p>
+                <div class="h2__tags"><span>Plunge pool</span><span>Breakfast</span><span>Transfer</span><span>Adults only</span></div></div>
+              <div class="h2__side"><div class="h2__rating"><span>Superb<small>412 reviews</small></span><b>9.3</b></div><div class="cv-price"><small>5 nights · 2 guests</small><strong>€2,900</strong><small>€580 / night</small></div><a class="cv-btn" href="#">Find stay</a></div>
+            </article>
+            <article class="h2">
+              <div class="cv-media"><img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=800&q=85" alt="Ubud Retreat" /></div>
+              <div class="h2__main"><span class="h1__stars">★★★★★</span><h4>Ubud Retreat</h4><p>Ubud, Bali · in the rainforest</p>
+                <p class="h2__desc">Secluded jungle villas with open-air bathrooms, daily yoga and a spa credit for every night of the stay.</p>
+                <div class="h2__tags"><span>Jungle villa</span><span>Daily spa credit</span><span>Yoga</span></div></div>
+              <div class="h2__side"><div class="h2__rating"><span>Exceptional<small>860 reviews</small></span><b>9.4</b></div><div class="cv-price"><small>7 nights · 2 guests</small><strong>€2,730</strong><small>€390 / night</small></div><a class="cv-btn" href="#">Find stay</a></div>
+            </article>
+          </div>
+        </section>
+
+        <section class="cv-variant" style="padding: 0">
+          <header><span class="cv-tag">H3</span><h3>Фото-карточка в стиле Destinations</h3><p>Та же визуальная логика, что у перелётов сейчас — точки намекают на галерею. Единый стиль по всему сайту.</p></header>
+          <div class="cv-grid">
+            <article class="h3">
+              <div class="cv-media"><img src="https://images.unsplash.com/photo-1455587734955-081b22074882?auto=format&fit=crop&w=800&q=85" alt="The Kensington" /></div>
+              <div class="h3__dots"><i></i><i></i><i></i><i></i></div>
+              <div class="h3__text"><span class="h1__stars">★★★★★</span><h4>The Kensington</h4><p>Kensington, London · Junior suite</p>
+                <div class="h3__row"><div><strong>€470</strong> <small>/ night</small><div class="h3__score">8.9 · Excellent</div></div><a class="cv-btn cv-btn--ghost" href="#">Find stay</a></div></div>
+            </article>
+            <article class="h3">
+              <div class="cv-media"><img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=85" alt="Soneva Fushi" /></div>
+              <div class="h3__dots"><i></i><i></i><i></i></div>
+              <div class="h3__text"><span class="h1__stars">★★★★★</span><h4>Soneva Fushi</h4><p>Baa Atoll, Maldives · Beach villa</p>
+                <div class="h3__row"><div><strong>€890</strong> <small>/ night</small><div class="h3__score">9.6 · Exceptional</div></div><a class="cv-btn cv-btn--ghost" href="#">Find stay</a></div></div>
+            </article>
+            <article class="h3">
+              <div class="cv-media"><img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=800&q=85" alt="Desert Palm" /></div>
+              <div class="h3__dots"><i></i><i></i><i></i><i></i><i></i></div>
+              <div class="h3__text"><span class="h1__stars">★★★★★</span><h4>Desert Palm</h4><p>Al Barsha, Dubai · Pool suite</p>
+                <div class="h3__row"><div><strong>€610</strong> <small>/ night</small><div class="h3__score">9.0 · Superb</div></div><a class="cv-btn cv-btn--ghost" href="#">Find stay</a></div></div>
+            </article>
+          </div>
+        </section>
+
+        <section class="cv-variant" style="padding: 0">
+          <header><span class="cv-tag">H4</span><h3>Пакет «перелёт + отель»</h3><p>Два фото рядом, состав пакета в двух плашках и выгода. Связывает Destinations и Hotels.</p></header>
+          <div class="cv-grid cv-grid--two">
+            <article class="h4">
+              <div class="h4__top"><div class="cv-media"><img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=600&q=85" alt="Paris" /></div><div class="cv-media"><img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=600&q=85" alt="Maison Paris" /></div></div>
+              <div class="h4__body"><span class="h4__label">Flight + Hotel</span><h4>Paris · 3 nights</h4>
+                <div class="h4__parts"><div><strong>RMO → CDG</strong>Business · Direct</div><div><strong>Maison Paris ★★★★★</strong>Deluxe · Breakfast</div></div>
+                <div class="h4__bottom"><div class="cv-price"><small>Per person from</small><strong>€1,840</strong><span class="h4__old">€2,150</span></div><a class="cv-btn" href="#">View package</a></div></div>
+            </article>
+            <article class="h4">
+              <div class="h4__top"><div class="cv-media"><img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=600&q=85" alt="Dubai" /></div><div class="cv-media"><img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=600&q=85" alt="Desert Palm" /></div></div>
+              <div class="h4__body"><span class="h4__label">Flight + Hotel</span><h4>Dubai · 4 nights</h4>
+                <div class="h4__parts"><div><strong>RMO → DXB</strong>Business · Direct</div><div><strong>Desert Palm ★★★★★</strong>Pool suite · Transfer</div></div>
+                <div class="h4__bottom"><div class="cv-price"><small>Per person from</small><strong>€2,790</strong><span class="h4__old">€3,260</span></div><a class="cv-btn" href="#">View package</a></div></div>
+            </article>
+          </div>
+        </section>
+      </div>
+    </main>
+    <div data-site-footer></div>
+    <script src="js/components.js"></script>
+  </body>
+</html>

@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="Business-class flight offers with personal Premium Flights support."
+    />
+    <title>Business Class Flights to Paris — Premium Travel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="css/index.css" />
+  </head>
+  <body class="paris-page">
+    <div data-site-header></div>
+    <main>
+      <section class="site-hero" style="--hero-image: url('https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=2000&q=88')">
+        <div class="container site-hero__content">
+          <span class="eyebrow eyebrow--light">France · Europe</span>
+          <h1>Business class to Paris</h1>
+        </div>
+        <form class="search-form flight-search flight-search--initial container" id="search">
+          <div class="search-form__top">
+            <h2>Where would you like to go?</h2>
+            <div class="search-form__options flight-search__options">
+              <label class="search-form__trip-type">
+      
+                <select id="tripType" name="tripType">
+                  <option value="round-trip" selected>Round trip</option>
+                  <option value="one-way">One way</option>
+                  <option value="multi-city">Multi-city</option>
+                </select>
+                <span class="ui-chevron ui-chevron--down" aria-hidden="true"></span>
+              </label>
+              <label>
+                <select id="cabinClass" name="cabinClass" aria-label="Cabin class">
+                  <option value="Economy">Economy</option>
+                  <option value="Premium Economy">Premium Economy</option>
+                  <option value="Business" selected>Business</option>
+                  <option value="First">First</option>
+                </select>
+                <span class="ui-chevron ui-chevron--down" aria-hidden="true"></span>
+              </label>
+              <label class="search-form__direct">
+                <input id="directOnly" name="directOnly" type="checkbox" />
+                <span></span>
+                Only direct
+              </label>
+            </div>
+          </div>
+
+          <div class="multi-city" data-multi-city hidden>
+            <div class="multi-city__segments" data-route-segments></div>
+            <button class="button button--secondary multi-city__add" type="button" data-add-segment>+ Add another flight</button>
+          </div>
+
+          <div class="search-form__fields flight-search__fields" data-standard-route>
+            <label class="search-form__field search-form__field--from flight-search__field" data-initial-airport-field="from">
+              <span class="sr-only">From</span>
+              <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m3 16 18-5-1-3-7 2-5-7-2 1 3 8-5 2-2-2-1 1 2 4Zm0 3h18v2H3v-2Z" /></svg>
+              <input id="from" name="from" type="text" value="Chișinău (RMO)" autocomplete="off" required />
+             
+            </label>
+            <button class="swap flight-search__swap" type="button" aria-label="Swap cities">
+              ⇄
+            </button>
+            <label class="search-form__field search-form__field--to flight-search__field" data-initial-airport-field="to">
+              <span class="sr-only">To</span>
+              <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M2.5 19h19v2h-19v-2Zm17.61-5.94-5.3-1.42-2.76-8.97-1.93-.52v8.07L5.15 8.89l-.93-2.32-1.45-.39v4.05l7.91 3.09 3.37 1.16 3.3 1.42c.78.21 1.59-.26 1.8-1.04.21-.78-.26-1.59-1.04-1.8Z" /></svg>
+              <input id="to" name="to" type="text" value="Paris, FR (PAR)" placeholder="City or airport" autocomplete="off" required />
+          
+            </label>
+            <div class="search-form__field search-form__field--depart flight-search__field" data-initial-date-range-field>
+              <span class="sr-only">Dates</span>
+              <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M7 2h2v2h6V2h2v2h3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h3V2Zm13 8H4v10h16V10ZM4 8h16V6H4v2Z" /></svg>
+              <input id="dateRange" aria-label="Departure and return dates" aria-expanded="false" readonly />
+              <input id="depart" name="departure" type="hidden" />
+              <input id="return" name="return" type="hidden" />
+            </div>
+
+            <div class="traveler-picker">
+              <button class="search-form__field flight-search__field traveler-picker__trigger" type="button" aria-expanded="false" aria-controls="travelerPanel">
+                <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10Zm0-2a3 3 0 1 1 0-6 3 3 0 0 1 0 6Zm0 3c-5 0-9 2.5-9 6v2h18v-2c0-3.5-4-6-9-6Zm-7 6c0-2 3-4 7-4s7 2 7 4H5Z" /></svg>
+                <span class="sr-only">Travelers</span>
+                <strong data-traveler-summary>1 traveler · Business</strong>
+              </button>
+              <div class="traveler-picker__panel" id="travelerPanel" hidden>
+                <div class="traveler-picker__row" data-traveler-type="adults">
+                  <div><strong>Adults</strong><small>Age 16+</small></div>
+                  <div class="traveler-picker__counter">
+                    <button type="button" data-counter-action="decrease" aria-label="Decrease adults">−</button>
+                    <output aria-live="polite">1</output>
+                    <button type="button" data-counter-action="increase" aria-label="Increase adults">+</button>
+                  </div>
+                </div>
+                <div class="traveler-picker__row" data-traveler-type="children">
+                  <div><strong>Children</strong><small>Age 2–15</small></div>
+                  <div class="traveler-picker__counter">
+                    <button type="button" data-counter-action="decrease" aria-label="Decrease children">−</button>
+                    <output aria-live="polite">0</output>
+                    <button type="button" data-counter-action="increase" aria-label="Increase children">+</button>
+                  </div>
+                </div>
+                <div class="traveler-picker__row" data-traveler-type="infants">
+                  <div><strong>Infants</strong><small>Under 2</small></div>
+                  <div class="traveler-picker__counter">
+                    <button type="button" data-counter-action="decrease" aria-label="Decrease infants">−</button>
+                    <output aria-live="polite">0</output>
+                    <button type="button" data-counter-action="increase" aria-label="Increase infants">+</button>
+                  </div>
+                </div>
+                <button class="button button--primary traveler-picker__done" type="button">Done</button>
+              </div>
+              <input id="travelerAdults" type="hidden" name="adults" value="1" />
+              <input id="travelerChildren" type="hidden" name="children" value="0" />
+              <input id="travelerInfants" type="hidden" name="infants" value="0" />
+            </div>
+
+            <button class="button button--primary" type="submit">
+              Search flights <span class="ui-chevron ui-chevron--right" aria-hidden="true"></span>
+            </button>
+          </div>
+
+          <p class="search-form__message" role="status"></p>
+        </form>
+      </section>
+      <section class="paris-about" id="about-paris">
+        <div class="container">
+          <div class="paris-about__inner">
+            <div><span class="eyebrow">The route</span><h2>Business Class Flight Deals to Paris</h2></div>
+            <div>
+              <p>Fly to Paris–Charles de Gaulle (CDG) or Paris–Orly (ORY) in business class from Chișinău, Bucharest and other cities across Europe, the Middle East, Asia and the Americas. Expect priority service at every step, lounge access and a calmer cabin, so you land ready for meetings or the weekend.</p>
+              <p>When comparing fares, look beyond the price: total journey time, connection length and fare conditions matter just as much. Your personal expert compares them for you and keeps the booking flexible if plans change.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="paris-deals" id="best-deals" aria-labelledby="paris-deals-title">
+        <div class="container">
+          <div class="paris-deals__heading"><h2 id="paris-deals-title">Best deals to Paris</h2><p>Explore example itineraries by departure region. Fares and schedules below are illustrative, not live offers.</p></div>
+          <div class="paris-deals__filters" role="group" aria-label="Departure region">
+            <span><svg class="paris-deals__plane" viewBox="-8 -8 16 16" aria-hidden="true"><path transform="rotate(45)" d="M0-6C.8-6 1.2-5.2 1.2-4.4V-1.2L6 1.6V3L1.2 1.6V4.2L2.6 5.4V6.3L0 5.6-2.6 6.3V5.4L-1.2 4.2V1.6L-6 3V1.6L-1.2-1.2V-4.4C-1.2-5.2-.8-6 0-6Z"/></svg>From</span>
+            <button type="button" class="is-active" data-paris-deal-region="all" aria-pressed="true">All regions</button>
+            <button type="button" data-paris-deal-region="europe" aria-pressed="false">Europe</button>
+            <button type="button" data-paris-deal-region="asia" aria-pressed="false">Asia</button>
+            <button type="button" data-paris-deal-region="middle-east" aria-pressed="false">Middle East</button>
+            <button type="button" data-paris-deal-region="americas" aria-pressed="false">Americas</button>
+          </div>
+          <div class="paris-deals__grid" aria-live="polite">
+            <article class="route-deal" data-paris-deal-card="europe">
+              <div class="route-deal__head">
+                <div class="route-deal__codes"><div><b>RMO</b><span>Chișinău</span></div><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5Z" /></svg><div><b>PAR</b><span>Paris</span></div></div>
+              </div>
+              <div class="route-deal__meta"><span>1 stop</span><span>Wed, Nov 25 – Tue, Dec 1</span></div>
+              <div class="route-deal__legs"><div><small>Outbound</small><b>09:10 – 14:30</b><span>5h 20m</span></div><div><small>Return</small><b>11:40 – 17:05</b><span>5h 25m</span></div></div>
+              <div class="route-deal__bottom"><div class="route-deal__price"><img src="img/airlines/airfrance.svg" alt="" /><div><small>Air France</small><strong>€1,190</strong></div></div><a href="#search" data-paris-deal-origin="Chișinău (RMO)">Find deal</a></div>
+            </article>
+            <article class="route-deal" data-paris-deal-card="europe">
+              <div class="route-deal__head">
+                <div class="route-deal__codes"><div><b>OTP</b><span>Bucharest</span></div><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5Z" /></svg><div><b>PAR</b><span>Paris</span></div></div>
+              </div>
+              <div class="route-deal__meta"><span>Direct</span><span>Wed, Nov 25 – Tue, Dec 1</span></div>
+              <div class="route-deal__legs"><div><small>Outbound</small><b>07:20 – 09:30</b><span>3h 10m</span></div><div><small>Return</small><b>15:10 – 19:05</b><span>2h 55m</span></div></div>
+              <div class="route-deal__bottom"><div class="route-deal__price"><img src="img/airlines/airfrance.svg" alt="" /><div><small>Air France</small><strong>€990</strong></div></div><a href="#search" data-paris-deal-origin="Bucharest (OTP)">Find deal</a></div>
+            </article>
+            <article class="route-deal" data-paris-deal-card="europe">
+              <div class="route-deal__head">
+                <div class="route-deal__codes"><div><b>FRA</b><span>Frankfurt</span></div><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5Z" /></svg><div><b>PAR</b><span>Paris</span></div></div>
+              </div>
+              <div class="route-deal__meta"><span>Direct</span><span>Wed, Nov 25 – Tue, Dec 1</span></div>
+              <div class="route-deal__legs"><div><small>Outbound</small><b>10:15 – 11:30</b><span>1h 15m</span></div><div><small>Return</small><b>18:20 – 19:35</b><span>1h 15m</span></div></div>
+              <div class="route-deal__bottom"><div class="route-deal__price"><img src="img/airlines/lufthansa.svg" alt="" /><div><small>Lufthansa</small><strong>€790</strong></div></div><a href="#search" data-paris-deal-origin="Frankfurt (FRA)">Find deal</a></div>
+            </article>
+            <article class="route-deal" data-paris-deal-card="middle-east">
+              <div class="route-deal__head">
+                <div class="route-deal__codes"><div><b>DXB</b><span>Dubai</span></div><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5Z" /></svg><div><b>PAR</b><span>Paris</span></div></div>
+              </div>
+              <div class="route-deal__meta"><span>Direct</span><span>Wed, Nov 25 – Tue, Dec 1</span></div>
+              <div class="route-deal__legs"><div><small>Outbound</small><b>08:30 – 13:30</b><span>7h 30m</span></div><div><small>Return</small><b>21:10 – 06:35</b><span>6h 25m</span></div></div>
+              <div class="route-deal__bottom"><div class="route-deal__price"><img src="img/airlines/emirates.svg" alt="" /><div><small>Emirates</small><strong>€1,690</strong></div></div><a href="#search" data-paris-deal-origin="Dubai (DXB)">Find deal</a></div>
+            </article>
+            <article class="route-deal" data-paris-deal-card="asia">
+              <div class="route-deal__head">
+                <div class="route-deal__codes"><div><b>TYO</b><span>Tokyo</span></div><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5Z" /></svg><div><b>PAR</b><span>Paris</span></div></div>
+              </div>
+              <div class="route-deal__meta"><span>1 stop</span><span>Wed, Nov 25 – Tue, Dec 1</span></div>
+              <div class="route-deal__legs"><div><small>Outbound</small><b>22:10 – 14:20</b><span>23h 10m</span></div><div><small>Return</small><b>16:25 – 18:50</b><span>19h 25m</span></div></div>
+              <div class="route-deal__bottom"><div class="route-deal__price"><img src="img/airlines/qatar.svg" alt="" /><div><small>Qatar Airways</small><strong>€2,480</strong></div></div><a href="#search" data-paris-deal-origin="Tokyo (TYO)">Find deal</a></div>
+            </article>
+            <article class="route-deal" data-paris-deal-card="americas">
+              <div class="route-deal__head">
+                <div class="route-deal__codes"><div><b>JFK</b><span>New York</span></div><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5Z" /></svg><div><b>PAR</b><span>Paris</span></div></div>
+              </div>
+              <div class="route-deal__meta"><span>Direct</span><span>Wed, Nov 25 – Tue, Dec 1</span></div>
+              <div class="route-deal__legs"><div><small>Outbound</small><b>18:40 – 08:10</b><span>7h 30m</span></div><div><small>Return</small><b>13:20 – 16:05</b><span>8h 45m</span></div></div>
+              <div class="route-deal__bottom"><div class="route-deal__price"><img src="img/airlines/airfrance.svg" alt="" /><div><small>Air France</small><strong>€1,390</strong></div></div><a href="#search" data-paris-deal-origin="New York (JFK)">Find deal</a></div>
+            </article>
+          </div>
+        </div>
+      </section>
+      <section class="route-airlines" aria-labelledby="route-airlines-title">
+        <div class="container">
+          <div class="paris-deals__heading"><h2 id="route-airlines-title">Business class on this route</h2><p>Compare the airlines flying to Paris in business class. Details vary by aircraft and date.</p></div>
+          <div class="route-airlines__grid">
+            <article class="route-airline">
+              <div class="route-airline__head"><img src="img/airlines/airfrance.svg" alt="" /><div><h3>Air France</h3><span>Direct from Bucharest</span></div></div>
+              <dl>
+                <div><dt>Seat</dt><dd>Business seat, free middle seat</dd></div>
+                <div><dt>Lounge</dt><dd>Air France lounge, CDG</dd></div>
+                <div><dt>Dining</dt><dd>French menu & champagne</dd></div>
+                <div><dt>Baggage</dt><dd>2 × 32 kg</dd></div>
+              </dl>
+              <div class="route-airline__bottom"><div><small>Round trip from</small><strong>€990</strong></div><a href="#search">Find flights</a></div>
+            </article>
+            <article class="route-airline">
+              <div class="route-airline__head"><img src="img/airlines/lufthansa.svg" alt="" /><div><h3>Lufthansa</h3><span>1 stop via Frankfurt or Munich</span></div></div>
+              <dl>
+                <div><dt>Seat</dt><dd>Business seat, free middle seat</dd></div>
+                <div><dt>Lounge</dt><dd>Business lounge, FRA / MUC</dd></div>
+                <div><dt>Dining</dt><dd>Hot meal & wine selection</dd></div>
+                <div><dt>Baggage</dt><dd>2 × 32 kg</dd></div>
+              </dl>
+              <div class="route-airline__bottom"><div><small>Round trip from</small><strong>€1,190</strong></div><a href="#search">Find flights</a></div>
+            </article>
+            <article class="route-airline">
+              <div class="route-airline__head"><img src="img/airlines/turkish.svg" alt="" /><div><h3>Turkish Airlines</h3><span>1 stop via Istanbul</span></div></div>
+              <dl>
+                <div><dt>Seat</dt><dd>Recliner, 2-2 cabin</dd></div>
+                <div><dt>Lounge</dt><dd>Business lounge, Istanbul</dd></div>
+                <div><dt>Dining</dt><dd>À la carte menu</dd></div>
+                <div><dt>Baggage</dt><dd>2 × 32 kg</dd></div>
+              </dl>
+              <div class="route-airline__bottom"><div><small>Round trip from</small><strong>€1,090</strong></div><a href="#search">Find flights</a></div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="route-included" aria-labelledby="route-included-title">
+        <div class="container">
+          <div class="paris-deals__heading"><span class="eyebrow">Your business class ticket</span><h2 id="route-included-title">What's included</h2></div>
+          <ul class="route-included__grid">
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16v12H4V4Zm2 2v8h12V6H6Zm-3 12h18v2H3v-2Zm6-9h6v2H9V9Z" /></svg><div><strong>Priority check-in</strong><span>Dedicated counters, no queues</span></div></li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z" /></svg><div><strong>Fast track security</strong><span>Where the airport offers it</span></div></li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11V7a3 3 0 0 1 3-3h10a3 3 0 0 1 3 3v4a2 2 0 0 1 2 2v5h-2v2h-2v-2H6v2H4v-2H2v-5a2 2 0 0 1 2-2Zm2 0a2 2 0 0 1 2 2v1h8v-1a2 2 0 0 1 2-2V7a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1v4Zm-2 2v3h16v-3h-1v3H5v-3H4Z" /></svg><div><strong>Lounge access</strong><span>Quiet space, food and Wi-Fi before you fly</span></div></li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v14H4V5Zm2 2v10h12V7H6Zm2 2h5v2H8V9Zm0 4h8v2H8v-2Z" /></svg><div><strong>Priority boarding</strong><span>Board first and settle in</span></div></li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h2v9h6a2 2 0 0 1 2 2v3h2v2h-2v2h-2v-2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Zm0 14h8v-3H7v3Z" /></svg><div><strong>More space onboard</strong><span>Business seat with extra room</span></div></li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10Zm0-2a3 3 0 1 1 0-6 3 3 0 0 1 0 6Zm0 3c-5 0-9 2.5-9 6v2h18v-2c0-3.5-4-6-9-6Zm-7 6c0-2 3-4 7-4s7 2 7 4H5Z" /></svg><div><strong>Personal expert</strong><span>One contact before and during your trip</span></div></li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="cta">
+        <div class="container cta__inner">
+          <div><span class="eyebrow eyebrow--light">Your next journey</span><h2>Ready for Paris?</h2><p>Choose your departure city and dates to start finding the right flight.</p></div>
+          <a class="button button--light" href="#search" data-paris-cta>Search flights to Paris <span class="ui-chevron ui-chevron--right" aria-hidden="true"></span></a>
+        </div>
+      </section>
+    </main>
+    <div data-site-footer></div>
+    <script src="js/components.js"></script>
+    <script src="js/date-range-calendar.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/custom-selects.js"></script>
+    <script src="js/paris.js"></script>
+  </body>
+</html>
+
+
+
+
+
+

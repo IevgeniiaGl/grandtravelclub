@@ -1,0 +1,495 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Premium Flights — business-class travel to the world's finest destinations with personal support."
+    />
+    <title>Premium Flights — Business Class Without Compromise</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="css/index.css" />
+  </head>
+  <body>
+    <div data-site-header></div>
+
+    <main id="top">
+      <section class="site-hero" style="--hero-image: url('../img/1277.jpg')">
+        <div class="container site-hero__content">
+          <span class="eyebrow eyebrow--light">Travel at a higher level</span>
+          <h1>Business class<br />without compromise</h1>
+        </div>
+        <form class="search-form flight-search flight-search--initial container" id="search">
+          <div class="search-form__top">
+            <h2>Where would you like to go?</h2>
+            <div class="search-form__options flight-search__options">
+              <label class="search-form__trip-type">
+      
+                <select id="tripType" name="tripType">
+                  <option value="round-trip" selected>Round trip</option>
+                  <option value="one-way">One way</option>
+                  <option value="multi-city">Multi-city</option>
+                </select>
+                <span class="ui-chevron ui-chevron--down" aria-hidden="true"></span>
+              </label>
+              <label>
+                <select id="cabinClass" name="cabinClass" aria-label="Cabin class">
+                  <option value="Economy">Economy</option>
+                  <option value="Premium Economy">Premium Economy</option>
+                  <option value="Business" selected>Business</option>
+                  <option value="First">First</option>
+                </select>
+                <span class="ui-chevron ui-chevron--down" aria-hidden="true"></span>
+              </label>
+              <label class="search-form__direct">
+                <input id="directOnly" name="directOnly" type="checkbox" />
+                <span></span>
+                Only direct
+              </label>
+            </div>
+          </div>
+
+          <div class="multi-city" data-multi-city hidden>
+            <div class="multi-city__segments" data-route-segments></div>
+            <button class="button button--secondary multi-city__add" type="button" data-add-segment>+ Add another flight</button>
+          </div>
+
+          <div class="search-form__fields flight-search__fields" data-standard-route>
+            <label class="search-form__field search-form__field--from flight-search__field" data-initial-airport-field="from">
+              <span class="sr-only">From</span>
+              <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m3 16 18-5-1-3-7 2-5-7-2 1 3 8-5 2-2-2-1 1 2 4Zm0 3h18v2H3v-2Z" /></svg>
+              <input id="from" name="from" type="text" value="Chișinău (RMO)" autocomplete="off" required />
+             
+            </label>
+            <button class="swap flight-search__swap" type="button" aria-label="Swap cities">
+              ⇄
+            </button>
+            <label class="search-form__field search-form__field--to flight-search__field" data-initial-airport-field="to">
+              <span class="sr-only">To</span>
+              <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M2.5 19h19v2h-19v-2Zm17.61-5.94-5.3-1.42-2.76-8.97-1.93-.52v8.07L5.15 8.89l-.93-2.32-1.45-.39v4.05l7.91 3.09 3.37 1.16 3.3 1.42c.78.21 1.59-.26 1.8-1.04.21-.78-.26-1.59-1.04-1.8Z" /></svg>
+              <input id="to" name="to" type="text" placeholder="City or airport" autocomplete="off" required />
+          
+            </label>
+            <div class="search-form__field search-form__field--depart flight-search__field" data-initial-date-range-field>
+              <span class="sr-only">Dates</span>
+              <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M7 2h2v2h6V2h2v2h3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h3V2Zm13 8H4v10h16V10ZM4 8h16V6H4v2Z" /></svg>
+              <input id="dateRange" aria-label="Departure and return dates" aria-expanded="false" readonly />
+              <input id="depart" name="departure" type="hidden" />
+              <input id="return" name="return" type="hidden" />
+            </div>
+
+            <div class="traveler-picker">
+              <button class="search-form__field flight-search__field traveler-picker__trigger" type="button" aria-expanded="false" aria-controls="travelerPanel">
+                <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10Zm0-2a3 3 0 1 1 0-6 3 3 0 0 1 0 6Zm0 3c-5 0-9 2.5-9 6v2h18v-2c0-3.5-4-6-9-6Zm-7 6c0-2 3-4 7-4s7 2 7 4H5Z" /></svg>
+                <span class="sr-only">Travelers</span>
+                <strong data-traveler-summary>1 traveler · Business</strong>
+              </button>
+              <div class="traveler-picker__panel" id="travelerPanel" hidden>
+                <div class="traveler-picker__row" data-traveler-type="adults">
+                  <div><strong>Adults</strong><small>Age 16+</small></div>
+                  <div class="traveler-picker__counter">
+                    <button type="button" data-counter-action="decrease" aria-label="Decrease adults">−</button>
+                    <output aria-live="polite">1</output>
+                    <button type="button" data-counter-action="increase" aria-label="Increase adults">+</button>
+                  </div>
+                </div>
+                <div class="traveler-picker__row" data-traveler-type="children">
+                  <div><strong>Children</strong><small>Age 2–15</small></div>
+                  <div class="traveler-picker__counter">
+                    <button type="button" data-counter-action="decrease" aria-label="Decrease children">−</button>
+                    <output aria-live="polite">0</output>
+                    <button type="button" data-counter-action="increase" aria-label="Increase children">+</button>
+                  </div>
+                </div>
+                <div class="traveler-picker__row" data-traveler-type="infants">
+                  <div><strong>Infants</strong><small>Under 2</small></div>
+                  <div class="traveler-picker__counter">
+                    <button type="button" data-counter-action="decrease" aria-label="Decrease infants">−</button>
+                    <output aria-live="polite">0</output>
+                    <button type="button" data-counter-action="increase" aria-label="Increase infants">+</button>
+                  </div>
+                </div>
+                <button class="button button--primary traveler-picker__done" type="button">Done</button>
+              </div>
+              <input id="travelerAdults" type="hidden" name="adults" value="1" />
+              <input id="travelerChildren" type="hidden" name="children" value="0" />
+              <input id="travelerInfants" type="hidden" name="infants" value="0" />
+            </div>
+
+            <button class="button button--primary" type="submit">
+              Search flights <span class="ui-chevron ui-chevron--right" aria-hidden="true"></span>
+            </button>
+          </div>
+
+
+          <p class="search-form__message" role="status"></p>
+        </form>
+      </section>
+
+      <section class="paris-deals" id="best-deals" aria-labelledby="flight-deals-title">
+        <div class="container">
+          <div class="paris-deals__heading"><h2 id="flight-deals-title">Best deals</h2><p>Explore example itineraries by departure region. Fares and schedules below are illustrative, not live offers.</p></div>
+          <div class="paris-deals__filters" role="group" aria-label="Departure region">
+            <span><svg class="paris-deals__plane" viewBox="-8 -8 16 16" aria-hidden="true"><path transform="rotate(45)" d="M0-6C.8-6 1.2-5.2 1.2-4.4V-1.2L6 1.6V3L1.2 1.6V4.2L2.6 5.4V6.3L0 5.6-2.6 6.3V5.4L-1.2 4.2V1.6L-6 3V1.6L-1.2-1.2V-4.4C-1.2-5.2-.8-6 0-6Z"/></svg>From</span>
+            <button type="button" class="is-active" data-paris-deal-region="all" aria-pressed="true">All countries</button>
+            <button type="button" data-paris-deal-region="europe" aria-pressed="false">Europe</button>
+            <button type="button" data-paris-deal-region="asia" aria-pressed="false">Asia</button>
+            <button type="button" data-paris-deal-region="middle-east" aria-pressed="false">Middle East</button>
+            <button type="button" data-paris-deal-region="americas" aria-pressed="false">Americas</button>
+          </div>
+          <div class="paris-deals__toolbar">
+            <span>Sort by</span>
+            <div class="paris-deals__sort" role="group" aria-label="Sort deals">
+              <button type="button" class="is-active" data-deal-sort="price" aria-pressed="true">Cheapest</button>
+              <button type="button" data-deal-sort="duration" aria-pressed="false">Fastest</button>
+            </div>
+          </div>
+          <div class="paris-deals__grid" aria-live="polite" data-deals-grid>
+            <article class="route-deal" data-paris-deal-card="europe" data-price="2050" data-duration="1030">
+              <div class="route-deal__head">
+                <div class="route-deal__codes"><div><b>RMO</b><span>Chișinău</span></div><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5Z" /></svg><div><b>SIN</b><span>Singapore</span></div></div>
+              </div>
+              <div class="route-deal__meta"><span>1 stop</span><span>Thu, Nov 26 – Thu, Dec 10</span></div>
+              <div class="route-deal__legs"><div><small>Outbound</small><b>07:30 – 06:40<sup>+1</sup></b><span>17h 10m</span></div><div><small>Return</small><b>23:55 – 11:35<sup>+1</sup></b><span>17h 40m</span></div></div>
+              <div class="route-deal__bottom"><div class="route-deal__price"><img src="img/airlines/turkish.svg" alt="" /><div><small>Turkish Airlines</small><strong>€2,050</strong></div></div><a href="#search" data-paris-deal-origin="Chișinău (RMO)" data-paris-deal-destination="Singapore — Changi Airport (SIN)">Find deal</a></div>
+            </article>
+            <article class="route-deal" data-paris-deal-card="europe" data-price="1090" data-duration="355">
+              <div class="route-deal__head">
+                <div class="route-deal__codes"><div><b>OTP</b><span>Bucharest</span></div><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5Z" /></svg><div><b>LHR</b><span>London</span></div></div>
+              </div>
+              <div class="route-deal__meta"><span>1 stop</span><span>Thu, Dec 3 – Wed, Dec 9</span></div>
+              <div class="route-deal__legs"><div><small>Outbound</small><b>06:20 – 10:15</b><span>5h 55m</span></div><div><small>Return</small><b>12:40 – 21:05</b><span>6h 25m</span></div></div>
+              <div class="route-deal__bottom"><div class="route-deal__price"><img src="img/airlines/airfrance.svg" alt="" /><div><small>Air France</small><strong>€1,090</strong></div></div><a href="#search" data-paris-deal-origin="Bucharest (OTP)" data-paris-deal-destination="London, UK — All Airports (LON)">Find deal</a></div>
+            </article>
+            <article class="route-deal" data-paris-deal-card="europe" data-price="1790" data-duration="525">
+              <div class="route-deal__head">
+                <div class="route-deal__codes"><div><b>FRA</b><span>Frankfurt</span></div><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5Z" /></svg><div><b>JFK</b><span>New York</span></div></div>
+              </div>
+              <div class="route-deal__meta"><span>Direct</span><span>Sat, Dec 5 – Sat, Dec 12</span></div>
+              <div class="route-deal__legs"><div><small>Outbound</small><b>10:00 – 12:45</b><span>8h 45m</span></div><div><small>Return</small><b>18:00 – 07:55<sup>+1</sup></b><span>7h 55m</span></div></div>
+              <div class="route-deal__bottom"><div class="route-deal__price"><img src="img/airlines/lufthansa.svg" alt="" /><div><small>Lufthansa</small><strong>€1,790</strong></div></div><a href="#search" data-paris-deal-origin="Frankfurt (FRA)" data-paris-deal-destination="New York, USA — All Airports (NYC)">Find deal</a></div>
+            </article>
+            <article class="route-deal" data-paris-deal-card="middle-east" data-price="2480" data-duration="600">
+              <div class="route-deal__head">
+                <div class="route-deal__codes"><div><b>DOH</b><span>Doha</span></div><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5Z" /></svg><div><b>HND</b><span>Tokyo</span></div></div>
+              </div>
+              <div class="route-deal__meta"><span>Direct</span><span>Tue, Dec 1 – Tue, Dec 8</span></div>
+              <div class="route-deal__legs"><div><small>Outbound</small><b>07:05 – 23:05</b><span>10h 00m</span></div><div><small>Return</small><b>22:30 – 04:25<sup>+1</sup></b><span>11h 55m</span></div></div>
+              <div class="route-deal__bottom"><div class="route-deal__price"><img src="img/airlines/qatar.svg" alt="" /><div><small>Qatar Airways</small><strong>€2,480</strong></div></div><a href="#search" data-paris-deal-origin="Doha (DOH)" data-paris-deal-destination="Tokyo, Japan — All Airports (TYO)">Find deal</a></div>
+            </article>
+            <article class="route-deal" data-paris-deal-card="asia" data-price="1450" data-duration="445">
+              <div class="route-deal__head">
+                <div class="route-deal__codes"><div><b>SIN</b><span>Singapore</span></div><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5Z" /></svg><div><b>DXB</b><span>Dubai</span></div></div>
+              </div>
+              <div class="route-deal__meta"><span>Direct</span><span>Fri, Nov 27 – Fri, Dec 4</span></div>
+              <div class="route-deal__legs"><div><small>Outbound</small><b>09:55 – 13:20</b><span>7h 25m</span></div><div><small>Return</small><b>02:40 – 14:10</b><span>7h 30m</span></div></div>
+              <div class="route-deal__bottom"><div class="route-deal__price"><img src="img/airlines/emirates.svg" alt="" /><div><small>Emirates</small><strong>€1,450</strong></div></div><a href="#search" data-paris-deal-origin="Singapore (SIN)" data-paris-deal-destination="Dubai, UAE — Dubai International Airport (DXB)">Find deal</a></div>
+            </article>
+            <article class="route-deal" data-paris-deal-card="americas" data-price="1390" data-duration="450">
+              <div class="route-deal__head">
+                <div class="route-deal__codes"><div><b>JFK</b><span>New York</span></div><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5Z" /></svg><div><b>CDG</b><span>Paris</span></div></div>
+              </div>
+              <div class="route-deal__meta"><span>Direct</span><span>Thu, Dec 3 – Wed, Dec 9</span></div>
+              <div class="route-deal__legs"><div><small>Outbound</small><b>18:40 – 08:10<sup>+1</sup></b><span>7h 30m</span></div><div><small>Return</small><b>13:20 – 16:05</b><span>8h 45m</span></div></div>
+              <div class="route-deal__bottom"><div class="route-deal__price"><img src="img/airlines/airfrance.svg" alt="" /><div><small>Air France</small><strong>€1,390</strong></div></div><a href="#search" data-paris-deal-origin="New York (JFK)" data-paris-deal-destination="Paris, France — All Airports (PAR)">Find deal</a></div>
+            </article>
+          </div>
+          <button class="button paris-deals__more" type="button" data-deals-more hidden>Show more deals</button>
+        </div>
+      </section>
+
+      <section class="why-us" aria-labelledby="why-us-title">
+        <div class="container why-us__inner">
+          <div class="why-us__intro">
+            <span class="eyebrow">Why book with us</span>
+            <h2 id="why-us-title">Business class, booked the smart way</h2>
+            <p>We are not a search engine. Behind every fare is a travel expert who finds the best price, holds your seat and stays with you until you land.</p>
+            <a class="button" href="contacts.html">Talk to an expert <span class="ui-chevron ui-chevron--right" aria-hidden="true"></span></a>
+          </div>
+          <ul class="why-us__list">
+            <li>
+              <svg aria-hidden="true" viewBox="0 0 48 48">
+                <path class="why-us__fill" d="M8 13h32a2 2 0 0 1 2 2v5.5a3.5 3.5 0 0 0 0 7V33a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-5.5a3.5 3.5 0 0 0 0-7V15a2 2 0 0 1 2-2Z" />
+                <path d="M32 16v16" stroke-dasharray="2 3" />
+                <path class="why-us__solid" d="m19 17.5 1.9 3.9 4.3.6-3.1 3 .7 4.3-3.8-2-3.8 2 .7-4.3-3.1-3 4.3-.6Z" />
+              </svg>
+              <h3>Private fares</h3>
+              <p>Negotiated and consolidator business class fares you will not find on public booking sites.</p>
+            </li>
+            <li>
+              <svg aria-hidden="true" viewBox="0 0 48 48">
+                <circle class="why-us__fill" cx="24" cy="19" r="7" />
+                <path d="M10 41a14 14 0 0 1 28 0" />
+                <path d="M14.5 20a9.5 9.5 0 0 1 19 0" />
+                <rect class="why-us__solid" x="12" y="18" width="5" height="8" rx="2.5" />
+                <rect class="why-us__solid" x="31" y="18" width="5" height="8" rx="2.5" />
+                <path d="M33.5 26c0 4-3 6.5-7 6.5H25" />
+              </svg>
+              <h3>Your personal expert</h3>
+              <p>One person handles your trip from the first quote to landing and replies within 20 minutes.</p>
+            </li>
+            <li>
+              <svg aria-hidden="true" viewBox="0 0 48 48">
+                <path class="why-us__fill" d="M11 5h24v37l-4-3-4 3-4-3-4 3-4-3-4 3Z" />
+                <path d="M16 14h14M16 20h14M16 26h8" />
+                <circle class="why-us__badge" cx="34" cy="33" r="8.5" />
+                <path d="m30.3 33 2.6 2.6 4.8-5" />
+              </svg>
+              <h3>No booking fees</h3>
+              <p>The price in your quote is the price you pay. No service charges added at checkout.</p>
+            </li>
+            <li>
+              <svg aria-hidden="true" viewBox="0 0 48 48">
+                <circle class="why-us__fill" cx="24" cy="24" r="11" />
+                <path d="M24 18v6.5l4 2.5" />
+                <path d="M8.03 18.19A17 17 0 1 1 18.19 39.97" />
+                <path class="why-us__solid" d="M13.02 36.98 19.99 36.85 16.39 43.09Z" />
+              </svg>
+              <h3>Support around the clock</h3>
+              <p>Delays, missed connections or a change of plans: we rebook for you, day or night.</p>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="airlines airlines--cards">
+        <div class="container">
+          <span class="eyebrow">Leading airline partners</span>
+          <h2>Premium cabins, worldwide</h2>
+          <div class="airlines__viewport">
+            <div class="airlines__list" data-airlines-track>
+            <span
+              ><svg
+                class="airlines__logo"
+                aria-hidden="true"
+                fill="#112211"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M6.247 15.56l-1.386 1.385c.945.945 1.26 1.386 1.323 1.827.063-.063 1.323-1.134 1.323-1.512 0-.567-.378-.756-1.26-1.7m-3.15-2.458h-.755s.756.441.756 1.45v3.4c0 2.205 1.826 4.284 4.031 4.284h1.827c1.134 0 1.512-.252 2.142-.882l.692-.693c.378-.44.82-.755.82-1.952v-1.134c0-.945-.568-1.386-.82-1.638l-.63-.63v2.268s.441.504.693.63c.945.756.19 2.078-.692 2.078H7.066c-1.89-.063-3.402-1.637-3.465-3.527v-1.827c0-1.827-.503-1.827-.503-1.827m5.92 2.457l-1.385 1.386c.945.945 1.26 1.386 1.323 1.827.063-.063 1.323-1.134 1.323-1.512 0-.567-.378-.82-1.26-1.7M11.853 0l-.944.945c-.378.378-.252 1.134.504 1.89v1.89c0 .188-.19.377-.19.377s-1.133-1.008-2.14-1.008H7.57c-.945 0-1.7.882-1.827.945-.504.504-.504 1.45-.126 1.89L6.688 8s-.252-1.7 0-2.835c.063-.252.378-.567.693-.567l2.457 1.89-2.835 2.96c-.126.127-.504.379-.882.379-.44 0-.63-.252-.819-.504v1.386c0 .44.63.945 1.197.945h3.78c.252 0 .567-.063.819-.315l1.26-1.26c.188-.19.251-.441.251-.756V7.874c0-1.386-1.07-2.457-1.07-2.457s.251-.189.251-.756V3.213s.441.44.504.63l.82-.82c.377-.377-.253-1.07-.505-1.385C11.853.818 11.853 0 11.853 0M7.13 9.953c.378-.19.441-.315.756-.693l2.394-2.52s1.322 1.386 1.763 2.142c.19.378.441 1.07-.692 1.07H7.13M3.915 7.056h-.692c.44.252.755 1.008.755 1.449v2.772c0 .755.567 3.464 3.024 3.464h7.118v4.536c0 .755-.252 1.196-.44 1.385l-1.072 1.008h.504l1.953-1.763c.378-.441.819-.882.819-2.268V14.74l.819-.819 1.386-1.323c0 1.134.567 1.638 1.07 1.638a1.26 1.26 0 0 0 .756-.315l1.26-1.197c.567-.567.882-2.33-.504-2.33-.882 0-1.89 1.26-1.952 1.386-.315-.19-.567-.63-.567-.63v1.07c-.126.19-.693.63-1.134.63h-1.134v-1.07c0-.504.189-1.071.44-1.323l1.072-1.008h-.504l-2.142 1.953c-.378.44-.63 1.26-.63 1.448H6.058c-1.008 0-1.638-1.007-1.638-1.826v-2.08c0-1.7-.44-1.889-.504-1.889m16.315 6.047c-.189 0-.378-.063-.63-.252-.251-.189-.692-.819-.692-.819.126-.125.504-.251.818-.251.252 0 .504.063.567.189.441.566.378 1.133-.063 1.133M16.893 0L14.75 1.953c-.126.126-.63.882-.63 1.764v5.606c0 .378-.252.945-.44 1.134l-1.072 1.008h.504l2.016-1.827c.252-.252.756-.882.756-1.953V2.331c0-.82.378-1.26.567-1.45L17.397 0h-.504m.315 14.362v2.205l.756.819c.63.63.567 1.827-1.323 3.653a3.78 3.78 0 0 1-2.583 1.197h-3.401L12.672 24h1.386c1.386 0 2.646-.567 3.465-1.449.756-.819 1.197-1.89 1.134-3.023V16.63c0-1.008-.63-1.575-.756-1.7-.126 0-.693-.568-.693-.568Z"
+                /></svg
+              ><b>Emirates</b><small>Onboard lounge on the A380</small><a href="flight-results.html">See fares →</a></span
+            >
+            <span
+              ><svg
+                class="airlines__logo"
+                aria-hidden="true"
+                fill="#112211"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M18.633 13.143c.011.283.008.564-.006.84-2.752.11-5.362.274-5.362.462 0 .183 2.552.347 5.27.454a7.221 7.221 0 0 1-.186.924c-2.68.11-5.17.273-5.17.456 0 .174 2.326.33 4.897.44-.116.33-.25.647-.396.954-2.21.105-4.04.247-4.04.402 0 .145 1.595.279 3.609.38a9.968 9.968 0 0 1-.354.536c-.134.184-.274.369-.422.55-1.26.094-2.123.203-2.123.32 0 .1.616.193 1.568.276a9.055 9.055 0 0 1-1.856 1.414s-.854-.733-1.557-1.592c-.63-.764-1.96-2.78-2.271-3.229-.314-.451-.52-.585-.887-.453-.491.173-1.063.26-1.238.26-.176 0-.271-.067.025-.184.291-.118 1.45-.665 2.023-1.799.64-1.274.077-3.033.077-3.033-.216.94-.705 1.29-.705 1.29.159-.872-.014-1.664-.446-2.22l-.24 1.107s-.15-.01-.525.304c-.37.314-.474.77-.474.77.296.12.644-.176.644-.176-.446 1.685-1.093 3.054-1.562 3.78-.472.724-.856.998-1.33 1.19-.396.159-.529-.028-.529-.028a7.17 7.17 0 0 1-.878-.902s-.021-.04.05-.036c.196.003.54-.327.616-.467.084-.158.078-.277.033-.286-.04-.007-.115.119-.492.353-.37.236-.537.074-.665-.06-.093-.1 0-.232.057-.312.06-.074 2.025-3.736 7.222-7.588 6.822-5.045 11.171-6.405 11.42-6.505.166-.065.434-.15.496-.088.065.071.1.128.088.211-.008.082-.05.123-.363.262-2.62 1.154-5.674 3.073-7.408 4.191-2.136 1.04-4.172 2.525-4.245 2.561-.164.101-.046.25.058.188 3.6-2.397 7.826-4.03 12.498-5.368.22-.062.342-.062.382-.014a.377.377 0 0 1 .064.187c.006.084-.064.13-.258.206-5.011 1.864-8.71 3.592-11.091 5.194 0 0-.245.146-.248.318 0 .065.132.073.132.073 1.19.021 2.784.092 3.538.136 0 0-.104.384-.83.692-.56.24-1.077.202-1.592.204-.117 0-.21.112-.122.238.047.06 1.14 1.816 5.104 2.217m-9.09 3.693c-.539.193-1.177.296-1.437.296-.451 0-1.189.25-1.45.476a337.1 337.1 0 0 0 3.413-.069 58.21 58.21 0 0 1-.322-.472 1.552 1.552 0 0 0-.187-.236c-.01.003-.008 0-.016.005M2.92 8.682c1.43 0 4.068-.035 6.675-.095.297-.239.606-.477.928-.718-2.89-.073-6.003-.119-7.603-.119-.676 0-1.226.21-1.226.466 0 .257.55.465 1.226.465m.407-2.247c0 .202.433.366.965.366 1.631 0 5.267-.059 7.918-.15.198-.138.395-.279.591-.411a283.4 283.4 0 0 0-8.509-.171c-.532 0-.965.164-.965.366m11.784 5.069c.29.173.647.348 1.085.508 1.387-.07 2.28-.147 2.28-.23 0-.1-1.374-.195-3.365-.278m-13.018-.982c1.214 0 3.196-.023 5.36-.064.309-.298.642-.6.991-.906a352.416 352.416 0 0 0-6.351-.082c-.762 0-1.378.236-1.378.526 0 .29.616.526 1.378.526m13.8-2.448a30.5 30.5 0 0 0-.606.322c1.023-.055 1.67-.115 1.67-.179 0-.05-.402-.097-1.063-.143m-9.433-2.8c1.556 0 6.286-.116 6.286-.258 0-.145-4.732-.261-6.286-.261-.301 0-.547.116-.547.26 0 .143.246.26.547.26M16.645 9.95a.89.89 0 0 1-.095.218c.862-.054 1.391-.113 1.391-.173 0-.058-.479-.113-1.264-.165zm-5.878 8.619c-2.952-.077-6.2-.124-7.846-.124-.676 0-1.226.209-1.226.466 0 .256.55.465 1.226.465 1.735 0 5.237-.053 8.314-.137-.156-.22-.313-.445-.468-.67m1.402 1.905c-2.654-.09-6.254-.148-7.876-.148-.532 0-.965.164-.965.367 0 .2.433.364.965.364 1.702 0 5.575-.062 8.245-.161a13.13 13.13 0 0 1-.37-.422m-6.253 1.638c0 .142.246.262.547.262 1.554 0 6.286-.12 6.286-.262 0-.143-4.73-.258-6.286-.258-.301 0-.547.115-.547.258m-2.798-6.218c.028-.13.087-.274.205-.43-.017.02-.024.039-.006.007.106-.183.244-.41.419-.671-.814-.009-1.53-.014-2.093-.014-.808 0-1.465.25-1.465.558 0 .309.657.558 1.465.558.415 0 .915-.003 1.475-.008m1.2 1.748c-.198-.193-.862-.957-.943-1.03-.483-.003-.918-.006-1.28-.006-.762 0-1.378.234-1.378.527 0 .288.616.525 1.378.525.587 0 1.348-.007 2.223-.016m-.105-3.532c.243-.327.517-.692.839-1.084-1.427-.019-2.678-.03-3.556-.03-.827 0-1.495.254-1.495.567 0 .313.668.568 1.495.568.698 0 1.644-.007 2.717-.02m-2.57-1.771c.97 0 2.404-.015 4.025-.039.298-.327.607-.67.949-1.023a298.993 298.993 0 0 0-4.974-.052c-.808 0-1.465.246-1.465.556 0 .31.657.558 1.465.558Z"
+                /></svg
+              ><b>Qatar Airways</b><small>Qsuite with a sliding door</small><a href="flight-results.html">See fares →</a></span
+            >
+            <span
+              ><svg
+                class="airlines__logo"
+                aria-hidden="true"
+                fill="#112211"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M24,12c0-6.648-5.352-12-12-12C5.376,0,0,5.352,0,12c0,6.624,5.376,12,12,12C18.648,24,24,18.624,24,12z M23.136,12c0,6.12-4.992,11.136-11.136,11.136C5.88,23.136,0.864,18.121,0.864,12C0.864,5.856,5.88,0.864,12,0.864 C18.144,0.864,23.136,5.856,23.136,12z M16.248,11.28c-0.264,0-0.6,0-1.032,0.024l0.312-0.528h0.504c1.8,0,3.144,0.096,4.368,0.312 l0.552-0.528c-1.368-0.24-3.024-0.384-4.704-0.384H15.84l0.264-0.504h0.456c1.752,0,3.336,0.144,4.872,0.432l0.576-0.552 c-1.728-0.336-3.576-0.503-5.568-0.503c-0.849,0.003-1.698,0.043-2.544,0.12c-0.96,2.063-2.496,3.264-4.224,3.24 C9,12.384,8.159,12.097,7.08,11.52l-1.008-0.576l0.312-0.288l2.328,1.008l0.504-0.384L4.512,9.144l-0.72,0.552L2.112,9l0.024,0.696 c2.256,1.032,3.192,1.608,5.568,3.312c3.096,2.208,5.856,3.408,9.696,4.176l1.008-0.96h-0.24c-2.544,0-4.824-0.84-6.144-2.256 c1.104-0.672,2.471-0.983,4.368-0.983c0.504,0,1.224,0.047,1.896,0.119l0.576-0.552c-0.9-0.11-1.805-0.166-2.712-0.168 c-0.609-0.001-1.217,0.023-1.824,0.072l0.432-0.528c0.511-0.03,1.024-0.046,1.536-0.048c1.272,0,2.112,0.048,3.072,0.192 l0.552-0.528C18.912,11.377,17.52,11.28,16.248,11.28z"
+                /></svg
+              ><b>Lufthansa</b><small>Allegris business class</small><a href="flight-results.html">See fares →</a></span
+            >
+            <span
+              ><svg
+                class="airlines__logo"
+                aria-hidden="true"
+                fill="#112211"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M.168 13.988c.272 1.623.86 3.115 1.69 4.423 3.095-.863 5.817-2.495 6.785-6.132 1.065-4.003-.15-8.199-3.057-10.422C1.626 4.364-.657 9.077.168 13.988m23.664-3.975c1.098 6.534-3.308 12.722-9.844 13.819-1.1.185-2.19.214-3.245.103a12.023 12.023 0 0 1-8.46-4.892l19.428-5.57c.279-.08.207-.349-.024-.333l-8.145.569c1.148-1.108 2.021-2.467 1.915-4.345-.214-3.043-3.311-6.013-9.071-7.967a12.016 12.016 0 0 1 6.87-1.333c5.228.548 9.663 4.512 10.576 9.95"
+                /></svg
+              ><b>Turkish Airlines</b><small>Flying chefs on long-haul</small><a href="flight-results.html">See fares →</a></span
+            >
+            <span
+              ><svg
+                class="airlines__logo"
+                aria-hidden="true"
+                fill="#112211"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M13.776 3.9L5.184 16.332C4.051 17.969 2.208 19.548 0 19.721v.379h9.552c2.544 0 4.397-1.656 5.616-3.48L24 3.9Z"
+                /></svg
+              ><b>Air France</b><small>Lie-flat seats on long-haul</small><a href="flight-results.html">See fares →</a></span
+            >
+            <span
+              ><svg
+                class="airlines__logo"
+                aria-hidden="true"
+                fill="#112211"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M8.981 0 7.786 1.79c-.473.728-.062 1.51-.062 1.51l5.475 9.055c1.263 2.17-.536 4.535-.536 4.535L9.36 22.015h2.738c1.387 0 2.014-1.133 2.014-1.133l1.73-2.673c.628-.978 1.45-1.008 1.45-1.008h1.572c-.977.41-1.418 1.418-1.418 1.418l-1.946 2.993c-.76 1.133-1.643.969-1.643.969h-7.83l3.713-5.792c.875-1.318 0-2.42 0-2.42L4.796 6.355 3.756 7.93c-.907 1.45-.032 2.294-.032 2.294l3.56 5.722c.79 1.193.224 1.914.224 1.914l-4 6.14h10.513a2.97 2.97 0 0 0 2.674-1.574l2.232-3.364c.535-.852 1.728-.728 1.728-.728l-1.512-2.388h-2.17c-1.542 0-2.14 1.286-2.14 1.286l-2.045 3.117h-.002c-.187.225-.404.505-.628.35-.217-.155.093-.566.093-.566l2.744-4.28c.404-.666 1.133-1.986 1.133-3.148 0-1.162-.915-2.666-.915-2.666zM7.004 3.146 5.618 5.224c-.41.69 0 1.41 0 1.41l4.69 7.77c.659 1.161.154 2.262.154 2.262l-3.364 5.31h1.668l3.62-5.622c1.543-2.332.124-4.216.124-4.216z"
+                /></svg
+              ><b>Singapore Airlines</b><small>Wide fully flat seats</small><a href="flight-results.html">See fares →</a></span
+            >
+            <span
+              ><svg
+                class="airlines__logo"
+                aria-hidden="true"
+                fill="#112211"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M3 17.8 10.2 5h3.1L8.5 14.1l10.1-7.3H22L8.3 18.9H3Z" />
+              </svg><b>Etihad Airways</b><small>Direct aisle access</small><a href="flight-results.html">See fares →</a></span
+            >
+            <span
+              ><svg
+                class="airlines__logo"
+                aria-hidden="true"
+                fill="#112211"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M2 15.8c5.5-1.1 10.1-3.7 14.1-8.1L22 6c-3.2 4.7-8.2 8.2-15.1 10.5L2 15.8Zm5.1 2.1c4.6-1.2 8.9-3.5 12.9-7l2 1.1c-3.2 3.5-7 5.8-11.5 7l-3.4-1.1Z" />
+              </svg><b>British Airways</b><small>Club Suite with a door</small><a href="flight-results.html">See fares →</a></span
+            >
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="fare-alert" aria-labelledby="fare-alert-title">
+        <div class="container fare-alert__inner">
+          <div>
+            <h2 id="fare-alert-title">Get fare alerts</h2>
+            <p>We will email you when business class fares to your destination drop. No spam, unsubscribe in one click.</p>
+          </div>
+          <form class="fare-alert__form" data-fare-alert>
+            <label class="sr-only" for="alertDestination">Destination</label>
+            <input id="alertDestination" name="destination" type="text" placeholder="Destination, e.g. Paris" required />
+            <label class="sr-only" for="alertEmail">Email</label>
+            <input id="alertEmail" name="email" type="email" placeholder="Your email" autocomplete="email" required />
+            <button class="button" type="submit">
+              <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M6 16v-5a6 6 0 0 1 12 0v5l2 2H4l2-2ZM10 20a2 2 0 0 0 4 0" /></svg>
+              Notify me
+            </button>
+            <p class="fare-alert__status" role="status"></p>
+          </form>
+        </div>
+      </section>
+
+      <section id="faq">
+        <div class="container faq">
+          <div>
+            <span class="eyebrow">Questions & answers</span>
+            <h2>Everything you need to know</h2>
+            <p>Still have questions? Our team is available around the clock.</p>
+            <div class="faq-contact">
+              <h3>Prefer to talk?</h3>
+              <a href="tel:+37322888088">
+                <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z" /></svg>
+                +373 22 888 088<small>24/7</small>
+              </a>
+              <a href="https://wa.me/37322888088" target="_blank" rel="noopener">
+                <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4V5Z" /><path d="M8 10h8M8 13h5" /></svg>
+                WhatsApp<small>~ 5 min</small>
+              </a>
+              <a href="contacts.html">
+                <svg aria-hidden="true" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2" /><path d="m3 7 9 6 9-6" /></svg>
+                Write to us<small>~ 20 min</small>
+              </a>
+              <a class="button" href="contacts.html">Request a callback</a>
+            </div>
+          </div>
+          <div class="accordion">
+            <article>
+              <button type="button" aria-expanded="false">
+                Why are your fares more competitive? <span>+</span>
+              </button>
+              <p>
+                We work directly with airlines and consolidators to access
+                special unpublished business-class fares.
+              </p>
+            </article>
+            <article>
+              <button type="button" aria-expanded="false">
+                Can I change or refund my ticket? <span>+</span>
+              </button>
+              <p>
+                Yes. Terms depend on your selected fare, and your personal
+                manager will handle the change or refund for you.
+              </p>
+            </article>
+            <article>
+              <button type="button" aria-expanded="false">
+                How quickly will I receive flight options? <span>+</span>
+              </button>
+              <p>
+                Your first curated options are usually ready within 15–20
+                minutes of your request.
+              </p>
+            </article>
+            <article>
+              <button type="button" aria-expanded="false">
+                Is lounge access included? <span>+</span>
+              </button>
+              <p>
+                Business class tickets usually include lounge access at the
+                departure airport. Your expert confirms the lounges for every
+                leg before you pay.
+              </p>
+            </article>
+            <article>
+              <button type="button" aria-expanded="false">
+                How much baggage can I take? <span>+</span>
+              </button>
+              <p>
+                Most business class fares include two checked bags and
+                generous cabin baggage. The exact allowance is shown in your
+                quote for each airline.
+              </p>
+            </article>
+            <article>
+              <button type="button" aria-expanded="false">
+                How do I pay for my booking? <span>+</span>
+              </button>
+              <p>
+                We hold your fare first. Once you confirm the itinerary, you
+                pay securely by card or bank transfer.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div class="search-sticky" data-search-sticky aria-label="Current search">
+      <div class="container search-sticky__inner">
+        <span><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M3 20h18M4 14l3 1 10-4c1-.4 2.2 0 2.6 1 .3.8-.1 1.6-.9 2L8 18l-4-4Z" /></svg><b data-sticky-fields="#from,#to" data-sticky-join=" → " data-sticky-city data-sticky-empty="Anywhere"></b></span>
+        <span><svg aria-hidden="true" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15" rx="2" /><path d="M3.5 10h17M8 3v4M16 3v4" /></svg><b data-sticky-fields="#dateRange" data-sticky-empty="Any dates"></b></span>
+        <span><svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4" /><path d="M4.5 20a7.5 7.5 0 0 1 15 0" /></svg><b data-sticky-fields="[data-traveler-summary],#cabinClass"></b></span>
+        <a class="button" href="#search" data-sticky-edit>Change search</a>
+      </div>
+    </div>
+
+    <nav class="contact-bar" data-contact-bar aria-label="Contact a travel expert">
+      <a href="tel:+37322888088"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z" /></svg>Call</a>
+      <a href="https://wa.me/37322888088" target="_blank" rel="noopener"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4V5Z" /><path d="M8 10h8M8 13h5" /></svg>WhatsApp</a>
+    </nav>
+
+    <div data-site-footer></div>
+    <script src="js/components.js"></script>
+    <script src="js/date-range-calendar.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/custom-selects.js"></script>
+    <script src="js/paris.js"></script>
+    <script src="js/search-helpers.js"></script>
+  </body>
+</html>

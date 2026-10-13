@@ -1,0 +1,120 @@
+.site-header__inner {
+  position: relative;
+}
+
+.site-header .logo {
+  z-index: 2;
+  flex: 0 0 auto;
+}
+
+.site-header__nav {
+  display: grid;
+  flex: 1;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  margin-left: clamp(56px, 9vw, 150px);
+}
+
+.site-header__primary,
+.site-header__secondary {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.site-header__primary {
+  justify-self: center;
+}
+
+.site-header__secondary {
+  justify-content: flex-end;
+}
+
+.site-header__primary a {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.site-header__primary svg,
+.site-header__account svg {
+  width: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+}
+
+.site-header__account {
+  display: inline-flex;
+  width: 46px;
+  height: 46px;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  color: inherit;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.site-header__account:hover,
+.site-header__account.nav__active {
+  background: var(--primary);
+  color: var(--dark);
+}
+
+.site-footer__main {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1.25fr;
+  gap: 64px;
+  padding: 64px 0;
+}
+
+.site-footer__main > div > p {
+  margin-top: var(--s2);
+  color: #b5c8bf;
+}
+
+.site-footer__nav {
+  display: grid;
+  gap: 10px;
+  align-content: start;
+}
+
+.site-footer__nav h2 {
+  margin: 0 0 6px;
+  color: var(--white);
+  font-size: 15px;
+  letter-spacing: 0;
+}
+
+.site-footer__nav a {
+  color: #aab8b0;
+}
+
+.site-footer__nav a:hover {
+  color: var(--primary);
+}
+
+@media (max-width: 760px) {
+  .site-header__nav {
+    display: flex;
+    margin-left: 0;
+    justify-content: flex-start;
+  }
+
+  .site-header__primary,
+  .site-header__secondary {
+    width: 100%;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  .site-footer__main {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+}

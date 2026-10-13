@@ -1,0 +1,824 @@
+.deal-catalog__filters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 40px;
+}
+.deal-catalog__filters button,
+.deal-catalog__countries button {
+  min-width: max-content;
+  padding: 10px 20px;
+  border: 1px solid #bbd9cc;
+  border-radius: 10px;
+  background: #e3f3eb;
+  color: var(--dark);
+  font: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.deal-catalog__filters button.is-active,
+.deal-catalog__countries button.is-active {
+  border-color: var(--primary);
+  background: var(--primary);
+  color: var(--dark);
+}
+
+.deal-catalog__countries {
+  display: flex;
+  width: 70%;
+  justify-content: safe center;
+  gap: 8px;
+  margin: 0 auto var(--s4);
+  padding: 2px 0 8px;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary) transparent;
+}
+
+@media (max-width: 720px) {
+  .deal-catalog__filters,
+  .deal-catalog__countries {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    overflow-x: auto;
+  }
+
+  .deal-catalog__countries {
+    width: 100%;
+  }
+}
+
+.deal-catalog__countries[hidden],
+.deal-catalog__countries button[hidden] {
+  display: none;
+}
+
+.deal-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--s3);
+}
+
+#destinations:has(.deal-catalog__filters) {
+  padding-block: var(--s8);
+}
+
+#destinations:has(.deal-catalog__filters) .section-heading {
+  text-align: center;
+}
+
+#destinations:has(.deal-catalog__filters) .section-heading > p {
+  max-width: 820px;
+  margin-inline: auto;
+}
+
+#destinations:has(.deal-catalog__filters) .deal-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+#destinations:has(.deal-catalog__filters) .deal-card {
+  flex: 0 1 calc((100% - 2 * var(--s3)) / 3);
+}
+
+.destinations-carousel {
+  position: relative;
+}
+
+/* The hero stays fixed-height, while longer multi-city forms get clear space below. */
+@media (min-width: 721px) {
+  .site-hero:has(.home-search-shell .is-multi-city) + #destinations {
+    padding-top: 160px;
+  }
+
+  .site-hero:has(.home-search-shell .multi-city__segment:nth-child(4)) + #destinations {
+    padding-top: 220px;
+  }
+
+  .site-hero:has(.home-search-shell .multi-city__segment:nth-child(5)) + #destinations {
+    padding-top: 300px;
+  }
+}
+
+/* One "Popular" block with Destinations / Hotels / Cruises tabs */
+.catalog-tabs {
+  display: flex;
+  gap: 32px;
+  margin-bottom: var(--s4);
+  overflow-x: auto;
+  border-bottom: 1px solid var(--border);
+  scrollbar-width: none;
+}
+
+.catalog-tabs button {
+  position: relative;
+  flex: none;
+  padding: 0 2px 14px;
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  font: inherit;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.catalog-tabs button::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  border-radius: 3px 3px 0 0;
+  background: var(--primary-dark);
+  transform: scaleX(0);
+  transition: transform 0.25s;
+}
+
+.catalog-tabs button:hover,
+.catalog-tabs button[aria-selected="true"] {
+  color: var(--dark);
+}
+
+.catalog-tabs button[aria-selected="true"]::after {
+  transform: scaleX(1);
+}
+
+.catalog-tabs button:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+.destinations-carousel .deal-grid {
+  display: flex;
+  gap: var(--s3);
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.destinations-carousel .deal-grid::-webkit-scrollbar {
+  display: none;
+}
+
+.destinations-carousel .deal-card {
+  min-width: calc((100% - (var(--s3) * 2)) / 3);
+  scroll-snap-align: start;
+}
+
+/* Explicit width: the card has an in-flow photo, so auto sizing would use the image width */
+.destinations-carousel .place-card {
+  flex: 0 0 calc((100% - (var(--s3) * 2)) / 3);
+  min-width: 0;
+  scroll-snap-align: start;
+}
+
+/* Home "Destinations" block: place cards in the hotel-card style — one line per row, so every card has the same height */
+/* Room around the cards so their shadow is not clipped by the scroll container */
+.destinations-carousel .deal-grid:has(.place-card) {
+  margin: -16px -16px -20px;
+  padding: 16px 16px 36px;
+  scroll-padding-inline: 16px;
+}
+
+.hotel-card.place-card {
+  box-shadow: 0 6px 18px rgba(17, 34, 17, 0.08);
+  cursor: pointer;
+}
+
+.hotel-card.place-card:hover {
+  box-shadow: 0 10px 24px rgba(17, 34, 17, 0.14);
+}
+
+.place-card__eyebrow {
+  color: var(--primary-dark);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  line-height: 18px;
+  text-transform: uppercase;
+}
+
+.place-card h3 {
+  margin-bottom: 18px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.place-card:focus-visible {
+  outline: 2px solid var(--primary-dark);
+  outline-offset: 3px;
+}
+
+.destinations-carousel__button {
+  position: absolute;
+  z-index: 3;
+  top: 50%;
+  display: grid;
+  width: 46px;
+  height: 46px;
+  padding: 0 0 4px;
+  place-items: center;
+  border: 1px solid var(--primary-dark);
+  border-radius: 50%;
+  background: var(--white);
+  color: var(--primary-dark);
+  box-shadow: var(--shadow);
+  font: inherit;
+  font-size: 34px;
+  line-height: 1;
+  cursor: pointer;
+  transform: translateY(-50%);
+}
+
+.destinations-carousel__button--prev {
+  left: -23px;
+}
+
+.destinations-carousel__button--next {
+  right: -23px;
+}
+
+.destinations-carousel__button:hover,
+.destinations-carousel__button:focus-visible {
+  background: var(--primary-dark);
+  color: var(--white);
+}
+
+@media (max-width: 980px) {
+  #destinations:has(.deal-catalog__filters) .deal-card {
+    flex-basis: calc((100% - var(--s3)) / 2);
+  }
+
+  .destinations-carousel .deal-card {
+    min-width: calc((100% - var(--s3)) / 2);
+  }
+
+  .destinations-carousel .place-card {
+    flex-basis: calc((100% - var(--s3)) / 2);
+  }
+}
+
+@media (max-width: 720px) {
+  #destinations:has(.deal-catalog__filters) .section-heading {
+    text-align: left;
+  }
+
+  #destinations:has(.deal-catalog__filters) .section-heading > p {
+    margin-inline: 0;
+  }
+
+  #destinations:has(.deal-catalog__filters) .deal-catalog__filters {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    overflow: visible;
+  }
+
+  #destinations:has(.deal-catalog__filters) .deal-card {
+    flex-basis: 100%;
+  }
+
+  .destinations-carousel .deal-card {
+    min-width: 86%;
+  }
+
+  .destinations-carousel .place-card {
+    flex-basis: 86%;
+  }
+
+  .destinations-carousel__button {
+    display: none;
+  }
+}
+
+.deal-catalog > .container > .button,
+.catalog-panel > .button {
+  display: flex;
+  width: fit-content;
+  margin: var(--s4) auto 0;
+}
+
+.journey {
+  background: var(--light);
+}
+.journey__inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--s8);
+  align-items: center;
+}
+.journey__inner > div > p {
+  margin: var(--s3) 0 var(--s4);
+}
+.journey ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.journey li {
+  display: flex;
+  gap: var(--s3);
+  padding: var(--s3) 0;
+  border-bottom: 1px solid #cfe0da;
+}
+.journey li > span {
+  color: var(--primary-dark);
+  font-size: 12px;
+  font-weight: 700;
+}
+.journey li p {
+  font-size: 13px;
+}
+.airlines {
+  text-align: center;
+}
+.airlines__list {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  border: 0;
+}
+.airlines__list span {
+  display: flex;
+  min-height: 90px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: var(--s2);
+  border-right: 0;
+  color: var(--dark);
+  font-size: 12px;
+  font-weight: 700;
+}
+.airlines__logo {
+  display: block;
+  width: 52px;
+  height: 52px;
+  fill: var(--dark);
+  opacity: 0.72;
+  transition:
+    opacity 0.25s,
+    transform 0.25s,
+    filter 0.25s;
+}
+.airlines__list b {
+  color: var(--dark);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+.airlines__list span:hover .airlines__logo {
+  opacity: 1;
+  transform: scale(1.08);
+}
+.airlines__list span:nth-child(1):hover .airlines__logo { fill: #d71921; }
+.airlines__list span:nth-child(2):hover .airlines__logo { fill: #5c0d34; }
+.airlines__list span:nth-child(3):hover .airlines__logo { fill: #05164d; }
+.airlines__list span:nth-child(4):hover .airlines__logo { fill: #c70a0c; }
+.airlines__list span:nth-child(5):hover .airlines__logo { fill: #002157; }
+.airlines__list span:nth-child(6):hover .airlines__logo { fill: #f99f1c; }
+.airlines__list span:nth-child(7):hover .airlines__logo { fill: #bd8b13; }
+.airlines__list span:nth-child(8):hover .airlines__logo { fill: #075aaa; }
+.airlines__list span:last-child {
+  border: 0;
+}
+
+.airlines__viewport {
+  overflow: hidden;
+  margin-top: var(--s4);
+  border: 0;
+}
+
+.airlines__viewport .airlines__list {
+  display: flex;
+  grid-template-columns: none;
+  border: 0;
+  transition: transform 0.6s ease;
+  will-change: transform;
+}
+
+.airlines__viewport .airlines__list > span {
+  min-width: 0;
+  flex: 0 0 calc(100% / var(--airlines-visible, 6));
+}
+
+@media (max-width: 980px) {
+  .deal-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .airlines__list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .airlines__list span {
+    border-bottom: 1px solid var(--border);
+  }
+}
+@media (max-width: 720px) {
+  .journey__inner {
+    grid-template-columns: 1fr;
+    gap: var(--s5);
+  }
+  .deal-grid {
+    grid-template-columns: 1fr;
+  }
+  .airlines__list {
+    grid-template-columns: 1fr 1fr;
+  }
+  .airlines__list span {
+    min-height: 70px;
+  }
+}
+
+/* Destinations page: full catalog grid of place cards */
+.destinations-catalog__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--s3);
+}
+
+.deal-catalog__filters button b {
+  margin-left: 6px;
+  color: #468d75;
+  font-weight: 700;
+}
+
+.deal-catalog__filters button.is-active b {
+  color: var(--dark);
+  opacity: 0.6;
+}
+
+@media (max-width: 980px) {
+  .destinations-catalog__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  .destinations-catalog__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Destinations page: country row styled like the Best deals filters (underlined text tabs).
+   Always one line: when the countries do not fit, the row scrolls sideways (arrows on desktop). */
+.country-scroller {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: -12px 0 var(--s4);
+  border-bottom: 1px solid var(--border);
+}
+
+.country-scroller:has(> [data-country-filters][hidden]) {
+  display: none;
+}
+
+
+.country-scroller__arrow {
+  display: none;
+  flex: none;
+  width: 32px;
+  height: 32px;
+  margin-bottom: 12px;
+  padding: 0 0 3px;
+  place-items: center;
+  border: 1px solid var(--primary-dark);
+  border-radius: 50%;
+  background: var(--white);
+  color: var(--primary-dark);
+  font: inherit;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, opacity 0.2s;
+}
+
+.country-scroller__arrow:hover:not(:disabled),
+.country-scroller__arrow:focus-visible {
+  background: var(--primary-dark);
+  color: var(--white);
+}
+
+.country-scroller__arrow:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+/* Arrows: always on desktop, never on mobile (there the row is swiped) */
+@media (min-width: 721px) {
+  .country-scroller__arrow {
+    display: grid;
+  }
+}
+
+.destinations-catalog .deal-catalog__countries {
+  display: flex;
+  flex: 1;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: safe center;
+  gap: 24px;
+  width: auto;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+
+.destinations-catalog .deal-catalog__countries::-webkit-scrollbar {
+  display: none;
+}
+
+.country-scroller.is-scrollable .deal-catalog__countries {
+  mask-image: linear-gradient(90deg, transparent, #000 24px, #000 calc(100% - 24px), transparent);
+}
+
+.destinations-catalog .deal-catalog__countries button {
+  position: relative;
+  flex: none;
+  min-width: 0;
+  padding: 0 2px 14px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+
+.country-scroller.is-scrollable .deal-catalog__countries button:first-child {
+  margin-left: 20px;
+}
+
+.country-scroller.is-scrollable .deal-catalog__countries button:last-child {
+  margin-right: 20px;
+}
+
+.destinations-catalog .deal-catalog__countries button::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  border-radius: 3px 3px 0 0;
+  background: var(--primary-dark);
+  transform: scaleX(0);
+  transition: transform 0.25s;
+}
+
+.destinations-catalog .deal-catalog__countries button:hover,
+.destinations-catalog .deal-catalog__countries button.is-active {
+  border: 0;
+  background: transparent;
+  color: var(--dark);
+}
+
+.destinations-catalog .deal-catalog__countries button.is-active::after {
+  transform: scaleX(1);
+}
+
+.destinations-catalog .deal-catalog__countries button:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: -2px;
+}
+
+.destinations-catalog .deal-catalog__countries button[hidden] {
+  display: none;
+}
+
+/* Region filter as underlined text tabs (same look as the Hotels page filters) */
+.deal-catalog__filters--tabs {
+  gap: 6px 32px;
+  margin: 0 0 var(--s4);
+}
+
+.deal-catalog__filters--tabs button {
+  min-width: 0;
+  padding: 0 2px 14px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--muted);
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.deal-catalog__filters--tabs button.is-active {
+  border: 0;
+  background: transparent;
+  color: var(--dark);
+}
+
+/* Place cards on every destinations page (home tabs, Destinations, Cruises):
+   full photo 4:5 with a strong dark gradient, white text, outlined Explore button */
+.hotel-card.place-card {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  border: 0;
+  background: var(--dark);
+  box-shadow: 0 14px 38px rgba(17, 34, 17, 0.13);
+}
+
+.hotel-card.place-card:hover {
+  box-shadow: 0 20px 52px rgba(17, 34, 17, 0.2);
+}
+
+.place-card .hotel-card__media {
+  position: absolute;
+  inset: 0;
+  aspect-ratio: auto;
+}
+
+.place-card::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  inset: 30% 0 0;
+  background: linear-gradient(transparent, rgba(7, 18, 11, 0.2) 25%, rgba(7, 18, 11, 0.85) 82%);
+  pointer-events: none;
+}
+
+.place-card .hotel-card__body {
+  position: absolute;
+  z-index: 2;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 24px;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
+}
+
+.place-card .place-card__eyebrow {
+  color: var(--primary);
+}
+
+.place-card h3 {
+  color: var(--white);
+  font-size: 24px;
+}
+
+.place-card .hotel-card__bottom {
+  border-top-color: rgba(255, 255, 255, 0.16);
+}
+
+.place-card .hotel-card__bottom small {
+  color: #a9bdb4;
+}
+
+.place-card .hotel-card__bottom strong {
+  color: var(--white);
+}
+
+.place-card .hotel-card__bottom a {
+  border: 1px solid var(--primary);
+  background: transparent;
+  color: var(--primary);
+  text-shadow: none;
+  transition: background 0.2s, color 0.2s;
+}
+
+.place-card .hotel-card__bottom a:hover,
+.place-card .hotel-card__bottom a:focus-visible {
+  background: var(--primary);
+  color: var(--dark);
+}
+
+/* In the home carousel the scroll area clips large shadows, so keep them soft there */
+.destinations-carousel .hotel-card.place-card {
+  box-shadow: 0 6px 18px rgba(17, 34, 17, 0.1);
+}
+
+.destinations-carousel .hotel-card.place-card:hover {
+  box-shadow: 0 10px 24px rgba(17, 34, 17, 0.16);
+}
+
+/* Home: Destinations heading centred above the carousel */
+.deal-catalog:has(.destinations-carousel) .section-heading {
+  text-align: center;
+}
+
+.deal-catalog:has(.destinations-carousel) .section-heading > p {
+  max-width: 720px;
+  margin-inline: auto;
+}
+
+/* Home: three category tiles (Flights, Hotels, Cruises), then popular destinations as squares */
+.home-journey .section-heading {
+  text-align: center;
+}
+
+.home-journey .section-heading > p {
+  max-width: 720px;
+  margin-inline: auto;
+}
+
+.home-journey__categories {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--s3);
+}
+
+.hotel-card.place-card--category {
+  aspect-ratio: 3 / 4;
+}
+
+.hotel-card.place-card--category h3 {
+  margin-bottom: 20px;
+  font-size: 34px;
+  letter-spacing: -0.02em;
+}
+
+.home-journey__sub {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  margin: var(--s7) 0 var(--s3);
+}
+
+.home-journey__sub h3 {
+  font-size: 26px;
+}
+
+.home-journey__sub a {
+  color: var(--primary-dark);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.home-journey__sub a:hover {
+  color: var(--dark);
+}
+
+.home-journey__destinations {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.place-card--small .hotel-card__body {
+  padding: 18px;
+}
+
+.hotel-card.place-card--small h3 {
+  margin-bottom: 12px;
+  font-size: 20px;
+}
+
+.place-card--small .hotel-card__bottom {
+  padding-top: 12px;
+}
+
+.place-card--small .hotel-card__bottom strong {
+  font-size: 20px;
+}
+
+.place-card--small .hotel-card__bottom a {
+  min-height: 34px;
+  padding: 0 12px;
+  font-size: 11px;
+}
+
+@media (max-width: 980px) {
+  .home-journey__categories {
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+  }
+
+  .hotel-card.place-card--category h3 {
+    font-size: 24px;
+  }
+
+  .home-journey__destinations {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .home-journey__categories {
+    grid-template-columns: 1fr;
+  }
+
+  .hotel-card.place-card--category {
+    aspect-ratio: 16 / 10;
+  }
+}
+
+/* Category tiles (Flights, Hotels, Cruises): no price, Explore button spans the full card width */
+.place-card--category .hotel-card__bottom a {
+  flex: 1;
+  justify-content: center;
+}

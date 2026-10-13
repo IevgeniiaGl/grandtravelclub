@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="64 40 924 360" width="1848" height="720">
+  <g fill="none" stroke="#8dd3bb" stroke-width="24" stroke-linejoin="round">
+    <path d="M179 92.65A83.5 83.5 0 1 0 224.5 242.5V184H179"/>
+    <g stroke-linecap="round">
+      <path d="M296 257.5V94.5H341.75A45.75 45.75 0 0 1 341.75 186H296M351 186L394 257.5"/>
+      <path d="M434.8 257.5L503 94.5L571.2 257.5M451 218H555"/>
+      <path d="M630.5 257.5V94.5L757 257.5V94.5"/>
+      <path d="M837 93.5V258.5H879A82.5 82.5 0 0 0 879 93.5Z"/>
+    </g>
+  </g>
+  <circle cx="179" cy="184" r="12" fill="#8dd3bb"/>
+  <path transform="translate(225 87.7) rotate(27) scale(5.65)" fill="#ffffff" d="M0-6C.8-6 1.2-5.2 1.2-4.4V-1.2L6 1.6V3L1.2 1.6V4.2L2.6 5.4V6.3L0 5.6-2.6 6.3V5.4L-1.2 4.2V1.6L-6 3V1.6L-1.2-1.2V-4.4C-1.2-5.2-.8-6 0-6Z"/>
+  <text y="380" x="116 191 273 355 439 517 600 630 714 786 874" font-family="Montserrat, Arial, sans-serif" font-size="90.5" font-weight="600" fill="#ffffff">TRAVEL CLUB</text>
+</svg>

@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Hotel card variants — Grand Travel Club</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="css/index.css" />
+    <style>
+      .cv-page { padding: var(--s7) 0 var(--s8); background: #f6faf8; }
+      .cv-intro { max-width: 760px; }
+      .cv-intro p { color: var(--muted); }
+      .cv-variant { margin-top: var(--s7); padding: 0; }
+      .cv-variant > header { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px; margin-bottom: var(--s3); }
+      .cv-tag { padding: 4px 10px; border-radius: 8px; background: var(--dark); color: var(--primary); font-size: 12px; font-weight: 800; letter-spacing: 0.08em; }
+      .cv-variant h2 { font-size: 22px; }
+      .cv-variant > header p { flex-basis: 100%; margin: 0; color: var(--text); font-size: 13px; }
+
+      .hv-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s3); }
+      .hv-list { display: grid; gap: var(--s2); }
+      .hv-list--compact { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      @media (max-width: 980px) { .hv-grid, .hv-list--compact { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+      @media (max-width: 720px) { .hv-grid, .hv-list--compact { grid-template-columns: 1fr; } }
+
+      /* shared */
+      .hv { position: relative; display: flex; flex-direction: column; overflow: hidden; border-radius: 20px; background: var(--white); color: var(--dark); box-shadow: var(--shadow); }
+      .hv img { display: block; width: 100%; height: 100%; object-fit: cover; }
+      .hv-media { position: relative; overflow: hidden; aspect-ratio: 4 / 3; }
+      .hv-body { padding: 20px 22px 6px; }
+      .hv h3 { margin: 2px 0; font-size: 21px; }
+      .hv-stars { color: #e0b440; font-size: 12px; letter-spacing: 2px; }
+      .hv-loc { margin: 0; color: var(--text); font-size: 14px; }
+      .hv-dates { margin: 8px 0 0; font-size: 13px; font-weight: 600; }
+      .hv-right { text-align: right; }
+      .hv-row { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+      .hv-badge { position: absolute; top: 16px; left: 16px; padding: 6px 11px; border-radius: 8px; background: rgba(17, 34, 17, 0.72); color: var(--primary); font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+      .hv-score { display: grid; flex: none; width: 44px; height: 44px; place-items: center; border-radius: 12px 12px 12px 2px; background: var(--dark); color: var(--white); font-size: 15px; font-weight: 800; }
+      .hv-score--light { position: absolute; z-index: 3; top: 16px; right: 16px; background: var(--white); color: var(--dark); box-shadow: var(--shadow); }
+      .hv-bottom { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; margin: auto 22px 0; padding: 16px 0 20px; border-top: 1px solid var(--border); }
+      .hv-bottom small, .hv-total small, .hv-row-card__side small { display: block; color: var(--muted); font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
+      .hv-bottom strong { font-size: 24px; line-height: 1.1; }
+      .hv-btn { display: inline-flex; min-height: 42px; align-items: center; justify-content: center; padding: 0 18px; border: 1px solid var(--primary-dark); border-radius: 10px; background: var(--primary-dark); color: var(--white); font-size: 12px; font-weight: 700; letter-spacing: 0.04em; text-decoration: none; text-transform: uppercase; white-space: nowrap; transition: background 0.2s, color 0.2s; }
+      .hv-btn:hover { background: #4f9e84; }
+      .hv-btn--outline { border-color: var(--primary); background: transparent; color: var(--primary); }
+      .hv-btn--outline:hover { background: var(--primary); color: var(--dark); }
+      .hv-btn--outline-dark { border-color: var(--dark); background: transparent; color: var(--dark); }
+      .hv-btn--outline-dark:hover { background: var(--dark); color: var(--white); }
+      .hv-btn--wide { width: 100%; }
+      .hv-bottom--btn { border-top: 0; padding-top: 4px; }
+      .hv-chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0 10px; }
+      .hv-chips span { padding: 4px 10px; border-radius: 999px; background: var(--light); color: #468d75; font-size: 11px; font-weight: 700; }
+      .hv-rating { display: flex; flex: none; align-items: center; gap: 8px; text-align: right; }
+      .hv-rating b { padding: 7px 9px; border-radius: 10px; background: var(--dark); color: var(--white); font-size: 14px; }
+      .hv-rating span { font-size: 12px; font-weight: 700; line-height: 1.2; }
+      .hv-rating small { display: block; color: var(--muted); font-weight: 500; }
+
+      /* B overlay */
+      .hv-over { aspect-ratio: 4 / 5; background: var(--dark); color: var(--white); }
+      .hv-over > img { position: absolute; inset: 0; }
+      .hv-over::after { content: ""; position: absolute; z-index: 1; inset: 30% 0 0; background: linear-gradient(transparent, rgba(7, 18, 11, 0.2) 25%, rgba(7, 18, 11, 0.85) 82%); }
+      .hv-over__text { position: absolute; z-index: 2; right: 0; bottom: 0; left: 0; padding: 24px 24px 0; }
+      .hv-over h3 { color: var(--white); font-size: 24px; }
+      .hv-over__text > p { margin: 0 0 4px; color: #d8e0db; font-size: 13px; }
+      .hv-over .hv-bottom { margin: 12px 0 0; }
+      .hv-bottom--dark { border-top-color: rgba(255, 255, 255, 0.16); }
+      .hv-bottom--dark small { color: #a9bdb4; }
+      .hv-bottom--dark strong { color: var(--white); }
+
+      /* D total */
+      .hv-total { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; margin: 14px 0 12px; padding: 14px; border-radius: 12px; background: #f6faf8; }
+      .hv-total small { letter-spacing: 0; text-transform: none; font-size: 12px; color: var(--text); }
+      .hv-total span { font-size: 13px; font-weight: 700; }
+      .hv-total strong { display: block; font-size: 24px; line-height: 1.1; }
+
+      /* E gallery */
+      .hv-gallery { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 180px 90px; gap: 4px; }
+      .hv-gallery img:first-child { grid-column: 1 / -1; }
+      .hv-gallery + .hv-body { padding-bottom: 10px; }
+
+      /* F minimal */
+      .hv-minimal { padding: 0; background: transparent; box-shadow: none; }
+      .hv-media--round { border-radius: 20px; aspect-ratio: 1 / 1; }
+      .hv-minimal__row { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; padding: 0 4px; }
+      .hv-minimal__row:first-of-type { margin-top: 14px; }
+      .hv-minimal h3 { font-size: 18px; }
+      .hv-inline-score { color: var(--dark); font-size: 13px; font-weight: 700; white-space: nowrap; }
+      .hv-minimal__price { margin: 0; color: var(--text); font-size: 13px; white-space: nowrap; }
+      .hv-minimal__price b { color: var(--dark); font-size: 16px; }
+
+      /* G green */
+      .hv-green { background: #124937; color: var(--white); }
+      .hv-green h3 { color: var(--white); }
+      .hv-green .hv-loc { color: #c9e2d8; }
+      .hv-green .hv-dates { color: var(--primary); }
+
+      /* H inset */
+      .hv-inset { padding: 12px; text-align: center; }
+      .hv-inset .hv-media { border-radius: 14px; aspect-ratio: 4 / 3.2; }
+      .hv-inset__body { display: grid; justify-items: center; gap: 2px; padding: 18px 12px 12px; }
+      .hv-inset h3 { font-size: 23px; }
+      .hv-inset__price { margin: 8px 0 14px; color: var(--text); font-size: 13px; }
+      .hv-inset__price b { color: var(--dark); font-size: 18px; }
+
+      /* I row */
+      .hv-row-card { flex-direction: row; }
+      .hv-row-card .hv-media { flex: none; width: 300px; aspect-ratio: auto; }
+      .hv-row-card__main { flex: 1; min-width: 0; padding: 22px 26px; }
+      .hv-row-card__side { display: grid; flex: none; align-content: space-between; justify-items: end; gap: 12px; width: 220px; padding: 22px; background: var(--light); text-align: right; }
+      .hv-row-card__side strong { display: block; font-size: 24px; line-height: 1.1; }
+      @media (max-width: 900px) { .hv-row-card { flex-direction: column; } .hv-row-card .hv-media { width: 100%; aspect-ratio: 16 / 9; } .hv-row-card__side { width: auto; justify-items: start; text-align: left; } }
+
+      /* J compact */
+      .hv-compact { flex-direction: row; align-items: center; gap: 14px; padding: 12px; border-radius: 16px; }
+      .hv-compact > img { flex: none; width: 76px; height: 76px; border-radius: 12px; }
+      .hv-compact > div:nth-child(2) { flex: 1; min-width: 0; }
+      .hv-compact h3 { font-size: 16px; }
+      .hv-compact .hv-loc { font-size: 12px; }
+      .hv-compact .hv-inline-score { font-size: 11px; color: #468d75; }
+      .hv-compact strong { display: block; font-size: 18px; }
+      .hv-compact small { color: var(--muted); font-size: 11px; }
+
+    </style>
+  </head>
+  <body>
+    <div data-site-header></div>
+    <main class="cv-page">
+      <div class="container">
+        <div class="cv-intro">
+          <span class="eyebrow">Design review</span>
+          <h1 style="color: var(--dark); font-size: clamp(34px, 5vw, 54px)">Hotel card variants</h1>
+          <p>Варианты карточек отелей для блока Featured stays. Везде одни и те же три отеля — так проще сравнивать.</p>
+        </div>
+        <section class="cv-variant">
+          <header><span class="cv-tag">A</span><h2>Сейчас на сайте</h2><p>Классическая: фото с типом номера и оценкой, звёзды, название, локация, даты, цена за ночь.</p></header>
+          <div class="hv-grid">
+<article class="hotel-card">
+  <div class="hotel-card__media"><img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=85" alt="" /><span class="hotel-card__badge">Beach villa</span><span class="hotel-card__score">9.6</span></div>
+  <div class="hotel-card__body"><span class="hotel-card__stars">★★★★★</span><h3>Soneva Fushi</h3><p class="hotel-card__loc">Baa Atoll, Maldives</p><p class="hotel-card__dates">Thu, Dec 3 – Wed, Dec 9 · 6 nights</p>
+  <div class="hotel-card__bottom"><div><small>Per night from</small><strong>€890</strong></div><a href="#">Find stay</a></div></div>
+</article>
+<article class="hotel-card">
+  <div class="hotel-card__media"><img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=800&q=85" alt="" /><span class="hotel-card__badge">Deluxe room</span><span class="hotel-card__score">9.2</span></div>
+  <div class="hotel-card__body"><span class="hotel-card__stars">★★★★★</span><h3>Maison Paris</h3><p class="hotel-card__loc">Saint-Germain, Paris</p><p class="hotel-card__dates">Fri, Nov 27 – Mon, Nov 30 · 3 nights</p>
+  <div class="hotel-card__bottom"><div><small>Per night from</small><strong>€520</strong></div><a href="#">Find stay</a></div></div>
+</article>
+<article class="hotel-card">
+  <div class="hotel-card__media"><img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=800&q=85" alt="" /><span class="hotel-card__badge">Pool suite</span><span class="hotel-card__score">9.0</span></div>
+  <div class="hotel-card__body"><span class="hotel-card__stars">★★★★★</span><h3>Desert Palm</h3><p class="hotel-card__loc">Al Barsha, Dubai</p><p class="hotel-card__dates">Tue, Dec 1 – Sat, Dec 5 · 4 nights</p>
+  <div class="hotel-card__bottom"><div><small>Per night from</small><strong>€610</strong></div><a href="#">Find stay</a></div></div>
+</article>
+          </div>
+        </section>
+        <section class="cv-variant">
+          <header><span class="cv-tag">B</span><h2>Фото на всю карточку, тёмное затемнение</h2><p>В стиле карточек направлений: фото на всю карточку, текст белым поверх, оценка в углу.</p></header>
+          <div class="hv-grid">
+<article class="hv hv-over"><img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=85" alt="" /><span class="hv-score hv-score--light">9.6</span>
+  <div class="hv-over__text"><span class="hv-stars" aria-label="5 stars">★★★★★</span><h3>Soneva Fushi</h3><p>Baa Atoll, Maldives · Beach villa</p>
+  <div class="hv-bottom hv-bottom--dark"><div><small>Per night from</small><strong>€890</strong></div><a class="hv-btn hv-btn--outline" href="#">Explore</a></div></div></article>
+<article class="hv hv-over"><img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=800&q=85" alt="" /><span class="hv-score hv-score--light">9.2</span>
+  <div class="hv-over__text"><span class="hv-stars" aria-label="5 stars">★★★★★</span><h3>Maison Paris</h3><p>Saint-Germain, Paris · Deluxe room</p>
+  <div class="hv-bottom hv-bottom--dark"><div><small>Per night from</small><strong>€520</strong></div><a class="hv-btn hv-btn--outline" href="#">Explore</a></div></div></article>
+<article class="hv hv-over"><img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=800&q=85" alt="" /><span class="hv-score hv-score--light">9.0</span>
+  <div class="hv-over__text"><span class="hv-stars" aria-label="5 stars">★★★★★</span><h3>Desert Palm</h3><p>Al Barsha, Dubai · Pool suite</p>
+  <div class="hv-bottom hv-bottom--dark"><div><small>Per night from</small><strong>€610</strong></div><a class="hv-btn hv-btn--outline" href="#">Explore</a></div></div></article>
+          </div>
+        </section>
+        <section class="cv-variant">
+          <header><span class="cv-tag">C</span><h2>Привилегии чипами</h2><p>Фото, звёзды, название и локация, а под ними — чипы того, что входит: завтрак, трансфер, отмена.</p></header>
+          <div class="hv-grid">
+<article class="hv">
+  <div class="hv-media"><img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=85" alt="" /></div>
+  <div class="hv-body"><span class="hv-stars" aria-label="5 stars">★★★★★</span><h3>Soneva Fushi</h3><p class="hv-loc">Baa Atoll, Maldives</p>
+  <div class="hv-chips"><span>Breakfast</span><span>Seaplane transfer</span><span>Free cancellation</span></div></div>
+  <div class="hv-bottom"><div><small>Per night from</small><strong>€890</strong></div><a class="hv-btn" href="#">Find stay</a></div></article>
+<article class="hv">
+  <div class="hv-media"><img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=800&q=85" alt="" /></div>
+  <div class="hv-body"><span class="hv-stars" aria-label="5 stars">★★★★★</span><h3>Maison Paris</h3><p class="hv-loc">Saint-Germain, Paris</p>
+  <div class="hv-chips"><span>Breakfast</span><span>Late checkout</span><span>Upgrade on arrival</span></div></div>
+  <div class="hv-bottom"><div><small>Per night from</small><strong>€520</strong></div><a class="hv-btn" href="#">Find stay</a></div></article>
+<article class="hv">
+  <div class="hv-media"><img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=800&q=85" alt="" /></div>
+  <div class="hv-body"><span class="hv-stars" aria-label="5 stars">★★★★★</span><h3>Desert Palm</h3><p class="hv-loc">Al Barsha, Dubai</p>
+  <div class="hv-chips"><span>Airport transfer</span><span>Private pool</span><span>Spa credit</span></div></div>
+  <div class="hv-bottom"><div><small>Per night from</small><strong>€610</strong></div><a class="hv-btn" href="#">Find stay</a></div></article>
+          </div>
+        </section>
+        <section class="cv-variant">
+          <header><span class="cv-tag">D</span><h2>Итоговая цена за поездку</h2><p>Акцент на сумме за весь срок: «6 nights · 2 guests — €5,340», цена за ночь мелко.</p></header>
+          <div class="hv-grid">
+<article class="hv">
+  <div class="hv-media"><img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=85" alt="" /><span class="hv-badge">Beach villa</span></div>
+  <div class="hv-body"><span class="hv-stars" aria-label="5 stars">★★★★★</span><h3>Soneva Fushi</h3><p class="hv-loc">Baa Atoll, Maldives</p>
+  <div class="hv-total"><div><small>Thu, Dec 3 – Wed, Dec 9</small><span>6 nights · 2 guests</span></div><div class="hv-right"><strong>€5,340</strong><small>€890 / night</small></div></div></div>
+  <div class="hv-bottom hv-bottom--btn"><a class="hv-btn hv-btn--wide" href="#">View stay</a></div></article>
+<article class="hv">
+  <div class="hv-media"><img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=800&q=85" alt="" /><span class="hv-badge">Deluxe room</span></div>
+  <div class="hv-body"><span class="hv-stars" aria-label="5 stars">★★★★★</span><h3>Maison Paris</h3><p class="hv-loc">Saint-Germain, Paris</p>
+  <div class="hv-total"><div><small>Fri, Nov 27 – Mon, Nov 30</small><span>3 nights · 2 guests</span></div><div class="hv-right"><strong>€1,560</strong><small>€520 / night</small></div></div></div>
+  <div class="hv-bottom hv-bottom--btn"><a class="hv-btn hv-btn--wide" href="#">View stay</a></div></article>
+<article class="hv">
+  <div class="hv-media"><img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=800&q=85" alt="" /><span class="hv-badge">Pool suite</span></div>
+  <div class="hv-body"><span class="hv-stars" aria-label="5 stars">★★★★★</span><h3>Desert Palm</h3><p class="hv-loc">Al Barsha, Dubai</p>
+  <div class="hv-total"><div><small>Tue, Dec 1 – Sat, Dec 5</small><span>4 nights · 2 guests</span></div><div class="hv-right"><strong>€2,440</strong><small>€610 / night</small></div></div></div>
+  <div class="hv-bottom hv-bottom--btn"><a class="hv-btn hv-btn--wide" href="#">View stay</a></div></article>
+          </div>
+        </section>
+        <section class="cv-variant">
+          <header><span class="cv-tag">E</span><h2>Мини-галерея</h2><p>Большое фото и две маленькие под ним — сразу видно номер, вид и территорию.</p></header>
+          <div class="hv-grid">
+<article class="hv">
+  <div class="hv-gallery"><img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=85" alt="" /><img src="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=400&q=85" alt="" /><img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=400&q=85" alt="" /></div>
+  <div class="hv-body"><div class="hv-row"><div><h3>Soneva Fushi</h3><p class="hv-loc">Baa Atoll, Maldives</p></div><span class="hv-score">9.6</span></div></div>
+  <div class="hv-bottom"><div><small>Per night from</small><strong>€890</strong></div><a class="hv-btn" href="#">Find stay</a></div></article>
+<article class="hv">
+  <div class="hv-gallery"><img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=800&q=85" alt="" /><img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=400&q=85" alt="" /><img src="https://images.unsplash.com/photo-1455587734955-081b22074882?auto=format&fit=crop&w=400&q=85" alt="" /></div>
+  <div class="hv-body"><div class="hv-row"><div><h3>Maison Paris</h3><p class="hv-loc">Saint-Germain, Paris</p></div><span class="hv-score">9.2</span></div></div>
+  <div class="hv-bottom"><div><small>Per night from</small><strong>€520</strong></div><a class="hv-btn" href="#">Find stay</a></div></article>
+<article class="hv">
+  <div class="hv-gallery"><img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=800&q=85" alt="" /><img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=400&q=85" alt="" /><img src="https://images.unsplash.com/photo-1445019980597-93fa8acb246c?auto=format&fit=crop&w=400&q=85" alt="" /></div>
+  <div class="hv-body"><div class="hv-row"><div><h3>Desert Palm</h3><p class="hv-loc">Al Barsha, Dubai</p></div><span class="hv-score">9.0</span></div></div>
+  <div class="hv-bottom"><div><small>Per night from</small><strong>€610</strong></div><a class="hv-btn" href="#">Find stay</a></div></article>
+          </div>
+        </section>
+        <section class="cv-variant">
+          <header><span class="cv-tag">F</span><h2>Минималистичная</h2><p>Только главное: фото, название с оценкой в одной строке, локация и цена справа.</p></header>
+          <div class="hv-grid">
+<article class="hv hv-minimal">
+  <div class="hv-media hv-media--round"><img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=85" alt="" /></div>
+  <div class="hv-minimal__row"><h3>Soneva Fushi</h3><span class="hv-inline-score">★ 9.6</span></div>
+  <div class="hv-minimal__row"><p class="hv-loc">Baa Atoll, Maldives</p><p class="hv-minimal__price"><b>€890</b> / night</p></div></article>
+<article class="hv hv-minimal">
+  <div class="hv-media hv-media--round"><img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=800&q=85" alt="" /></div>
+  <div class="hv-minimal__row"><h3>Maison Paris</h3><span class="hv-inline-score">★ 9.2</span></div>
+  <div class="hv-minimal__row"><p class="hv-loc">Saint-Germain, Paris</p><p class="hv-minimal__price"><b>€520</b> / night</p></div></article>
+<article class="hv hv-minimal">
+  <div class="hv-media hv-media--round"><img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=800&q=85" alt="" /></div>
+  <div class="hv-minimal__row"><h3>Desert Palm</h3><span class="hv-inline-score">★ 9.0</span></div>
+  <div class="hv-minimal__row"><p class="hv-loc">Al Barsha, Dubai</p><p class="hv-minimal__price"><b>€610</b> / night</p></div></article>
+          </div>
+        </section>
+        <section class="cv-variant">
+          <header><span class="cv-tag">G</span><h2>Тёмно-зелёный низ</h2><p>Фото сверху, текстовый блок в фирменном тёмно-зелёном, как шапки карточек рейсов.</p></header>
+          <div class="hv-grid">
+<article class="hv hv-green">
+  <div class="hv-media"><img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=85" alt="" /><span class="hv-badge">Beach villa</span><span class="hv-score hv-score--light">9.6</span></div>
+  <div class="hv-body"><span class="hv-stars" aria-label="5 stars">★★★★★</span><h3>Soneva Fushi</h3><p class="hv-loc">Baa Atoll, Maldives</p><p class="hv-dates">Thu, Dec 3 – Wed, Dec 9 · 6 nights</p></div>
+  <div class="hv-bottom hv-bottom--dark"><div><small>Per night from</small><strong>€890</strong></div><a class="hv-btn hv-btn--outline" href="#">Explore</a></div></article>
+<article class="hv hv-green">
+  <div class="hv-media"><img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=800&q=85" alt="" /><span class="hv-badge">Deluxe room</span><span class="hv-score hv-score--light">9.2</span></div>
+  <div class="hv-body"><span class="hv-stars" aria-label="5 stars">★★★★★</span><h3>Maison Paris</h3><p class="hv-loc">Saint-Germain, Paris</p><p class="hv-dates">Fri, Nov 27 – Mon, Nov 30 · 3 nights</p></div>
+  <div class="hv-bottom hv-bottom--dark"><div><small>Per night from</small><strong>€520</strong></div><a class="hv-btn hv-btn--outline" href="#">Explore</a></div></article>
+<article class="hv hv-green">
+  <div class="hv-media"><img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=800&q=85" alt="" /><span class="hv-badge">Pool suite</span><span class="hv-score hv-score--light">9.0</span></div>
+  <div class="hv-body"><span class="hv-stars" aria-label="5 stars">★★★★★</span><h3>Desert Palm</h3><p class="hv-loc">Al Barsha, Dubai</p><p class="hv-dates">Tue, Dec 1 – Sat, Dec 5 · 4 nights</p></div>
+  <div class="hv-bottom hv-bottom--dark"><div><small>Per night from</small><strong>€610</strong></div><a class="hv-btn hv-btn--outline" href="#">Explore</a></div></article>
+          </div>
+        </section>
+        <section class="cv-variant">
+          <header><span class="cv-tag">H</span><h2>Фото в рамке, журнальный стиль</h2><p>Фото с отступом внутри белой карточки, название по центру — спокойно и дорого.</p></header>
+          <div class="hv-grid">
+<article class="hv hv-inset">
+  <div class="hv-media"><img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=85" alt="" /></div>
+  <div class="hv-inset__body"><span class="hv-stars" aria-label="5 stars">★★★★★</span><h3>Soneva Fushi</h3><p class="hv-loc">Baa Atoll, Maldives · Beach villa</p><p class="hv-inset__price">from <b>€890</b> per night</p><a class="hv-btn hv-btn--outline-dark" href="#">Discover</a></div></article>
+<article class="hv hv-inset">
+  <div class="hv-media"><img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=800&q=85" alt="" /></div>
+  <div class="hv-inset__body"><span class="hv-stars" aria-label="5 stars">★★★★★</span><h3>Maison Paris</h3><p class="hv-loc">Saint-Germain, Paris · Deluxe room</p><p class="hv-inset__price">from <b>€520</b> per night</p><a class="hv-btn hv-btn--outline-dark" href="#">Discover</a></div></article>
+<article class="hv hv-inset">
+  <div class="hv-media"><img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=800&q=85" alt="" /></div>
+  <div class="hv-inset__body"><span class="hv-stars" aria-label="5 stars">★★★★★</span><h3>Desert Palm</h3><p class="hv-loc">Al Barsha, Dubai · Pool suite</p><p class="hv-inset__price">from <b>€610</b> per night</p><a class="hv-btn hv-btn--outline-dark" href="#">Discover</a></div></article>
+          </div>
+        </section>
+        <section class="cv-variant">
+          <header><span class="cv-tag">I</span><h2>Горизонтальная (список)</h2><p>Фото слева, описание и чипы по центру, оценка и цена справа. Для результатов поиска.</p></header>
+          <div class="hv-list">
+<article class="hv hv-row-card">
+  <div class="hv-media"><img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=85" alt="" /></div>
+  <div class="hv-row-card__main"><span class="hv-stars" aria-label="5 stars">★★★★★</span><h3>Soneva Fushi</h3><p class="hv-loc">Baa Atoll, Maldives · Beach villa</p><div class="hv-chips"><span>Breakfast</span><span>Seaplane transfer</span><span>Free cancellation</span></div></div>
+  <div class="hv-row-card__side"><div class="hv-rating"><span>Exceptional<small>412 reviews</small></span><b>9.6</b></div><div><small>6 nights · 2 guests</small><strong>€5,340</strong><small>€890 / night</small></div><a class="hv-btn" href="#">Find stay</a></div></article>
+<article class="hv hv-row-card">
+  <div class="hv-media"><img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=800&q=85" alt="" /></div>
+  <div class="hv-row-card__main"><span class="hv-stars" aria-label="5 stars">★★★★★</span><h3>Maison Paris</h3><p class="hv-loc">Saint-Germain, Paris · Deluxe room</p><div class="hv-chips"><span>Breakfast</span><span>Late checkout</span><span>Upgrade on arrival</span></div></div>
+  <div class="hv-row-card__side"><div class="hv-rating"><span>Superb<small>860 reviews</small></span><b>9.2</b></div><div><small>3 nights · 2 guests</small><strong>€1,560</strong><small>€520 / night</small></div><a class="hv-btn" href="#">Find stay</a></div></article>
+          </div>
+        </section>
+        <section class="cv-variant">
+          <header><span class="cv-tag">J</span><h2>Компактная строка</h2><p>Маленькое квадратное фото и всё в одну строку — для боковой колонки или подборки «Похожие отели».</p></header>
+          <div class="hv-list hv-list--compact">
+<article class="hv hv-compact">
+  <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=300&q=85" alt="" />
+  <div><h3>Soneva Fushi</h3><p class="hv-loc">Baa Atoll, Maldives</p><span class="hv-inline-score">★ 9.6 · Exceptional</span></div>
+  <div class="hv-right"><strong>€890</strong><small>per night</small></div></article>
+<article class="hv hv-compact">
+  <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=300&q=85" alt="" />
+  <div><h3>Maison Paris</h3><p class="hv-loc">Saint-Germain, Paris</p><span class="hv-inline-score">★ 9.2 · Superb</span></div>
+  <div class="hv-right"><strong>€520</strong><small>per night</small></div></article>
+<article class="hv hv-compact">
+  <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=300&q=85" alt="" />
+  <div><h3>Desert Palm</h3><p class="hv-loc">Al Barsha, Dubai</p><span class="hv-inline-score">★ 9.0 · Superb</span></div>
+  <div class="hv-right"><strong>€610</strong><small>per night</small></div></article>
+          </div>
+        </section>
+      </div>
+    </main>
+    <div data-site-footer></div>
+    <script src="js/components.js"></script>
+  </body>
+</html>

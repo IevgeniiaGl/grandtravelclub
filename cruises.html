@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="Luxury cruises worldwide with suite cabins and personal Grand Travel Club support."
+    />
+    <title>Cruises — Grand Travel Club</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="css/index.css" />
+  </head>
+  <body>
+    <div data-site-header></div>
+    <main id="top">
+      <section class="site-hero" style="--hero-image: url('https://images.unsplash.com/photo-1548574505-5e239809ee19?auto=format&fit=crop&w=2000&q=85')">
+        <div class="container site-hero__content">
+          <span class="eyebrow eyebrow--light">Voyages worth the journey</span>
+          <h1>Exceptional cruises,<br />personally arranged</h1>
+        </div>
+        <form class="search-form flight-search flight-search--initial container" id="search" data-cruise-search>
+          <div class="search-form__top">
+            <h2>Where would you like to cruise?</h2>
+          </div>
+          <div class="search-form__fields flight-search__fields home-search__hotel-fields">
+            <label class="search-form__field flight-search__field">
+              <span class="sr-only">Destination</span>
+              <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7Zm0 10a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z" /></svg>
+              <input name="destination" type="text" placeholder="Region or port" autocomplete="off" required />
+            </label>
+            <label class="search-form__field flight-search__field">
+              <span class="sr-only">Departure date</span>
+              <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M7 2h2v2h6V2h2v2h3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h3V2Zm13 8H4v10h16V10ZM4 8h16V6H4v2Z" /></svg>
+              <input name="departure" type="date" required />
+            </label>
+            <label class="search-form__field flight-search__field">
+              <span class="sr-only">Travelers</span>
+              <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10Zm0-2a3 3 0 1 1 0-6 3 3 0 0 1 0 6Zm0 3c-5 0-9 2.5-9 6v2h18v-2c0-3.5-4-6-9-6Zm-7 6c0-2 3-4 7-4s7 2 7 4H5Z" /></svg>
+              <select name="travelers" aria-label="Travelers"><option>1 traveler</option><option selected>2 travelers</option><option>3 travelers</option><option>4 travelers</option></select>
+              <span class="ui-chevron ui-chevron--down" aria-hidden="true"></span>
+            </label>
+            <button class="button button--primary" type="submit">Search cruises <span class="ui-chevron ui-chevron--right" aria-hidden="true"></span></button>
+          </div>
+          <p class="search-form__message" role="status"></p>
+        </form>
+      </section>
+
+      <section class="deal-catalog destinations-catalog" id="destinations">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <span class="eyebrow">Explore our voyages</span>
+              <h2>Where we sail</h2>
+            </div>
+            <p>
+              18 cruise destinations across 4 regions. Pick a region to narrow the list —
+              your expert will match the ship, suite and dates.
+            </p>
+          </div>
+          <div class="deal-catalog__filters deal-catalog__filters--tabs paris-deals__filters" role="group" aria-label="Cruise regions">
+            <button class="is-active" type="button" data-region="all" aria-pressed="true">All cruises</button>
+            <button type="button" data-region="europe" aria-pressed="false">Europe</button>
+            <button type="button" data-region="americas" aria-pressed="false">Americas</button>
+            <button type="button" data-region="asia-pacific" aria-pressed="false">Asia &amp; Pacific</button>
+            <button type="button" data-region="middle-east" aria-pressed="false">Middle East</button>
+          </div>
+          <div class="destinations-catalog__grid">
+            <article class="hotel-card place-card" data-region="europe">
+              <div class="hotel-card__media"><img src="https://images.unsplash.com/photo-1548574505-5e239809ee19?auto=format&fit=crop&w=800&q=85" alt="Mediterranean" loading="lazy" /></div>
+              <div class="hotel-card__body">
+                <span class="place-card__eyebrow">Europe</span>
+                <h3>Mediterranean</h3>
+                <div class="hotel-card__bottom"><div><small>Per person from</small><strong>€1,490</strong></div><a href="mediterranean.html" aria-label="Explore Mediterranean">Explore</a></div>
+              </div>
+            </article>
+            <article class="hotel-card place-card" data-region="europe">
+              <div class="hotel-card__media"><img src="https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?auto=format&fit=crop&w=800&q=85" alt="Greece" loading="lazy" /></div>
+              <div class="hotel-card__body">
+                <span class="place-card__eyebrow">Europe</span>
+                <h3>Greece</h3>
+                <div class="hotel-card__bottom"><div><small>Per person from</small><strong>€1,590</strong></div><a href="mediterranean.html" aria-label="Explore Greece">Explore</a></div>
+              </div>
+            </article>
+            <article class="hotel-card place-card" data-region="europe">
+              <div class="hotel-card__media"><img src="https://images.unsplash.com/photo-1555990793-da11153b2473?auto=format&fit=crop&w=800&q=85" alt="Adriatic" loading="lazy" /></div>
+              <div class="hotel-card__body">
+                <span class="place-card__eyebrow">Europe</span>
+                <h3>Adriatic</h3>
+                <div class="hotel-card__bottom"><div><small>Per person from</small><strong>€1,390</strong></div><a href="mediterranean.html" aria-label="Explore Adriatic">Explore</a></div>
+              </div>
+            </article>
+            <article class="hotel-card place-card" data-region="europe">
+              <div class="hotel-card__media"><img src="https://images.unsplash.com/photo-1514890547357-a9ee288728e0?auto=format&fit=crop&w=800&q=85" alt="Italy" loading="lazy" /></div>
+              <div class="hotel-card__body">
+                <span class="place-card__eyebrow">Europe</span>
+                <h3>Italy</h3>
+                <div class="hotel-card__bottom"><div><small>Per person from</small><strong>€1,650</strong></div><a href="mediterranean.html" aria-label="Explore Italy">Explore</a></div>
+              </div>
+            </article>
+            <article class="hotel-card place-card" data-region="europe">
+              <div class="hotel-card__media"><img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=800&q=85" alt="Norwegian Fjords" loading="lazy" /></div>
+              <div class="hotel-card__body">
+                <span class="place-card__eyebrow">Europe</span>
+                <h3>Norwegian Fjords</h3>
+                <div class="hotel-card__bottom"><div><small>Per person from</small><strong>€1,890</strong></div><a href="mediterranean.html" aria-label="Explore Norwegian Fjords">Explore</a></div>
+              </div>
+            </article>
+            <article class="hotel-card place-card" data-region="europe">
+              <div class="hotel-card__media"><img src="https://images.unsplash.com/photo-1509356843151-3e7d96241e11?auto=format&fit=crop&w=800&q=85" alt="Baltic Sea" loading="lazy" /></div>
+              <div class="hotel-card__body">
+                <span class="place-card__eyebrow">Europe</span>
+                <h3>Baltic Sea</h3>
+                <div class="hotel-card__bottom"><div><small>Per person from</small><strong>€1,740</strong></div><a href="mediterranean.html" aria-label="Explore Baltic Sea">Explore</a></div>
+              </div>
+            </article>
+            <article class="hotel-card place-card" data-region="europe">
+              <div class="hotel-card__media"><img src="https://images.unsplash.com/photo-1504829857797-ddff29c27927?auto=format&fit=crop&w=800&q=85" alt="Iceland" loading="lazy" /></div>
+              <div class="hotel-card__body">
+                <span class="place-card__eyebrow">Europe</span>
+                <h3>Iceland</h3>
+                <div class="hotel-card__bottom"><div><small>Per person from</small><strong>€2,290</strong></div><a href="mediterranean.html" aria-label="Explore Iceland">Explore</a></div>
+              </div>
+            </article>
+            <article class="hotel-card place-card" data-region="americas">
+              <div class="hotel-card__media"><img src="https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=800&q=85" alt="Caribbean" loading="lazy" /></div>
+              <div class="hotel-card__body">
+                <span class="place-card__eyebrow">Americas</span>
+                <h3>Caribbean</h3>
+                <div class="hotel-card__bottom"><div><small>Per person from</small><strong>€1,690</strong></div><a href="mediterranean.html" aria-label="Explore Caribbean">Explore</a></div>
+              </div>
+            </article>
+            <article class="hotel-card place-card" data-region="americas">
+              <div class="hotel-card__media"><img src="https://images.unsplash.com/photo-1506966953602-c20cc11f75e3?auto=format&fit=crop&w=800&q=85" alt="Bahamas" loading="lazy" /></div>
+              <div class="hotel-card__body">
+                <span class="place-card__eyebrow">Americas</span>
+                <h3>Bahamas</h3>
+                <div class="hotel-card__bottom"><div><small>Per person from</small><strong>€1,450</strong></div><a href="mediterranean.html" aria-label="Explore Bahamas">Explore</a></div>
+              </div>
+            </article>
+            <article class="hotel-card place-card" data-region="americas">
+              <div class="hotel-card__media"><img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=800&q=85" alt="Alaska" loading="lazy" /></div>
+              <div class="hotel-card__body">
+                <span class="place-card__eyebrow">Americas</span>
+                <h3>Alaska</h3>
+                <div class="hotel-card__bottom"><div><small>Per person from</small><strong>€2,190</strong></div><a href="mediterranean.html" aria-label="Explore Alaska">Explore</a></div>
+              </div>
+            </article>
+            <article class="hotel-card place-card" data-region="americas">
+              <div class="hotel-card__media"><img src="https://images.unsplash.com/photo-1483729558449-99ef09a8c325?auto=format&fit=crop&w=800&q=85" alt="South America" loading="lazy" /></div>
+              <div class="hotel-card__body">
+                <span class="place-card__eyebrow">Americas</span>
+                <h3>South America</h3>
+                <div class="hotel-card__bottom"><div><small>Per person from</small><strong>€2,390</strong></div><a href="mediterranean.html" aria-label="Explore South America">Explore</a></div>
+              </div>
+            </article>
+            <article class="hotel-card place-card" data-region="asia-pacific">
+              <div class="hotel-card__media"><img src="https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?auto=format&fit=crop&w=800&q=85" alt="Southeast Asia" loading="lazy" /></div>
+              <div class="hotel-card__body">
+                <span class="place-card__eyebrow">Asia &amp; Pacific</span>
+                <h3>Southeast Asia</h3>
+                <div class="hotel-card__bottom"><div><small>Per person from</small><strong>€1,790</strong></div><a href="mediterranean.html" aria-label="Explore Southeast Asia">Explore</a></div>
+              </div>
+            </article>
+            <article class="hotel-card place-card" data-region="asia-pacific">
+              <div class="hotel-card__media"><img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=800&q=85" alt="Indonesia" loading="lazy" /></div>
+              <div class="hotel-card__body">
+                <span class="place-card__eyebrow">Asia &amp; Pacific</span>
+                <h3>Indonesia</h3>
+                <div class="hotel-card__bottom"><div><small>Per person from</small><strong>€2,140</strong></div><a href="mediterranean.html" aria-label="Explore Indonesia">Explore</a></div>
+              </div>
+            </article>
+            <article class="hotel-card place-card" data-region="asia-pacific">
+              <div class="hotel-card__media"><img src="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=800&q=85" alt="Indian Ocean" loading="lazy" /></div>
+              <div class="hotel-card__body">
+                <span class="place-card__eyebrow">Asia &amp; Pacific</span>
+                <h3>Indian Ocean</h3>
+                <div class="hotel-card__bottom"><div><small>Per person from</small><strong>€2,890</strong></div><a href="mediterranean.html" aria-label="Explore Indian Ocean">Explore</a></div>
+              </div>
+            </article>
+            <article class="hotel-card place-card" data-region="asia-pacific">
+              <div class="hotel-card__media"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=85" alt="South Pacific" loading="lazy" /></div>
+              <div class="hotel-card__body">
+                <span class="place-card__eyebrow">Asia &amp; Pacific</span>
+                <h3>South Pacific</h3>
+                <div class="hotel-card__bottom"><div><small>Per person from</small><strong>€2,590</strong></div><a href="mediterranean.html" aria-label="Explore South Pacific">Explore</a></div>
+              </div>
+            </article>
+            <article class="hotel-card place-card" data-region="asia-pacific">
+              <div class="hotel-card__media"><img src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=800&q=85" alt="Japan &amp; Korea" loading="lazy" /></div>
+              <div class="hotel-card__body">
+                <span class="place-card__eyebrow">Asia &amp; Pacific</span>
+                <h3>Japan &amp; Korea</h3>
+                <div class="hotel-card__bottom"><div><small>Per person from</small><strong>€2,490</strong></div><a href="mediterranean.html" aria-label="Explore Japan &amp; Korea">Explore</a></div>
+              </div>
+            </article>
+            <article class="hotel-card place-card" data-region="asia-pacific">
+              <div class="hotel-card__media"><img src="https://images.unsplash.com/photo-1536599018102-9f803c140fc1?auto=format&fit=crop&w=800&q=85" alt="Hong Kong &amp; Vietnam" loading="lazy" /></div>
+              <div class="hotel-card__body">
+                <span class="place-card__eyebrow">Asia &amp; Pacific</span>
+                <h3>Hong Kong &amp; Vietnam</h3>
+                <div class="hotel-card__bottom"><div><small>Per person from</small><strong>€1,990</strong></div><a href="mediterranean.html" aria-label="Explore Hong Kong &amp; Vietnam">Explore</a></div>
+              </div>
+            </article>
+            <article class="hotel-card place-card" data-region="middle-east">
+              <div class="hotel-card__media"><img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=800&q=85" alt="Arabian Gulf" loading="lazy" /></div>
+              <div class="hotel-card__body">
+                <span class="place-card__eyebrow">Middle East</span>
+                <h3>Arabian Gulf</h3>
+                <div class="hotel-card__bottom"><div><small>Per person from</small><strong>€1,590</strong></div><a href="mediterranean.html" aria-label="Explore Arabian Gulf">Explore</a></div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+      <section class="cta">
+        <div class="container cta__inner">
+          <div>
+            <span class="eyebrow eyebrow--light">Your next voyage</span>
+            <h2>Sail farther. Arrive rested.</h2>
+            <p>
+              Let a personal travel expert choose the right ship, suite and itinerary for you.
+            </p>
+          </div>
+          <a class="button button--light" href="contacts.html"
+            >Request a private quote <span class="ui-chevron ui-chevron--right" aria-hidden="true"></span></a
+          >
+        </div>
+      </section>
+    </main>
+    <div data-site-footer></div>
+    <script src="js/components.js"></script>
+    <script src="js/date-range-calendar.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/custom-selects.js"></script>
+  </body>
+</html>

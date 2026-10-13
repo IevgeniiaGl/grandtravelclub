@@ -1,0 +1,103 @@
+/* All search forms (flights, hotels, cruises): large fields with a visible caption above the value.
+   The captions are the existing screen-reader labels, shown as small caps. */
+.flight-search--initial .flight-search__field {
+  height: 62px;
+  min-height: 62px;
+  padding: 0 16px;
+  border-color: var(--border);
+  border-radius: 14px;
+  background: #fbfcfb;
+}
+
+.flight-search--initial .flight-search__field:hover {
+  border-color: #c5d3cc;
+}
+
+.flight-search--initial .flight-search__field .sr-only {
+  top: 12px;
+  left: 51px;
+  width: auto;
+  max-width: calc(100% - 66px);
+  height: auto;
+  margin: 0;
+  overflow: hidden;
+  clip: auto;
+  clip-path: none;
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  line-height: 1;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.flight-search--initial .flight-search__field input,
+.flight-search--initial .flight-search__field select,
+.flight-search--initial .traveler-picker__trigger strong {
+  padding-top: 16px;
+  color: var(--dark);
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.flight-search--initial .flight-search__field input::placeholder {
+  color: var(--muted);
+  font-weight: 500;
+}
+
+/* Bigger search button next to the fields */
+.flight-search--initial .flight-search__fields > .button,
+.flight-search--initial .search-form__fields > .button {
+  min-height: 62px;
+  padding: 0 28px;
+  border-radius: 14px;
+  font-size: 15px;
+}
+
+/* The swap button lines up with the taller fields */
+.flight-search--initial .flight-search__swap {
+  width: 40px;
+  height: 40px;
+}
+
+/* Deeper shadow so the form reads as the main tool on the banner */
+.search-form.flight-search--initial:not(.home-search__form),
+.home-search {
+  border-radius: 20px;
+  box-shadow: 0 24px 60px rgba(7, 20, 14, 0.3);
+}
+
+/* Values: slightly smaller so full dates fit; selects fill the field so the value sits under its caption */
+.flight-search--initial .flight-search__field input,
+.flight-search--initial .flight-search__field select,
+.flight-search--initial .traveler-picker__trigger strong {
+  font-size: 14px;
+}
+
+/* Inputs and selects share one box, so every value sits at the same height under its caption */
+.flight-search--initial .flight-search__field input,
+.flight-search--initial .flight-search__field select {
+  align-self: center;
+  height: 44px;
+  padding: 18px 0 0;
+  line-height: 26px;
+}
+
+/* Flights: more room for the dates column so "Mon, Oct 19 — Mon, Oct 26" fits */
+@media (min-width: 1101px) {
+  .flight-search--initial .flight-search__fields:not(.home-search__hotel-fields) {
+    grid-template-columns: minmax(170px, 1fr) 40px minmax(170px, 1fr) minmax(270px, 1.3fr) minmax(140px, 0.7fr) auto;
+  }
+}
+
+/* Guests / travelers dropdowns are drawn by custom-selects.js: align their value with the other fields */
+.flight-search--initial .flight-search__field .ui-select__trigger {
+  padding-top: 18px;
+  color: var(--dark);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 26px;
+}

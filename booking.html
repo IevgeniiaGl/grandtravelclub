@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Complete your flight booking in four simple steps." />
+    <title>Booking | Premium Travel</title>
+    <link rel="stylesheet" href="css/index.css" />
+  </head>
+  <body>
+    <div data-site-header data-theme="solid"></div>
+    <main class="booking" data-booking>
+      <div class="container">
+        <header class="booking__intro"><span class="eyebrow">Secure booking</span><h1>Complete your journey</h1><p>Review your flights, add passenger details and complete your booking.</p></header>
+        <div class="booking__layout">
+          <section class="booking__workspace" aria-label="Booking steps">
+            <div class="booking-tabs flight-results__tabs" role="tablist" aria-label="Booking progress">
+              <button class="booking-tabs__tab flight-results__tab is-active" type="button" role="tab" id="booking-tab-1" aria-controls="booking-panel-1" aria-selected="true" data-booking-tab="1"><span class="booking-tabs__number">1</span><strong class="booking-tabs__title flight-results__tab-title">Flight details</strong></button>
+              <button class="booking-tabs__tab flight-results__tab" type="button" role="tab" id="booking-tab-2" aria-controls="booking-panel-2" aria-selected="false" data-booking-tab="2" tabindex="-1"><span class="booking-tabs__number">2</span><strong class="booking-tabs__title flight-results__tab-title">Passenger details</strong></button>
+              <button class="booking-tabs__tab flight-results__tab" type="button" role="tab" id="booking-tab-3" aria-controls="booking-panel-3" aria-selected="false" data-booking-tab="3" tabindex="-1"><span class="booking-tabs__number">3</span><strong class="booking-tabs__title flight-results__tab-title">Ticket protection</strong></button>
+              <button class="booking-tabs__tab flight-results__tab" type="button" role="tab" id="booking-tab-4" aria-controls="booking-panel-4" aria-selected="false" data-booking-tab="4" tabindex="-1"><span class="booking-tabs__number">4</span><strong class="booking-tabs__title flight-results__tab-title">Overview & payment</strong></button>
+            </div>
+
+            <section class="booking-step" id="booking-panel-1" role="tabpanel" aria-labelledby="booking-tab-1" data-booking-panel="1">
+              <div class="booking-step__heading"><span class="eyebrow">Step 1 of 4</span><h2>Review your flights</h2><p>Confirm both selected flights before continuing.</p></div>
+              <article class="booking-flight flight-offer">
+                <header class="booking-flight__header">
+                  <h3>Paris <span aria-hidden="true">✈</span> Los Angeles</h3>
+                  <div class="booking-flight__schedule"><time datetime="2026-09-18">Fri, Sep 18</time><span><small>Travel time</small><strong>11h 35m</strong></span></div>
+                </header>
+                <div class="booking-flight__details">
+                  <div class="booking-flight__airline"><img src="img/airlines/airfrance.svg" alt="" /><strong>Air France</strong><span>Flight <b>AF 022</b></span></div>
+                  <div class="booking-flight__timeline">
+                    <div><time datetime="10:30">10:30</time><span>Paris — Charles de Gaulle Airport <b>CDG</b></span></div>
+                    <small>Flying time: <b>11h 35m</b> · Direct</small>
+                    <div><time datetime="13:05">13:05</time><span>Los Angeles International Airport <b>LAX</b></span></div>
+                  </div>
+                  <div class="booking-flight__services"><span>Baggage <strong>2 checked bags</strong></span><span>Class <strong>Business</strong></span></div>
+                </div>
+              </article>
+
+              <article class="booking-flight flight-offer">
+                <header class="booking-flight__header">
+                  <h3>Los Angeles <span aria-hidden="true">✈</span> Paris</h3>
+                  <div class="booking-flight__schedule"><time datetime="2026-09-27">Sun, Sep 27</time><span><small>Travel time</small><strong>10h 40m</strong></span></div>
+                </header>
+                <div class="booking-flight__details">
+                  <div class="booking-flight__airline"><img src="img/airlines/airfrance.svg" alt="" /><strong>Air France</strong><span>Flight <b>AF 021</b></span></div>
+                  <div class="booking-flight__timeline">
+                    <div><time datetime="15:25">15:25</time><span>Los Angeles International Airport <b>LAX</b></span></div>
+                    <small>Flying time: <b>10h 40m</b> · Direct</small>
+                    <div><time datetime="11:05">11:05 +1</time><span>Paris — Charles de Gaulle Airport <b>CDG</b></span></div>
+                  </div>
+                  <div class="booking-flight__services"><span>Baggage <strong>2 checked bags</strong></span><span>Class <strong>Business</strong></span></div>
+                </div>
+              </article>
+            </section>
+
+            <section class="booking-step" id="booking-panel-2" role="tabpanel" aria-labelledby="booking-tab-2" data-booking-panel="2" hidden>
+              <div class="booking-step__heading"><span class="eyebrow">Step 2 of 4</span><h2>Passenger details</h2><p>Enter passenger names exactly as shown in their passport or government-issued ID.</p></div>
+              <form class="booking-form" data-passenger-form novalidate>
+                <div class="booking-passengers__notice" role="note"><strong aria-hidden="true">i</strong><span>Passenger names must match their travel documents. Name changes are not permitted after booking.</span></div>
+                <div class="booking-passengers__tabs" role="tablist" aria-label="Passengers">
+                  <button class="booking-passenger-tab is-active" type="button" role="tab" aria-selected="true" aria-controls="passenger-1" data-passenger-tab="1"><span>Passenger 1</span><strong>Adult</strong></button>
+                  <button class="booking-passenger-tab has-error" type="button" role="tab" aria-selected="false" aria-controls="passenger-2" data-passenger-tab="2"><span>Passenger 2</span><strong>Adult</strong><i aria-label="Has errors">!</i></button>
+                </div>
+
+                <section class="booking-form__section flight-offer booking-passenger-panel" id="passenger-1" role="tabpanel" data-passenger-panel="1">
+                  <h3>Passenger 1 — Personal information</h3>
+                  <div class="booking-form__grid booking-form__grid--passenger">
+                    <label>Title<select name="passenger-1-title" required><option value="">Select</option><option selected>Mr</option><option>Ms</option><option>Mrs</option></select></label>
+                    <label>First name<input name="passenger-1-first-name" type="text" required value="Alex" /></label>
+                    <label>Middle name<input name="passenger-1-middle-name" type="text" placeholder="If listed on ID" /></label>
+                    <label>Last name<input name="passenger-1-last-name" type="text" required value="Martin" /></label>
+                    <label>Date of birth<input name="passenger-1-birth-date" type="date" required value="1988-04-12" /></label>
+                    <label>Gender<select name="passenger-1-gender" required><option value="">Select</option><option selected>Male</option><option>Female</option><option>Other</option></select></label>
+                  </div>
+                </section>
+
+                <section class="booking-form__section flight-offer booking-passenger-panel" id="passenger-2" role="tabpanel" data-passenger-panel="2" hidden>
+                  <h3>Passenger 2 — Personal information</h3>
+                  <div class="booking-form__grid booking-form__grid--passenger">
+                    <label>Title<select name="passenger-2-title" required><option value="" selected>Select</option><option>Mr</option><option>Ms</option><option>Mrs</option></select><small class="booking-field-error">Please select a title.</small></label>
+                    <label>First name<input name="passenger-2-first-name" type="text" required aria-invalid="true" placeholder="First name" /><small class="booking-field-error">First name is required.</small></label>
+                    <label>Middle name<input name="passenger-2-middle-name" type="text" placeholder="If listed on ID" /></label>
+                    <label>Last name<input name="passenger-2-last-name" type="text" required aria-invalid="true" placeholder="Last name" /><small class="booking-field-error">Last name is required.</small></label>
+                    <label>Date of birth<input name="passenger-2-birth-date" type="date" required aria-invalid="true" /><small class="booking-field-error">Date of birth is required.</small></label>
+                    <label>Gender<select name="passenger-2-gender" required aria-invalid="true"><option value="" selected>Select</option><option>Male</option><option>Female</option><option>Other</option></select><small class="booking-field-error">Please select a gender.</small></label>
+                  </div>
+                </section>
+
+                <div class="booking-form__section flight-offer"><h3>Contact details</h3><div class="booking-form__grid"><label>Email<input type="email" required placeholder="name@example.com" /></label><label>Phone number<input type="tel" required placeholder="+373 00 000 000" /></label></div></div>
+              </form>
+            </section>
+
+            <section class="booking-step" id="booking-panel-3" role="tabpanel" aria-labelledby="booking-tab-3" data-booking-panel="3" hidden>
+              <div class="booking-step__heading"><span class="eyebrow">Step 3 of 4</span><h2>Protect your tickets</h2><p>Choose whether to add flexible travel protection to this booking.</p></div>
+              <div class="booking-protection">
+                <div class="booking-protection__plans">
+                  <label class="booking-choice flight-offer">
+                    <input type="radio" name="protection" value="basic" data-price="78" />
+                    <span class="booking-choice__content"><strong>Basic</strong><b>€78</b><small>per booking</small><ul><li>€50 next-trip voucher</li><li>Priority support</li><li>24h price-drop protection</li><li>Eligible illness cover</li><li class="is-unavailable">Mishandled bags</li><li class="is-unavailable">Changes for any reason</li></ul></span>
+                    <span class="button">Choose plan</span>
+                  </label>
+                  <label class="booking-choice flight-offer is-selected">
+                    <input type="radio" name="protection" value="premium" data-price="128" checked />
+                    <span class="booking-choice__content"><em>Most popular</em><strong>Premium</strong><b>€128</b><small>per booking</small><ul><li>€100 next-trip voucher</li><li>Priority support</li><li>24h price-drop protection</li><li>Eligible illness cover</li><li>Mishandled bags</li><li>Agency fees waiver</li></ul></span>
+                    <span class="button">Choose plan</span>
+                  </label>
+                  <label class="booking-choice flight-offer">
+                    <input type="radio" name="protection" value="elite" data-price="196" />
+                    <span class="booking-choice__content"><strong>Elite</strong><b>€196</b><small>per booking</small><ul><li>€150 next-trip voucher</li><li>Priority support</li><li>24h price-drop protection</li><li>Eligible illness cover</li><li>Mishandled bags</li><li>Changes for any reason</li></ul></span>
+                    <span class="button">Choose plan</span>
+                  </label>
+                <label class="booking-choice booking-choice--none flight-offer">
+                  <input type="radio" name="protection" value="none" data-price="0" />
+                  <span class="booking-choice__content"><strong>No protection</strong><b>€0</b><small>Continue with the standard fare conditions and no additional protection.</small></span>
+                  <span class="button">Choose plan</span>
+                </label>
+                </div>
+              </div>
+            </section>
+
+            <section class="booking-step" id="booking-panel-4" role="tabpanel" aria-labelledby="booking-tab-4" data-booking-panel="4" hidden>
+              <div class="booking-step__heading"><span class="eyebrow">Step 4 of 4</span><h2>Overview & payment</h2><p>Review the booking total and enter your payment details.</p></div>
+              <div class="booking-form__section flight-offer"><h3>Payment details</h3><div class="booking-form__grid"><label class="booking-form__wide">Name on card<input type="text" placeholder="Cardholder name" /></label><label class="booking-form__wide">Card number<input type="text" inputmode="numeric" placeholder="0000 0000 0000 0000" /></label><label>Expiry date<input type="text" inputmode="numeric" placeholder="MM / YY" /></label><label>Security code<input type="text" inputmode="numeric" placeholder="CVC" /></label></div></div>
+              <label class="booking-confirm"><input type="checkbox" data-booking-confirm /> I confirm that the itinerary and passenger information are correct.</label><p class="booking__message" data-booking-message aria-live="polite"></p>
+            </section>
+          </section>
+
+          <aside class="booking-summary flight-offer"><span class="eyebrow">Your itinerary</span><h2>Booking summary</h2><div class="booking-summary__route"><div><strong>Paris</strong><span>Fri, Sep 18 · 10:30</span></div><b>→</b><div><strong>Los Angeles</strong><span>Fri, Sep 18 · 13:05</span></div></div><div class="booking-summary__route"><div><strong>Los Angeles</strong><span>Sun, Sep 27 · 15:25</span></div><b>→</b><div><strong>Paris</strong><span>Mon, Sep 28 · 11:05</span></div></div><dl class="booking-summary__prices"><div><dt>Flights</dt><dd>€4,280</dd></div><div><dt>Taxes and fees</dt><dd>Included</dd></div><div data-protection-price><dt>Protection</dt><dd>€128</dd></div><div><dt>Total</dt><dd data-booking-total>€4,408</dd></div></dl><button class="button button--primary booking-summary__next" type="button" data-booking-next>Next step</button><button class="flight-offer__details-toggle booking-summary__back" type="button" data-booking-back hidden>Back</button><small>Mock booking only. No payment will be processed.</small></aside>
+        </div>
+      </div>
+    </main>
+    <div data-site-footer></div>
+    <script src="js/components.js"></script>
+    <script src="js/booking.js"></script>
+  </body>
+</html>

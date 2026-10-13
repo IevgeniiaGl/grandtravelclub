@@ -1,0 +1,80 @@
+/* One visual language for filter controls across search and listing pages. */
+:root {
+  --filter-bg: #e3f3eb;
+  --filter-border: #bbd9cc;
+  --filter-radius: 10px;
+  --option-accent: #4b967e;
+}
+
+.search-form__trip-type select,
+.baggage-picker summary,
+.flight-filters summary,
+.flight-filters .flight-results__sort {
+  border: 1px solid var(--filter-border);
+  border-radius: var(--filter-radius);
+  background: var(--filter-bg);
+  color: var(--dark);
+}
+
+.flight-filters .flight-results__sort select,
+.flight-filters .flight-results__sort .ui-select__trigger {
+  background: transparent;
+  color: var(--dark);
+}
+
+.flight-filters details[open] summary {
+  border-color: var(--filter-border);
+  background: var(--filter-bg);
+}
+
+/* Search form: trip type and cabin class as mint-outline pills with an icon */
+.flight-search__options > label:has(> select) {
+  grid-template-columns: 18px auto 8px;
+  gap: 10px !important;
+  padding: 0 16px;
+  border: 1.5px solid var(--primary-dark);
+  border-radius: 999px;
+  background: var(--white);
+  color: var(--option-accent);
+  transition: background 0.2s;
+}
+
+.flight-search__options > label:has(> select):hover {
+  background: var(--light);
+}
+
+.flight-search__options > label:has(> select)::before {
+  grid-column: 1;
+  grid-row: 1;
+  width: 18px;
+  height: 18px;
+  background: currentColor;
+  -webkit-mask: var(--option-icon) center / contain no-repeat;
+  mask: var(--option-icon) center / contain no-repeat;
+}
+
+.flight-search__options > label:has(> select[name="tripType"], > select[aria-label="Trip type"])::before {
+  content: "";
+  --option-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 8h14l-3-3M20 16H6l3 3'/%3E%3C/svg%3E");
+}
+
+.flight-search__options > label:has(> select[name="cabinClass"], > select[aria-label="Cabin class"])::before {
+  content: "";
+  --option-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 4v9a3 3 0 0 0 3 3h7M7 13h9a2 2 0 0 1 2 2v5M9 20h9'/%3E%3C/svg%3E");
+}
+
+.flight-search__options > label:has(> select) > select,
+.flight-search__options > label:has(> .ui-select) .ui-select {
+  grid-column: 2;
+}
+
+.flight-search__options > label:has(> select) > .ui-chevron {
+  grid-column: 3;
+}
+
+.flight-search__options > label:has(> select) > select,
+.flight-search__options > label:has(> select) .ui-select__trigger {
+  background: transparent;
+  color: var(--option-accent);
+  font-weight: 700;
+}

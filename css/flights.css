@@ -1,0 +1,500 @@
+
+
+
+@media (max-width: 980px) {
+  #destinations {
+    padding-top: 340px;
+  }
+}
+
+@media (max-width: 720px) {
+  #destinations {
+    padding-top: 430px;
+  }
+  #destinations .section-heading {
+    display: block;
+  }
+}
+
+@media (max-width: 440px) {
+  #destinations {
+    padding-top: 465px;
+  }
+}
+
+@media (max-width: 720px) {
+  #destinations {
+    padding-top: var(--s8);
+  }
+}
+
+/* Why book with us — mint band, same look as "A better journey" on the home page */
+.why-us {
+  background: var(--light);
+}
+
+.why-us__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.6fr);
+  gap: var(--s7);
+  align-items: start;
+}
+
+.why-us__intro h2 {
+  margin-bottom: var(--s3);
+  text-wrap: balance;
+}
+
+.why-us__intro p {
+  margin: 0 0 var(--s4);
+  max-width: 42ch;
+}
+
+.why-us__list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--s5) var(--s4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.why-us__list li {
+  padding-top: var(--s3);
+  border-top: 1px solid #cfe0da;
+}
+
+.why-us__list svg {
+  width: 64px;
+  height: 64px;
+  margin-bottom: var(--s2);
+  padding: 9px;
+  border-radius: 16px;
+  background: var(--white);
+  box-shadow: 0 6px 18px rgba(17, 34, 17, 0.06);
+  fill: none;
+  stroke: #3f8c73;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.why-us__list .why-us__fill {
+  fill: #cdeee1;
+}
+
+.why-us__list .why-us__solid {
+  fill: #3f8c73;
+}
+
+.why-us__list .why-us__badge {
+  fill: var(--white);
+}
+
+.why-us__list h3 {
+  margin-bottom: var(--s1);
+  font-size: 17px;
+}
+
+.why-us__list p {
+  margin: 0;
+  font-size: 13px;
+}
+
+@media (max-width: 980px) {
+  .why-us__inner {
+    grid-template-columns: 1fr;
+    gap: var(--s5);
+  }
+}
+
+@media (max-width: 560px) {
+  .why-us__list {
+    grid-template-columns: 1fr;
+    gap: var(--s4);
+  }
+}
+
+/* Popular routes under the search form */
+.popular-routes {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px dashed var(--border);
+}
+
+.popular-routes > span {
+  margin-right: 4px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.popular-routes button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 34px;
+  padding: 0 12px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--white);
+  color: var(--dark);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.popular-routes button b {
+  color: #4b967e;
+}
+
+.popular-routes button:hover,
+.popular-routes button.is-active {
+  border-color: var(--primary-dark);
+  background: var(--light);
+}
+
+/* Airline partners as cards (carousel stays the same) */
+.airlines--cards .airlines__viewport {
+  padding-block: 4px;
+}
+
+.airlines--cards .airlines__list > span {
+  position: relative;
+  isolation: isolate;
+  min-height: 0;
+  justify-content: flex-start;
+  gap: 8px;
+  padding: 24px 20px 20px;
+  text-align: center;
+}
+
+.airlines--cards .airlines__list > span::before {
+  content: "";
+  position: absolute;
+  inset: 0 6px;
+  z-index: -1;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--white);
+  transition: border-color 0.25s, box-shadow 0.25s;
+}
+
+.airlines--cards .airlines__list > span:hover::before {
+  border-color: var(--primary-dark);
+  box-shadow: 0 10px 24px rgba(17, 34, 17, 0.08);
+}
+
+.airlines--cards .airlines__logo {
+  width: 44px;
+  height: 44px;
+}
+
+.airlines--cards .airlines__list b {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+.airlines--cards .airlines__list small {
+  min-height: 2.8em;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.airlines--cards .airlines__list a {
+  color: #4b967e;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.airlines--cards .airlines__list a:hover {
+  color: var(--dark);
+}
+
+/* Fare alerts */
+.fare-alert {
+  padding-bottom: 0;
+}
+
+.fare-alert__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: var(--s5);
+  align-items: center;
+  padding: var(--s5);
+  border-radius: var(--radius);
+  background: var(--dark);
+}
+
+.fare-alert h2 {
+  color: var(--white);
+  font-size: clamp(24px, 2.6vw, 32px);
+}
+
+.fare-alert__inner > div p {
+  margin-top: var(--s1);
+  color: #b9c9c1;
+}
+
+.fare-alert__form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.fare-alert__form input {
+  flex: 1 1 200px;
+  min-width: 0;
+  height: 52px;
+  padding: 0 16px;
+  border: 1px solid rgba(141, 211, 187, 0.35);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--white);
+  font: inherit;
+  font-size: 14px;
+}
+
+.fare-alert__form input::placeholder {
+  color: #8fa59b;
+}
+
+.fare-alert__form svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.fare-alert__status {
+  width: 100%;
+  margin: 0;
+  color: var(--primary);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.fare-alert__status:empty {
+  display: none;
+}
+
+/* Contact card next to the FAQ */
+.faq-contact {
+  display: grid;
+  gap: 10px;
+  margin-top: var(--s4);
+  padding: var(--s3);
+  border-radius: var(--radius);
+  background: var(--light);
+}
+
+.faq-contact h3 {
+  margin-bottom: 4px;
+  font-size: 17px;
+}
+
+.faq-contact a:not(.button) {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  background: var(--white);
+  color: var(--dark);
+  font-size: 14px;
+  font-weight: 600;
+  transition: box-shadow 0.2s;
+}
+
+.faq-contact a:not(.button):hover {
+  box-shadow: inset 0 0 0 1.5px var(--primary-dark);
+}
+
+.faq-contact small {
+  margin-left: auto;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.faq-contact svg {
+  width: 18px;
+  height: 18px;
+  flex: none;
+  fill: none;
+  stroke: var(--primary-dark);
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.faq-contact .button {
+  margin-top: 4px;
+}
+
+@media (max-width: 980px) {
+  .fare-alert__inner {
+    grid-template-columns: 1fr;
+    padding: var(--s4) var(--s3);
+  }
+}
+
+/* Compact search bar shown after the hero */
+.search-sticky {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 20;
+  padding: 10px 0;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 6px 20px rgba(17, 34, 17, 0.1);
+  backdrop-filter: blur(8px);
+  transform: translateY(-110%);
+  visibility: hidden;
+  transition: transform 0.3s ease, visibility 0.3s;
+}
+
+.search-sticky.is-visible {
+  transform: none;
+  visibility: visible;
+}
+
+.search-sticky__inner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.search-sticky__inner > span {
+  display: inline-flex;
+  min-width: 0;
+  align-items: center;
+  gap: 8px;
+  height: 40px;
+  padding: 0 14px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--dark);
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.search-sticky__inner b {
+  overflow: hidden;
+  font-weight: 600;
+  text-overflow: ellipsis;
+}
+
+.search-sticky__inner svg,
+.contact-bar svg {
+  width: 18px;
+  height: 18px;
+  flex: none;
+  fill: none;
+  stroke: var(--primary-dark);
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.search-sticky__inner .button {
+  min-height: 40px;
+  margin-left: auto;
+  padding: 0 18px;
+  font-size: 13px;
+}
+
+/* Call / WhatsApp bar on phones */
+.contact-bar {
+  display: none;
+}
+
+body.menu-open .search-sticky,
+body.menu-open .contact-bar {
+  display: none;
+}
+
+@media (max-width: 720px) {
+  .search-sticky__inner > span:not(:first-child) {
+    display: none;
+  }
+
+  .contact-bar {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 20;
+    display: flex;
+    gap: 8px;
+    padding: 10px 16px calc(10px + env(safe-area-inset-bottom, 0px));
+    background: var(--white);
+    box-shadow: 0 -6px 20px rgba(17, 34, 17, 0.12);
+    transform: translateY(110%);
+    transition: transform 0.3s ease;
+  }
+
+  .contact-bar.is-visible {
+    transform: none;
+  }
+
+  .contact-bar a {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    height: 46px;
+    border-radius: 10px;
+    background: var(--light);
+    color: #4b967e;
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  .contact-bar a:last-child {
+    background: var(--primary-dark);
+    color: var(--white);
+  }
+
+  .contact-bar a:last-child svg {
+    stroke: currentColor;
+  }
+
+  body:has(.contact-bar.is-visible) {
+    padding-bottom: 66px;
+  }
+}
+
+/* Find Flights page: Best deals cards without the dark green header — route on white */
+main:has(.airlines--cards) .route-deal__head {
+  border-bottom: 1px solid var(--border);
+  background: var(--white);
+  color: var(--dark);
+}
+
+main:has(.airlines--cards) .route-deal__codes b {
+  color: var(--dark);
+}
+
+main:has(.airlines--cards) .route-deal__codes span {
+  color: var(--muted);
+}
+
+main:has(.airlines--cards) .route-deal__codes svg {
+  fill: var(--primary-dark);
+}

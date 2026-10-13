@@ -1,0 +1,492 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="Exclusive business-class offers to leading worldwide destinations with personal support."
+    />
+    <title>Destinations — Premium Flights</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="css/index.css" />
+  </head>
+  <body>
+    <div data-site-header></div>
+    <main>
+      <section class="site-hero" style="--hero-image: url('../img/676.jpg')">
+        <div class="container site-hero__content">
+          <span class="eyebrow eyebrow--light">Worldwide destinations</span>
+          <h1>Exceptional places,<br />personally selected</h1>
+        </div>
+        <form class="search-form flight-search flight-search--initial container" id="search">
+          <div class="search-form__top">
+            <h2>Where would you like to go?</h2>
+            <div class="search-form__options flight-search__options">
+              <label class="search-form__trip-type">
+      
+                <select id="tripType" name="tripType">
+                  <option value="round-trip" selected>Round trip</option>
+                  <option value="one-way">One way</option>
+                  <option value="multi-city">Multi-city</option>
+                </select>
+                <span class="ui-chevron ui-chevron--down" aria-hidden="true"></span>
+              </label>
+              <label>
+                <select id="cabinClass" name="cabinClass" aria-label="Cabin class">
+                  <option value="Economy">Economy</option>
+                  <option value="Premium Economy">Premium Economy</option>
+                  <option value="Business" selected>Business</option>
+                  <option value="First">First</option>
+                </select>
+                <span class="ui-chevron ui-chevron--down" aria-hidden="true"></span>
+              </label>
+              <label class="search-form__direct">
+                <input id="directOnly" name="directOnly" type="checkbox" />
+                <span></span>
+                Only direct
+              </label>
+            </div>
+          </div>
+
+          <div class="multi-city" data-multi-city hidden>
+            <div class="multi-city__segments" data-route-segments></div>
+            <button class="button button--secondary multi-city__add" type="button" data-add-segment>+ Add another flight</button>
+          </div>
+
+          <div class="search-form__fields flight-search__fields" data-standard-route>
+            <label class="search-form__field search-form__field--from flight-search__field" data-initial-airport-field="from">
+              <span class="sr-only">From</span>
+              <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m3 16 18-5-1-3-7 2-5-7-2 1 3 8-5 2-2-2-1 1 2 4Zm0 3h18v2H3v-2Z" /></svg>
+              <input id="from" name="from" type="text" value="Chișinău (RMO)" autocomplete="off" required />
+             
+            </label>
+            <button class="swap flight-search__swap" type="button" aria-label="Swap cities">
+              ⇄
+            </button>
+            <label class="search-form__field search-form__field--to flight-search__field" data-initial-airport-field="to">
+              <span class="sr-only">To</span>
+              <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M2.5 19h19v2h-19v-2Zm17.61-5.94-5.3-1.42-2.76-8.97-1.93-.52v8.07L5.15 8.89l-.93-2.32-1.45-.39v4.05l7.91 3.09 3.37 1.16 3.3 1.42c.78.21 1.59-.26 1.8-1.04.21-.78-.26-1.59-1.04-1.8Z" /></svg>
+              <input id="to" name="to" type="text" placeholder="City or airport" autocomplete="off" required />
+          
+            </label>
+            <div class="search-form__field search-form__field--depart flight-search__field" data-initial-date-range-field>
+              <span class="sr-only">Dates</span>
+              <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M7 2h2v2h6V2h2v2h3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h3V2Zm13 8H4v10h16V10ZM4 8h16V6H4v2Z" /></svg>
+              <input id="dateRange" aria-label="Departure and return dates" aria-expanded="false" readonly />
+              <input id="depart" name="departure" type="hidden" />
+              <input id="return" name="return" type="hidden" />
+            </div>
+
+            <div class="traveler-picker">
+              <button class="search-form__field flight-search__field traveler-picker__trigger" type="button" aria-expanded="false" aria-controls="travelerPanel">
+                <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10Zm0-2a3 3 0 1 1 0-6 3 3 0 0 1 0 6Zm0 3c-5 0-9 2.5-9 6v2h18v-2c0-3.5-4-6-9-6Zm-7 6c0-2 3-4 7-4s7 2 7 4H5Z" /></svg>
+                <span class="sr-only">Travelers</span>
+                <strong data-traveler-summary>1 traveler · Business</strong>
+              </button>
+              <div class="traveler-picker__panel" id="travelerPanel" hidden>
+                <div class="traveler-picker__row" data-traveler-type="adults">
+                  <div><strong>Adults</strong><small>Age 16+</small></div>
+                  <div class="traveler-picker__counter">
+                    <button type="button" data-counter-action="decrease" aria-label="Decrease adults">−</button>
+                    <output aria-live="polite">1</output>
+                    <button type="button" data-counter-action="increase" aria-label="Increase adults">+</button>
+                  </div>
+                </div>
+                <div class="traveler-picker__row" data-traveler-type="children">
+                  <div><strong>Children</strong><small>Age 2–15</small></div>
+                  <div class="traveler-picker__counter">
+                    <button type="button" data-counter-action="decrease" aria-label="Decrease children">−</button>
+                    <output aria-live="polite">0</output>
+                    <button type="button" data-counter-action="increase" aria-label="Increase children">+</button>
+                  </div>
+                </div>
+                <div class="traveler-picker__row" data-traveler-type="infants">
+                  <div><strong>Infants</strong><small>Under 2</small></div>
+                  <div class="traveler-picker__counter">
+                    <button type="button" data-counter-action="decrease" aria-label="Decrease infants">−</button>
+                    <output aria-live="polite">0</output>
+                    <button type="button" data-counter-action="increase" aria-label="Increase infants">+</button>
+                  </div>
+                </div>
+                <button class="button button--primary traveler-picker__done" type="button">Done</button>
+              </div>
+              <input id="travelerAdults" type="hidden" name="adults" value="1" />
+              <input id="travelerChildren" type="hidden" name="children" value="0" />
+              <input id="travelerInfants" type="hidden" name="infants" value="0" />
+            </div>
+
+            <button class="button button--primary" type="submit">
+              Search flights <span class="ui-chevron ui-chevron--right" aria-hidden="true"></span>
+            </button>
+          </div>
+
+          <p class="search-form__message" role="status"></p>
+        </form>
+      </section>
+ 
+      <section class="deal-catalog destinations-catalog" id="destinations">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <span class="eyebrow">Explore our network</span>
+              <h2>Where we fly</h2>
+            </div>
+            <p>
+              34 cities across 4 regions. Pick a region to narrow the list —
+              every itinerary can be tailored to your schedule.
+            </p>
+          </div>
+          <div class="deal-catalog__filters" role="group" aria-label="Destination regions">
+            <button class="is-active" type="button" data-region="all" aria-pressed="true">All destinations <b>34</b></button>
+            <button type="button" data-region="europe" aria-pressed="false">Europe <b>22</b></button>
+            <button type="button" data-region="asia" aria-pressed="false">Asia <b>7</b></button>
+            <button type="button" data-region="middle-east" aria-pressed="false">Middle East <b>2</b></button>
+            <button type="button" data-region="americas" aria-pressed="false">Americas <b>3</b></button>
+          </div>
+          <div class="country-scroller" data-country-scroller>
+            <button class="country-scroller__arrow" type="button" aria-label="Scroll countries left" data-country-scroll="-1">‹</button>
+            <div class="deal-catalog__countries" role="group" aria-label="Destination countries" data-country-filters hidden>
+              <button class="is-active" type="button" data-country="all" aria-pressed="true">All countries</button>
+              <button type="button" data-country="france" data-country-region="europe" aria-pressed="false">France</button>
+              <button type="button" data-country="uk" data-country-region="europe" aria-pressed="false">United Kingdom</button>
+              <button type="button" data-country="italy" data-country-region="europe" aria-pressed="false">Italy</button>
+              <button type="button" data-country="spain" data-country-region="europe" aria-pressed="false">Spain</button>
+              <button type="button" data-country="portugal" data-country-region="europe" aria-pressed="false">Portugal</button>
+              <button type="button" data-country="netherlands" data-country-region="europe" aria-pressed="false">Netherlands</button>
+              <button type="button" data-country="germany" data-country-region="europe" aria-pressed="false">Germany</button>
+              <button type="button" data-country="austria" data-country-region="europe" aria-pressed="false">Austria</button>
+              <button type="button" data-country="czechia" data-country-region="europe" aria-pressed="false">Czechia</button>
+              <button type="button" data-country="greece" data-country-region="europe" aria-pressed="false">Greece</button>
+              <button type="button" data-country="switzerland" data-country-region="europe" aria-pressed="false">Switzerland</button>
+              <button type="button" data-country="belgium" data-country-region="europe" aria-pressed="false">Belgium</button>
+              <button type="button" data-country="denmark" data-country-region="europe" aria-pressed="false">Denmark</button>
+              <button type="button" data-country="sweden" data-country-region="europe" aria-pressed="false">Sweden</button>
+              <button type="button" data-country="finland" data-country-region="europe" aria-pressed="false">Finland</button>
+              <button type="button" data-country="iceland" data-country-region="europe" aria-pressed="false">Iceland</button>
+              <button type="button" data-country="poland" data-country-region="europe" aria-pressed="false">Poland</button>
+              <button type="button" data-country="hungary" data-country-region="europe" aria-pressed="false">Hungary</button>
+              <button type="button" data-country="romania" data-country-region="europe" aria-pressed="false">Romania</button>
+              <button type="button" data-country="croatia" data-country-region="europe" aria-pressed="false">Croatia</button>
+              <button type="button" data-country="uae" data-country-region="middle-east" aria-pressed="false">UAE</button>
+              <button type="button" data-country="turkiye" data-country-region="middle-east" aria-pressed="false">Türkiye</button>
+              <button type="button" data-country="japan" data-country-region="asia" aria-pressed="false">Japan</button>
+              <button type="button" data-country="korea" data-country-region="asia" aria-pressed="false">South Korea</button>
+              <button type="button" data-country="singapore" data-country-region="asia" aria-pressed="false">Singapore</button>
+              <button type="button" data-country="thailand" data-country-region="asia" aria-pressed="false">Thailand</button>
+              <button type="button" data-country="hongkong" data-country-region="asia" aria-pressed="false">Hong Kong</button>
+              <button type="button" data-country="indonesia" data-country-region="asia" aria-pressed="false">Indonesia</button>
+              <button type="button" data-country="maldives" data-country-region="asia" aria-pressed="false">Maldives</button>
+              <button type="button" data-country="usa" data-country-region="americas" aria-pressed="false">USA</button>
+              <button type="button" data-country="brazil" data-country-region="americas" aria-pressed="false">Brazil</button>
+            </div>
+            <button class="country-scroller__arrow" type="button" aria-label="Scroll countries right" data-country-scroll="1">›</button>
+          </div>
+          <div class="destinations-catalog__grid">
+            <article class="hotel-card place-card" data-region="europe" data-country="france">
+              <div class="hotel-card__media"><img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=800&q=85" alt="Paris" loading="lazy" /></div>
+              <div class="hotel-card__body">
+                <span class="place-card__eyebrow">France · Europe</span>
+                <h3>Paris</h3>
+                <div class="hotel-card__bottom"><div><small>From</small><strong>€1,190</strong></div><a href="destination.html" aria-label="Explore Paris">Explore</a></div>
+              </div>
+            </article>
+            <article class="hotel-card place-card" data-region="europe" data-country="uk">
+              <div class="hotel-card__media"><img src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=800&q=85" alt="London" loading="lazy" /></div>
+              <div class="hotel-card__body">
+                <span class="place-card__eyebrow">United Kingdom · Europe</span>
+                <h3>London</h3>
+                <div class="hotel-card__bottom"><div><small>From</small><strong>€1,240</strong></div><a href="destination.html" aria-label="Explore London">Explore</a></div>
+              </div>
+            </article>
+            <article class="hotel-card place-card" data-region="europe" data-country="italy">
+              <div class="hotel-card__media"><img src="https://images.unsplash.com/photo-1552832230-c0197dd311b5?auto=format&fit=crop&w=800&q=85" alt="Rome" loading="lazy" /></div>
+              <div class="hotel-card__body">
+                <span class="place-card__eyebrow">Italy · Europe</span>
+                <h3>Rome</h3>
+                <div class="hotel-card__bottom"><div><small>From</small><strong>€1,090</strong></div><a href="destination.html" aria-label="Explore Rome">Explore</a></div>
+              </div>
+            </article>
+            <article class="hotel-card place-card" data-region="europe" data-country="italy">
+              <div class="hotel-card__media"><img src="https://images.unsplash.com/photo-1514890547357-a9ee288728e0?auto=format&fit=crop&w=800&q=85" alt="Venice" loading="lazy" /></div>
+              <div class="hotel-card__body">
+                <span class="place-card__eyebrow">Italy · Europe</span>
+                <h3>Venice</h3>
+                <div class="hotel-card__bottom"><div><small>From</small><strong>€1,150</strong></div><a href="destination.html" aria-label="Explore Venice">Explore</a></div>
+              </div>
+            </article>
+            <article class="hotel-card place-card" data-region="europe" data-country="italy">
+              <div class="hotel-card__media"><img src="https://images.unsplash.com/photo-1513581166391-887a96ddeafd?auto=format&fit=crop&w=800&q=85" alt="Milan" loading="lazy" /></div>
+              <div class="hotel-card__body">
+                <span class="place-card__eyebrow">Italy · Europe</span>
+                <h3>Milan</h3>
+                <div class="hotel-card__bottom"><div><small>From</small><strong>€1,040</strong></div><a href="destination.html" aria-label="Explore Milan">Explore</a></div>
+              </div>
+            </article>
+            <article class="hotel-card place-card" data-region="europe" data-country="spain">
+              <div class="hotel-card__media"><img src="https://images.unsplash.com/photo-1583422409516-2895a77efded?auto=format&fit=crop&w=800&q=85" alt="Barcelona" loading="lazy" /></div>
+              <div class="hotel-card__body">
+                <span class="place-card__eyebrow">Spain · Europe</span>
+                <h3>Barcelona</h3>
+                <div class="hotel-card__bottom"><div><small>From</small><strong>€1,160</strong></div><a href="destination.html" aria-label="Explore Barcelona">Explore</a></div>
+              </div>
+            </article>
+            <article class="hotel-card place-card" data-region="europe" data-country="portugal">
+              <div class="hotel-card__media"><img src="https://images.unsplash.com/photo-1585208798174-6cedd86e019a?auto=format&fit=crop&w=800&q=85" alt="Lisbon" loading="lazy" /></div>
+              <div class="hotel-card__body">
+                <span class="place-card__eyebrow">Portugal · Europe</span>
+                <h3>Lisbon</h3>
+                <div class="hotel-card__bottom"><div><small>From</small><strong>€1,280</strong></div><a href="destination.html" aria-label="Explore Lisbon">Explore</a></div>
+              </div>
+            </article>
+            <article class="hotel-card place-card" data-region="europe" data-country="netherlands">
+              <div class="hotel-card__media"><img src="https://images.unsplash.com/photo-1534351590666-13e3e96b5017?auto=format&fit=crop&w=800&q=85" alt="Amsterdam" loading="lazy" /></div>
+              <div class="hotel-card__body">
+                <span class="place-card__eyebrow">Netherlands · Europe</span>
+                <h3>Amsterdam</h3>
+                <div class="hotel-card__bottom"><div><small>From</small><strong>€1,130</strong></div><a href="destination.html" aria-label="Explore Amsterdam">Explore</a></div>
+              </div>
+            </article>
+            <article class="hotel-card place-card" data-region="europe" data-country="germany">
+              <div class="hotel-card__media"><img src="https://images.unsplash.com/photo-1560969184-10fe8719e047?auto=format&fit=crop&w=800&q=85" alt="Berlin" loading="lazy" /></div>
+              <div class="hotel-card__body">
+                <span class="place-card__eyebrow">Germany · Europe</span>
+                <h3>Berlin</h3>
+                <div class="hotel-card__bottom"><div><small>From</small><strong>€990</strong></div><a href="destination.html" aria-label="Explore Berlin">Explore</a></div>
+              </div>
+            </article>
+            <article class="hotel-card place-card" data-region="europe" data-country="austria">
+              <div class="hotel-card__media"><img src="https://images.unsplash.com/photo-1516550893923-42d28e5677af?auto=format&fit=crop&w=800&q=85" alt="Vienna" loading="lazy" /></div>
+              <div class="hotel-card__body">
+                <span class="place-card__eyebrow">Austria · Europe</span>
+                <h3>Vienna</h3>
+                <div class="hotel-card__bottom"><div><small>From</small><strong>€940</strong></div><a href="destination.html" aria-label="Explore Vienna">Explore</a></div>
+              </div>
+            </article>
+            <article class="hotel-card place-card" data-region="europe" data-country="czechia">
+              <div class="hotel-card__media"><img src="https://images.unsplash.com/photo-1519677100203-a0e668c92439?auto=format&fit=crop&w=800&q=85" alt="Prague" loading="lazy" /></div>
+              <div class="hotel-card__body">
+                <span class="place-card__eyebrow">Czechia · Europe</span>
+                <h3>Prague</h3>
+                <div class="hotel-card__bottom"><div><small>From</small><strong>€960</strong></div><a href="destination.html" aria-label="Explore Prague">Explore</a></div>
+              </div>
+            </article>
+            <article class="hotel-card place-card" data-region="europe" data-country="greece">
+              <div class="hotel-card__media"><img src="https://images.unsplash.com/photo-1555993539-1732b0258235?auto=format&fit=crop&w=800&q=85" alt="Athens" loading="lazy" /></div>
+              <div class="hotel-card__body">
+                <span class="place-card__eyebrow">Greece · Europe</span>
+                <h3>Athens</h3>
+                <div class="hotel-card__bottom"><div><small>From</small><strong>€1,020</strong></div><a href="destination.html" aria-label="Explore Athens">Explore</a></div>
+              </div>
+            </article>
+            <article class="hotel-card place-card" data-region="europe" data-country="switzerland">
+              <div class="hotel-card__media"><img src="https://images.unsplash.com/photo-1515488764276-beab7607c1e6?auto=format&fit=crop&w=800&q=85" alt="Zurich" loading="lazy" /></div>
+              <div class="hotel-card__body">
+                <span class="place-card__eyebrow">Switzerland · Europe</span>
+                <h3>Zurich</h3>
+                <div class="hotel-card__bottom"><div><small>From</small><strong>€1,180</strong></div><a href="destination.html" aria-label="Explore Zurich">Explore</a></div>
+              </div>
+            </article>
+            <article class="hotel-card place-card" data-region="europe" data-country="belgium">
+              <div class="hotel-card__media"><img src="https://images.unsplash.com/photo-1559113202-c916b8e44373?auto=format&fit=crop&w=800&q=85" alt="Brussels" loading="lazy" /></div>
+              <div class="hotel-card__body">
+                <span class="place-card__eyebrow">Belgium · Europe</span>
+                <h3>Brussels</h3>
+                <div class="hotel-card__bottom"><div><small>From</small><strong>€1,050</strong></div><a href="destination.html" aria-label="Explore Brussels">Explore</a></div>
+              </div>
+            </article>
+            <article class="hotel-card place-card" data-region="europe" data-country="denmark">
+              <div class="hotel-card__media"><img src="https://images.unsplash.com/photo-1513622470522-26c3c8a854bc?auto=format&fit=crop&w=800&q=85" alt="Copenhagen" loading="lazy" /></div>
+              <div class="hotel-card__body">
+                <span class="place-card__eyebrow">Denmark · Europe</span>
+                <h3>Copenhagen</h3>
+                <div class="hotel-card__bottom"><div><small>From</small><strong>€1,210</strong></div><a href="destination.html" aria-label="Explore Copenhagen">Explore</a></div>
+              </div>
+            </article>
+            <article class="hotel-card place-card" data-region="europe" data-country="sweden">
+              <div class="hotel-card__media"><img src="https://images.unsplash.com/photo-1509356843151-3e7d96241e11?auto=format&fit=crop&w=800&q=85" alt="Stockholm" loading="lazy" /></div>
+              <div class="hotel-card__body">
+                <span class="place-card__eyebrow">Sweden · Europe</span>
+                <h3>Stockholm</h3>
+                <div class="hotel-card__bottom"><div><small>From</small><strong>€1,260</strong></div><a href="destination.html" aria-label="Explore Stockholm">Explore</a></div>
+              </div>
+            </article>
+            <article class="hotel-card place-card" data-region="europe" data-country="finland">
+              <div class="hotel-card__media"><img src="https://images.unsplash.com/photo-1538332576228-eb5b4c4de6f5?auto=format&fit=crop&w=800&q=85" alt="Helsinki" loading="lazy" /></div>
+              <div class="hotel-card__body">
+                <span class="place-card__eyebrow">Finland · Europe</span>
+                <h3>Helsinki</h3>
+                <div class="hotel-card__bottom"><div><small>From</small><strong>€1,290</strong></div><a href="destination.html" aria-label="Explore Helsinki">Explore</a></div>
+              </div>
+            </article>
+            <article class="hotel-card place-card" data-region="europe" data-country="iceland">
+              <div class="hotel-card__media"><img src="https://images.unsplash.com/photo-1504829857797-ddff29c27927?auto=format&fit=crop&w=800&q=85" alt="Reykjavik" loading="lazy" /></div>
+              <div class="hotel-card__body">
+                <span class="place-card__eyebrow">Iceland · Europe</span>
+                <h3>Reykjavik</h3>
+                <div class="hotel-card__bottom"><div><small>From</small><strong>€1,490</strong></div><a href="destination.html" aria-label="Explore Reykjavik">Explore</a></div>
+              </div>
+            </article>
+            <article class="hotel-card place-card" data-region="europe" data-country="poland">
+              <div class="hotel-card__media"><img src="https://images.unsplash.com/photo-1607427293702-036933bbf746?auto=format&fit=crop&w=800&q=85" alt="Warsaw" loading="lazy" /></div>
+              <div class="hotel-card__body">
+                <span class="place-card__eyebrow">Poland · Europe</span>
+                <h3>Warsaw</h3>
+                <div class="hotel-card__bottom"><div><small>From</small><strong>€890</strong></div><a href="destination.html" aria-label="Explore Warsaw">Explore</a></div>
+              </div>
+            </article>
+            <article class="hotel-card place-card" data-region="europe" data-country="hungary">
+              <div class="hotel-card__media"><img src="https://images.unsplash.com/photo-1565426873118-a17ed65d74b9?auto=format&fit=crop&w=800&q=85" alt="Budapest" loading="lazy" /></div>
+              <div class="hotel-card__body">
+                <span class="place-card__eyebrow">Hungary · Europe</span>
+                <h3>Budapest</h3>
+                <div class="hotel-card__bottom"><div><small>From</small><strong>€870</strong></div><a href="destination.html" aria-label="Explore Budapest">Explore</a></div>
+              </div>
+            </article>
+            <article class="hotel-card place-card" data-region="europe" data-country="romania">
+              <div class="hotel-card__media"><img src="https://images.unsplash.com/photo-1584646098378-0874589d76b1?auto=format&fit=crop&w=800&q=85" alt="Bucharest" loading="lazy" /></div>
+              <div class="hotel-card__body">
+                <span class="place-card__eyebrow">Romania · Europe</span>
+                <h3>Bucharest</h3>
+                <div class="hotel-card__bottom"><div><small>From</small><strong>€690</strong></div><a href="destination.html" aria-label="Explore Bucharest">Explore</a></div>
+              </div>
+            </article>
+            <article class="hotel-card place-card" data-region="europe" data-country="croatia">
+              <div class="hotel-card__media"><img src="https://images.unsplash.com/photo-1555990793-da11153b2473?auto=format&fit=crop&w=800&q=85" alt="Dubrovnik" loading="lazy" /></div>
+              <div class="hotel-card__body">
+                <span class="place-card__eyebrow">Croatia · Europe</span>
+                <h3>Dubrovnik</h3>
+                <div class="hotel-card__bottom"><div><small>From</small><strong>€980</strong></div><a href="destination.html" aria-label="Explore Dubrovnik">Explore</a></div>
+              </div>
+            </article>
+            <article class="hotel-card place-card" data-region="middle-east" data-country="uae">
+              <div class="hotel-card__media"><img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=800&q=85" alt="Dubai" loading="lazy" /></div>
+              <div class="hotel-card__body">
+                <span class="place-card__eyebrow">UAE · Middle East</span>
+                <h3>Dubai</h3>
+                <div class="hotel-card__bottom"><div><small>From</small><strong>€1,690</strong></div><a href="destination.html" aria-label="Explore Dubai">Explore</a></div>
+              </div>
+            </article>
+            <article class="hotel-card place-card" data-region="middle-east" data-country="turkiye">
+              <div class="hotel-card__media"><img src="https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=800&q=85" alt="Istanbul" loading="lazy" /></div>
+              <div class="hotel-card__body">
+                <span class="place-card__eyebrow">Türkiye · Middle East</span>
+                <h3>Istanbul</h3>
+                <div class="hotel-card__bottom"><div><small>From</small><strong>€890</strong></div><a href="destination.html" aria-label="Explore Istanbul">Explore</a></div>
+              </div>
+            </article>
+            <article class="hotel-card place-card" data-region="asia" data-country="japan">
+              <div class="hotel-card__media"><img src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=800&q=85" alt="Tokyo" loading="lazy" /></div>
+              <div class="hotel-card__body">
+                <span class="place-card__eyebrow">Japan · Asia</span>
+                <h3>Tokyo</h3>
+                <div class="hotel-card__bottom"><div><small>From</small><strong>€2,480</strong></div><a href="destination.html" aria-label="Explore Tokyo">Explore</a></div>
+              </div>
+            </article>
+            <article class="hotel-card place-card" data-region="asia" data-country="korea">
+              <div class="hotel-card__media"><img src="https://images.unsplash.com/photo-1538485399081-7191377e8241?auto=format&fit=crop&w=800&q=85" alt="Seoul" loading="lazy" /></div>
+              <div class="hotel-card__body">
+                <span class="place-card__eyebrow">South Korea · Asia</span>
+                <h3>Seoul</h3>
+                <div class="hotel-card__bottom"><div><small>From</small><strong>€2,390</strong></div><a href="destination.html" aria-label="Explore Seoul">Explore</a></div>
+              </div>
+            </article>
+            <article class="hotel-card place-card" data-region="asia" data-country="singapore">
+              <div class="hotel-card__media"><img src="https://images.unsplash.com/photo-1525625293386-3f8f99389edd?auto=format&fit=crop&w=800&q=85" alt="Singapore" loading="lazy" /></div>
+              <div class="hotel-card__body">
+                <span class="place-card__eyebrow">Asia</span>
+                <h3>Singapore</h3>
+                <div class="hotel-card__bottom"><div><small>From</small><strong>€2,290</strong></div><a href="destination.html" aria-label="Explore Singapore">Explore</a></div>
+              </div>
+            </article>
+            <article class="hotel-card place-card" data-region="asia" data-country="thailand">
+              <div class="hotel-card__media"><img src="https://images.unsplash.com/photo-1508009603885-50cf7c579365?auto=format&fit=crop&w=800&q=85" alt="Bangkok" loading="lazy" /></div>
+              <div class="hotel-card__body">
+                <span class="place-card__eyebrow">Thailand · Asia</span>
+                <h3>Bangkok</h3>
+                <div class="hotel-card__bottom"><div><small>From</small><strong>€2,150</strong></div><a href="destination.html" aria-label="Explore Bangkok">Explore</a></div>
+              </div>
+            </article>
+            <article class="hotel-card place-card" data-region="asia" data-country="hongkong">
+              <div class="hotel-card__media"><img src="https://images.unsplash.com/photo-1536599018102-9f803c140fc1?auto=format&fit=crop&w=800&q=85" alt="Hong Kong" loading="lazy" /></div>
+              <div class="hotel-card__body">
+                <span class="place-card__eyebrow">Asia</span>
+                <h3>Hong Kong</h3>
+                <div class="hotel-card__bottom"><div><small>From</small><strong>€2,340</strong></div><a href="destination.html" aria-label="Explore Hong Kong">Explore</a></div>
+              </div>
+            </article>
+            <article class="hotel-card place-card" data-region="asia" data-country="indonesia">
+              <div class="hotel-card__media"><img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=800&q=85" alt="Bali" loading="lazy" /></div>
+              <div class="hotel-card__body">
+                <span class="place-card__eyebrow">Indonesia · Asia</span>
+                <h3>Bali</h3>
+                <div class="hotel-card__bottom"><div><small>From</small><strong>€2,560</strong></div><a href="destination.html" aria-label="Explore Bali">Explore</a></div>
+              </div>
+            </article>
+            <article class="hotel-card place-card" data-region="asia" data-country="maldives">
+              <div class="hotel-card__media"><img src="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=800&q=85" alt="Maldives" loading="lazy" /></div>
+              <div class="hotel-card__body">
+                <span class="place-card__eyebrow">Asia</span>
+                <h3>Maldives</h3>
+                <div class="hotel-card__bottom"><div><small>From</small><strong>€2,690</strong></div><a href="destination.html" aria-label="Explore Maldives">Explore</a></div>
+              </div>
+            </article>
+            <article class="hotel-card place-card" data-region="americas" data-country="usa">
+              <div class="hotel-card__media"><img src="https://images.unsplash.com/photo-1485871981521-5b1fd3805eee?auto=format&fit=crop&w=800&q=85" alt="New York" loading="lazy" /></div>
+              <div class="hotel-card__body">
+                <span class="place-card__eyebrow">USA · Americas</span>
+                <h3>New York</h3>
+                <div class="hotel-card__bottom"><div><small>From</small><strong>€2,090</strong></div><a href="destination.html" aria-label="Explore New York">Explore</a></div>
+              </div>
+            </article>
+            <article class="hotel-card place-card" data-region="americas" data-country="usa">
+              <div class="hotel-card__media"><img src="https://images.unsplash.com/photo-1506966953602-c20cc11f75e3?auto=format&fit=crop&w=800&q=85" alt="Miami" loading="lazy" /></div>
+              <div class="hotel-card__body">
+                <span class="place-card__eyebrow">USA · Americas</span>
+                <h3>Miami</h3>
+                <div class="hotel-card__bottom"><div><small>From</small><strong>€2,190</strong></div><a href="destination.html" aria-label="Explore Miami">Explore</a></div>
+              </div>
+            </article>
+            <article class="hotel-card place-card" data-region="americas" data-country="brazil">
+              <div class="hotel-card__media"><img src="https://images.unsplash.com/photo-1483729558449-99ef09a8c325?auto=format&fit=crop&w=800&q=85" alt="Rio de Janeiro" loading="lazy" /></div>
+              <div class="hotel-card__body">
+                <span class="place-card__eyebrow">Brazil · Americas</span>
+                <h3>Rio de Janeiro</h3>
+                <div class="hotel-card__bottom"><div><small>From</small><strong>€2,540</strong></div><a href="destination.html" aria-label="Explore Rio de Janeiro">Explore</a></div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+      <section class="cta">
+        <div class="container cta__inner">
+          <div>
+            <span class="eyebrow eyebrow--light">Your next journey</span>
+            <h2>Fly farther. Arrive better.</h2>
+            <p>
+              Let a personal travel expert create your ideal business-class
+              itinerary.
+            </p>
+          </div>
+          <a class="button button--light" href="contacts.html"
+            >Request a private fare <span class="ui-chevron ui-chevron--right" aria-hidden="true"></span></a
+          >
+        </div>
+      </section>
+    </main>
+    <div data-site-footer></div>
+    <script src="js/components.js"></script>
+    <script src="js/date-range-calendar.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/custom-selects.js"></script>
+  </body>
+</html>
+
+
+
+
+
+
+
+

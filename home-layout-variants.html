@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Home layout variants — Grand Travel Club</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="css/index.css" />
+    <style>
+      .cv-page { padding: 140px 0 var(--s8); background: #f6faf8; }
+      .cv-intro { max-width: 760px; }
+      .cv-intro p { color: var(--muted); }
+      .cv-variant { margin-top: var(--s7); padding: 0; }
+      .cv-variant > header { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px; margin-bottom: var(--s3); }
+      .cv-tag { padding: 4px 10px; border-radius: 8px; background: var(--dark); color: var(--primary); font-size: 12px; font-weight: 800; letter-spacing: 0.08em; }
+      .cv-variant > header h2 { font-size: 22px; }
+      .cv-variant > header p { flex-basis: 100%; margin: 0; color: var(--text); font-size: 13px; }
+
+      .lv { padding: 48px; border-radius: 24px; background: var(--white); box-shadow: 0 10px 30px rgba(17, 34, 17, 0.06); }
+      .lv-head { margin-bottom: 28px; }
+      .lv-head--center { text-align: center; }
+      .lv-head h2 { font-size: 40px; }
+      .lv-head p { max-width: 640px; margin: 10px 0 0; color: var(--muted); }
+      .lv-head--center p { margin-inline: auto; }
+      .lv-more { display: flex; justify-content: center; margin: 24px 0 32px; }
+
+      /* card base inside variants: flexible size instead of the site's fixed square */
+      .lv .hotel-card.place-card { min-height: 0; }
+      .lv .lv-row2 > .hotel-card.place-card, .lv .lv-split > .hotel-card.place-card { aspect-ratio: 16 / 9; }
+      .lv .lv-row3 > .hotel-card.place-card { aspect-ratio: 1 / 1; }
+      .lv .lv-row3 > .hotel-card.place-card.lv-cat-tall { aspect-ratio: 3 / 4; }
+      .lv .lv-row4 > .hotel-card.place-card { aspect-ratio: 1 / 1; }
+      .lv .lv-side__grid > .hotel-card.place-card { aspect-ratio: 4 / 3; }
+      .lv .lv-bento > .hotel-card.place-card, .lv .lv-side__col > .hotel-card.place-card { aspect-ratio: auto; height: 100%; }
+      .lv .hotel-card.place-card .hotel-card__body { padding: 20px; }
+      .lv .hotel-card.place-card h3 { font-size: 22px; }
+      .lv .lv-cat h3 { font-size: 32px; }
+
+      .lv-row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+      .lv-row2 > * { aspect-ratio: 16 / 9; }
+      .lv-row3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+      .lv-row3 > article { aspect-ratio: 1 / 1; }
+      .lv-row3 > .lv-cat-tall { aspect-ratio: 3 / 4; }
+      .lv-row4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+      .lv-row4 > * { aspect-ratio: 4 / 3; }
+      .lv .lv-mini h3 { font-size: 18px; }
+      .lv .lv-mini .hotel-card__bottom { padding-top: 10px; }
+      .lv .lv-mini .hotel-card__bottom a { min-height: 32px; padding: 0 10px; font-size: 10px; }
+
+      .lv-carousel { position: relative; }
+      .lv-arrow { position: absolute; z-index: 3; top: 50%; display: grid; width: 42px; height: 42px; place-items: center; border: 1px solid var(--primary-dark); border-radius: 50%; background: var(--white); color: var(--primary-dark); font-size: 26px; transform: translateY(-50%); }
+      .lv-arrow--prev { left: -21px; }
+      .lv-arrow--next { right: -21px; }
+
+      /* B bento */
+      .lv-bento { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; grid-template-rows: 240px 240px; gap: 16px; }
+      .lv-b-big { grid-row: span 2; }
+      .lv-bento .lv-b-small:nth-of-type(2) { grid-column: 2; grid-row: 1; }
+      .lv-bento .lv-b-small:nth-of-type(3) { grid-column: 3; grid-row: 1; }
+      .lv-bento .lv-b-small:nth-of-type(4) { grid-column: 2; grid-row: 2; }
+      .lv-bento .lv-b-small:nth-of-type(5) { grid-column: 3; grid-row: 2; }
+      .lv-b-h { grid-column: 4; grid-row: 1; }
+      .lv-b-c { grid-column: 4; grid-row: 2; }
+      .lv .lv-b-big h3 { font-size: 36px; }
+      .lv .lv-b-small h3 { font-size: 18px; }
+      .lv .lv-b-small .hotel-card__bottom { padding-top: 8px; }
+      .lv .lv-b-small .hotel-card__bottom a { display: none; }
+      .lv .lv-bento .lv-cat h3 { font-size: 26px; }
+      .lv .lv-bento .lv-cat .hotel-card__bottom a { min-height: 34px; padding: 0 12px; }
+
+      /* C sub heading */
+      .lv-sub { display: flex; align-items: baseline; justify-content: space-between; margin: 36px 0 14px; }
+      .lv-sub h3 { font-size: 22px; }
+      .lv-sub a { color: var(--primary-dark); font-weight: 700; text-decoration: none; }
+
+      /* D side column */
+      .lv-side { display: grid; grid-template-columns: 2fr 1fr; gap: 20px; }
+      .lv-side__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+      .lv-side__grid > * { aspect-ratio: 4 / 3; }
+      .lv-side__col { display: grid; grid-template-rows: 1fr 1fr; gap: 20px; }
+
+      /* E split banner */
+      .lv-split { display: grid; grid-template-columns: 1fr 1fr; overflow: hidden; border-radius: 22px; }
+      .lv-split > * { aspect-ratio: 16 / 9; border-radius: 0 !important; box-shadow: none !important; }
+      .lv-split > * + * { border-left: 2px solid var(--white); }
+
+      /* F editorial banners */
+      .lv-banner { position: relative; overflow: hidden; height: 340px; margin-top: 20px; border-radius: 22px; color: var(--white); }
+      .lv-banner > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+      .lv-banner::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(7, 18, 11, 0.86), rgba(7, 18, 11, 0.2) 70%); }
+      .lv-banner--right::after { background: linear-gradient(270deg, rgba(7, 18, 11, 0.86), rgba(7, 18, 11, 0.2) 70%); }
+      .lv-banner__text { position: absolute; z-index: 2; top: 50%; left: 48px; max-width: 420px; transform: translateY(-50%); }
+      .lv-banner--right .lv-banner__text { right: 48px; left: auto; text-align: right; }
+      .lv-banner__text span { color: var(--primary); font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; }
+      .lv-banner__text h3 { margin: 6px 0 10px; color: var(--white); font-size: 44px; }
+      .lv-banner__text p { margin: 0 0 20px; color: #d8e0db; }
+      .lv-outline { display: inline-flex; min-height: 44px; align-items: center; padding: 0 20px; border: 1px solid var(--primary); border-radius: 10px; color: var(--primary); font-size: 12px; font-weight: 700; letter-spacing: 0.04em; text-decoration: none; text-transform: uppercase; }
+
+      @media (max-width: 980px) {
+        .lv { padding: 24px; }
+        .lv-row3, .lv-row4, .lv-side, .lv-side__grid, .lv-row2, .lv-split { grid-template-columns: 1fr 1fr; }
+        .lv-bento { grid-template-columns: 1fr 1fr; grid-template-rows: none; grid-auto-rows: 220px; }
+        .lv-bento > * { grid-column: auto !important; grid-row: auto !important; }
+      }
+
+    </style>
+  </head>
+  <body>
+    <div data-site-header data-theme="solid"></div>
+    <main class="cv-page">
+      <div class="container">
+        <div class="cv-intro">
+          <span class="eyebrow">Design review</span>
+          <h1 style="color: var(--dark); font-size: clamp(34px, 5vw, 54px)">Home layout variants</h1>
+          <p>Варианты раскладки блока главной: направления для полётов, отели и круизы. Стиль карточек везде одинаковый — меняется только компоновка.</p>
+        </div>
+        <section class="cv-variant">
+          <header><span class="cv-tag">A</span><h2>Сейчас на сайте</h2><p>Заголовок по центру, карусель из 3 квадратных направлений, кнопка, ниже две широкие плашки Hotels и Cruises.</p></header>
+          <div class="lv"><div class="lv-head lv-head--center"><span class="eyebrow">Selected for you</span><h2>Destinations</h2><p>Distinctive places worth the journey, with business-class fares from Chișinău.</p></div>
+<div class="lv-row3 lv-carousel"><span class="lv-arrow lv-arrow--prev">‹</span><span class="lv-arrow lv-arrow--next">›</span><article class="hotel-card place-card lv-card ">
+  <div class="hotel-card__media"><img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=900&q=85" alt="" /></div>
+  <div class="hotel-card__body"><span class="place-card__eyebrow">France · Europe</span><h3>Paris</h3>
+  <div class="hotel-card__bottom"><div><small>From</small><strong>€1,190</strong></div><a href="#">Explore</a></div></div>
+</article><article class="hotel-card place-card lv-card ">
+  <div class="hotel-card__media"><img src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=900&q=85" alt="" /></div>
+  <div class="hotel-card__body"><span class="place-card__eyebrow">Japan · Asia</span><h3>Tokyo</h3>
+  <div class="hotel-card__bottom"><div><small>From</small><strong>€2,480</strong></div><a href="#">Explore</a></div></div>
+</article><article class="hotel-card place-card lv-card ">
+  <div class="hotel-card__media"><img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=900&q=85" alt="" /></div>
+  <div class="hotel-card__body"><span class="place-card__eyebrow">UAE · Middle East</span><h3>Dubai</h3>
+  <div class="hotel-card__bottom"><div><small>From</small><strong>€1,690</strong></div><a href="#">Explore</a></div></div>
+</article></div><div class="lv-more"><a class="button button--secondary" href="#">All destinations</a></div>
+<div class="lv-row2"><article class="hotel-card place-card lv-card lv-cat lv-wide">
+  <div class="hotel-card__media"><img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=900&q=85" alt="" /></div>
+  <div class="hotel-card__body"><span class="place-card__eyebrow">18 handpicked stays</span><h3>Hotels</h3>
+  <div class="hotel-card__bottom"><div><small>Per night from</small><strong>€340</strong></div><a href="#">Explore</a></div></div>
+</article><article class="hotel-card place-card lv-card lv-cat lv-wide">
+  <div class="hotel-card__media"><img src="https://images.unsplash.com/photo-1548574505-5e239809ee19?auto=format&fit=crop&w=900&q=85" alt="" /></div>
+  <div class="hotel-card__body"><span class="place-card__eyebrow">18 voyages</span><h3>Cruises</h3>
+  <div class="hotel-card__bottom"><div><small>Per person from</small><strong>€1,390</strong></div><a href="#">Explore</a></div></div>
+</article></div></div>
+        </section>
+        <section class="cv-variant">
+          <header><span class="cv-tag">B</span><h2>Сетка-«бенто»</h2><p>Одна сетка на всё: Paris крупно слева, ещё 4 направления маленькими плитками, справа высокие Hotels и Cruises. Всё видно сразу, без прокрутки.</p></header>
+          <div class="lv"><div class="lv-head lv-head--center"><span class="eyebrow">Selected for you</span><h2>Where to next?</h2><p>Flights, hotels and cruises — chosen and arranged by your personal expert.</p></div>
+<div class="lv-bento"><article class="hotel-card place-card lv-card lv-b-big">
+  <div class="hotel-card__media"><img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=900&q=85" alt="" /></div>
+  <div class="hotel-card__body"><span class="place-card__eyebrow">France · Europe</span><h3>Paris</h3>
+  <div class="hotel-card__bottom"><div><small>From</small><strong>€1,190</strong></div><a href="#">Explore</a></div></div>
+</article><article class="hotel-card place-card lv-card lv-b-small">
+  <div class="hotel-card__media"><img src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=900&q=85" alt="" /></div>
+  <div class="hotel-card__body"><span class="place-card__eyebrow">Japan · Asia</span><h3>Tokyo</h3>
+  <div class="hotel-card__bottom"><div><small>From</small><strong>€2,480</strong></div><a href="#">Explore</a></div></div>
+</article><article class="hotel-card place-card lv-card lv-b-small">
+  <div class="hotel-card__media"><img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=900&q=85" alt="" /></div>
+  <div class="hotel-card__body"><span class="place-card__eyebrow">UAE · Middle East</span><h3>Dubai</h3>
+  <div class="hotel-card__bottom"><div><small>From</small><strong>€1,690</strong></div><a href="#">Explore</a></div></div>
+</article><article class="hotel-card place-card lv-card lv-b-small">
+  <div class="hotel-card__media"><img src="https://images.unsplash.com/photo-1485871981521-5b1fd3805eee?auto=format&fit=crop&w=900&q=85" alt="" /></div>
+  <div class="hotel-card__body"><span class="place-card__eyebrow">USA · Americas</span><h3>New York</h3>
+  <div class="hotel-card__bottom"><div><small>From</small><strong>€2,090</strong></div><a href="#">Explore</a></div></div>
+</article><article class="hotel-card place-card lv-card lv-b-small">
+  <div class="hotel-card__media"><img src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=900&q=85" alt="" /></div>
+  <div class="hotel-card__body"><span class="place-card__eyebrow">UK · Europe</span><h3>London</h3>
+  <div class="hotel-card__bottom"><div><small>From</small><strong>€1,240</strong></div><a href="#">Explore</a></div></div>
+</article><article class="hotel-card place-card lv-card lv-cat lv-b-tall lv-b-h">
+  <div class="hotel-card__media"><img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=900&q=85" alt="" /></div>
+  <div class="hotel-card__body"><span class="place-card__eyebrow">18 handpicked stays</span><h3>Hotels</h3>
+  <div class="hotel-card__bottom"><div><small>Per night from</small><strong>€340</strong></div><a href="#">Explore</a></div></div>
+</article><article class="hotel-card place-card lv-card lv-cat lv-b-tall lv-b-c">
+  <div class="hotel-card__media"><img src="https://images.unsplash.com/photo-1548574505-5e239809ee19?auto=format&fit=crop&w=900&q=85" alt="" /></div>
+  <div class="hotel-card__body"><span class="place-card__eyebrow">18 voyages</span><h3>Cruises</h3>
+  <div class="hotel-card__bottom"><div><small>Per person from</small><strong>€1,390</strong></div><a href="#">Explore</a></div></div>
+</article></div></div>
+        </section>
+        <section class="cv-variant">
+          <header><span class="cv-tag">C</span><h2>Три категории, затем направления</h2><p>Сначала три больших входа: Flights, Hotels, Cruises — как разделы сайта. Ниже лента популярных направлений для полётов.</p></header>
+          <div class="lv"><div class="lv-head lv-head--center"><span class="eyebrow">Plan your journey</span><h2>Flights, hotels & cruises</h2></div>
+<div class="lv-row3"><article class="hotel-card place-card lv-card lv-cat lv-cat-tall">
+  <div class="hotel-card__media"><img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=900&q=85" alt="" /></div>
+  <div class="hotel-card__body"><span class="place-card__eyebrow">34 destinations</span><h3>Flights</h3>
+  <div class="hotel-card__bottom"><div><small>Business from</small><strong>€790</strong></div><a href="#">Explore</a></div></div>
+</article><article class="hotel-card place-card lv-card lv-cat lv-cat-tall">
+  <div class="hotel-card__media"><img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=900&q=85" alt="" /></div>
+  <div class="hotel-card__body"><span class="place-card__eyebrow">18 handpicked stays</span><h3>Hotels</h3>
+  <div class="hotel-card__bottom"><div><small>Per night from</small><strong>€340</strong></div><a href="#">Explore</a></div></div>
+</article><article class="hotel-card place-card lv-card lv-cat lv-cat-tall">
+  <div class="hotel-card__media"><img src="https://images.unsplash.com/photo-1548574505-5e239809ee19?auto=format&fit=crop&w=900&q=85" alt="" /></div>
+  <div class="hotel-card__body"><span class="place-card__eyebrow">18 voyages</span><h3>Cruises</h3>
+  <div class="hotel-card__bottom"><div><small>Per person from</small><strong>€1,390</strong></div><a href="#">Explore</a></div></div>
+</article></div>
+<div class="lv-sub"><h3>Popular destinations</h3><a href="#">All destinations →</a></div>
+<div class="lv-row4"><article class="hotel-card place-card lv-card lv-mini">
+  <div class="hotel-card__media"><img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=900&q=85" alt="" /></div>
+  <div class="hotel-card__body"><span class="place-card__eyebrow">France · Europe</span><h3>Paris</h3>
+  <div class="hotel-card__bottom"><div><small>From</small><strong>€1,190</strong></div><a href="#">Explore</a></div></div>
+</article><article class="hotel-card place-card lv-card lv-mini">
+  <div class="hotel-card__media"><img src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=900&q=85" alt="" /></div>
+  <div class="hotel-card__body"><span class="place-card__eyebrow">Japan · Asia</span><h3>Tokyo</h3>
+  <div class="hotel-card__bottom"><div><small>From</small><strong>€2,480</strong></div><a href="#">Explore</a></div></div>
+</article><article class="hotel-card place-card lv-card lv-mini">
+  <div class="hotel-card__media"><img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=900&q=85" alt="" /></div>
+  <div class="hotel-card__body"><span class="place-card__eyebrow">UAE · Middle East</span><h3>Dubai</h3>
+  <div class="hotel-card__bottom"><div><small>From</small><strong>€1,690</strong></div><a href="#">Explore</a></div></div>
+</article><article class="hotel-card place-card lv-card lv-mini">
+  <div class="hotel-card__media"><img src="https://images.unsplash.com/photo-1485871981521-5b1fd3805eee?auto=format&fit=crop&w=900&q=85" alt="" /></div>
+  <div class="hotel-card__body"><span class="place-card__eyebrow">USA · Americas</span><h3>New York</h3>
+  <div class="hotel-card__bottom"><div><small>From</small><strong>€2,090</strong></div><a href="#">Explore</a></div></div>
+</article></div></div>
+        </section>
+        <section class="cv-variant">
+          <header><span class="cv-tag">D</span><h2>Направления + боковая колонка</h2><p>Слева 4 направления сеткой 2×2, справа колонкой Hotels и Cruises. Компактно, всё на одном экране.</p></header>
+          <div class="lv"><div class="lv-head"><span class="eyebrow">Selected for you</span><h2>Destinations</h2><p>Distinctive places worth the journey, with business-class fares from Chișinău.</p></div>
+<div class="lv-side"><div class="lv-side__grid"><article class="hotel-card place-card lv-card ">
+  <div class="hotel-card__media"><img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=900&q=85" alt="" /></div>
+  <div class="hotel-card__body"><span class="place-card__eyebrow">France · Europe</span><h3>Paris</h3>
+  <div class="hotel-card__bottom"><div><small>From</small><strong>€1,190</strong></div><a href="#">Explore</a></div></div>
+</article><article class="hotel-card place-card lv-card ">
+  <div class="hotel-card__media"><img src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=900&q=85" alt="" /></div>
+  <div class="hotel-card__body"><span class="place-card__eyebrow">Japan · Asia</span><h3>Tokyo</h3>
+  <div class="hotel-card__bottom"><div><small>From</small><strong>€2,480</strong></div><a href="#">Explore</a></div></div>
+</article><article class="hotel-card place-card lv-card ">
+  <div class="hotel-card__media"><img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=900&q=85" alt="" /></div>
+  <div class="hotel-card__body"><span class="place-card__eyebrow">UAE · Middle East</span><h3>Dubai</h3>
+  <div class="hotel-card__bottom"><div><small>From</small><strong>€1,690</strong></div><a href="#">Explore</a></div></div>
+</article><article class="hotel-card place-card lv-card ">
+  <div class="hotel-card__media"><img src="https://images.unsplash.com/photo-1485871981521-5b1fd3805eee?auto=format&fit=crop&w=900&q=85" alt="" /></div>
+  <div class="hotel-card__body"><span class="place-card__eyebrow">USA · Americas</span><h3>New York</h3>
+  <div class="hotel-card__bottom"><div><small>From</small><strong>€2,090</strong></div><a href="#">Explore</a></div></div>
+</article></div><div class="lv-side__col"><article class="hotel-card place-card lv-card lv-cat ">
+  <div class="hotel-card__media"><img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=900&q=85" alt="" /></div>
+  <div class="hotel-card__body"><span class="place-card__eyebrow">18 handpicked stays</span><h3>Hotels</h3>
+  <div class="hotel-card__bottom"><div><small>Per night from</small><strong>€340</strong></div><a href="#">Explore</a></div></div>
+</article><article class="hotel-card place-card lv-card lv-cat ">
+  <div class="hotel-card__media"><img src="https://images.unsplash.com/photo-1548574505-5e239809ee19?auto=format&fit=crop&w=900&q=85" alt="" /></div>
+  <div class="hotel-card__body"><span class="place-card__eyebrow">18 voyages</span><h3>Cruises</h3>
+  <div class="hotel-card__bottom"><div><small>Per person from</small><strong>€1,390</strong></div><a href="#">Explore</a></div></div>
+</article></div></div></div>
+        </section>
+        <section class="cv-variant">
+          <header><span class="cv-tag">E</span><h2>Карусель и разделённый баннер</h2><p>Карусель направлений как сейчас, а Hotels и Cruises — один широкий баннер на всю ширину, разделённый на две половины без промежутка.</p></header>
+          <div class="lv"><div class="lv-head lv-head--center"><span class="eyebrow">Selected for you</span><h2>Destinations</h2><p>Distinctive places worth the journey, with business-class fares from Chișinău.</p></div>
+<div class="lv-row3 lv-carousel"><span class="lv-arrow lv-arrow--prev">‹</span><span class="lv-arrow lv-arrow--next">›</span><article class="hotel-card place-card lv-card ">
+  <div class="hotel-card__media"><img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=900&q=85" alt="" /></div>
+  <div class="hotel-card__body"><span class="place-card__eyebrow">France · Europe</span><h3>Paris</h3>
+  <div class="hotel-card__bottom"><div><small>From</small><strong>€1,190</strong></div><a href="#">Explore</a></div></div>
+</article><article class="hotel-card place-card lv-card ">
+  <div class="hotel-card__media"><img src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=900&q=85" alt="" /></div>
+  <div class="hotel-card__body"><span class="place-card__eyebrow">Japan · Asia</span><h3>Tokyo</h3>
+  <div class="hotel-card__bottom"><div><small>From</small><strong>€2,480</strong></div><a href="#">Explore</a></div></div>
+</article><article class="hotel-card place-card lv-card ">
+  <div class="hotel-card__media"><img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=900&q=85" alt="" /></div>
+  <div class="hotel-card__body"><span class="place-card__eyebrow">UAE · Middle East</span><h3>Dubai</h3>
+  <div class="hotel-card__bottom"><div><small>From</small><strong>€1,690</strong></div><a href="#">Explore</a></div></div>
+</article></div><div class="lv-more"><a class="button button--secondary" href="#">All destinations</a></div>
+<div class="lv-split"><article class="hotel-card place-card lv-card lv-cat ">
+  <div class="hotel-card__media"><img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=900&q=85" alt="" /></div>
+  <div class="hotel-card__body"><span class="place-card__eyebrow">18 handpicked stays</span><h3>Hotels</h3>
+  <div class="hotel-card__bottom"><div><small>Per night from</small><strong>€340</strong></div><a href="#">Explore</a></div></div>
+</article><article class="hotel-card place-card lv-card lv-cat ">
+  <div class="hotel-card__media"><img src="https://images.unsplash.com/photo-1548574505-5e239809ee19?auto=format&fit=crop&w=900&q=85" alt="" /></div>
+  <div class="hotel-card__body"><span class="place-card__eyebrow">18 voyages</span><h3>Cruises</h3>
+  <div class="hotel-card__bottom"><div><small>Per person from</small><strong>€1,390</strong></div><a href="#">Explore</a></div></div>
+</article></div></div>
+        </section>
+        <section class="cv-variant">
+          <header><span class="cv-tag">F</span><h2>Редакционные баннеры</h2><p>Направления каруселью, а Hotels и Cruises — два широких баннера друг под другом: фото, крупный заголовок, короткий текст и кнопка.</p></header>
+          <div class="lv"><div class="lv-head lv-head--center"><span class="eyebrow">Selected for you</span><h2>Destinations</h2><p>Distinctive places worth the journey, with business-class fares from Chișinău.</p></div>
+<div class="lv-row3 lv-carousel"><span class="lv-arrow lv-arrow--prev">‹</span><span class="lv-arrow lv-arrow--next">›</span><article class="hotel-card place-card lv-card ">
+  <div class="hotel-card__media"><img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=900&q=85" alt="" /></div>
+  <div class="hotel-card__body"><span class="place-card__eyebrow">France · Europe</span><h3>Paris</h3>
+  <div class="hotel-card__bottom"><div><small>From</small><strong>€1,190</strong></div><a href="#">Explore</a></div></div>
+</article><article class="hotel-card place-card lv-card ">
+  <div class="hotel-card__media"><img src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=900&q=85" alt="" /></div>
+  <div class="hotel-card__body"><span class="place-card__eyebrow">Japan · Asia</span><h3>Tokyo</h3>
+  <div class="hotel-card__bottom"><div><small>From</small><strong>€2,480</strong></div><a href="#">Explore</a></div></div>
+</article><article class="hotel-card place-card lv-card ">
+  <div class="hotel-card__media"><img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=900&q=85" alt="" /></div>
+  <div class="hotel-card__body"><span class="place-card__eyebrow">UAE · Middle East</span><h3>Dubai</h3>
+  <div class="hotel-card__bottom"><div><small>From</small><strong>€1,690</strong></div><a href="#">Explore</a></div></div>
+</article></div><div class="lv-more"><a class="button button--secondary" href="#">All destinations</a></div>
+<div class="lv-banner"><img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1600&q=85" alt="" /><div class="lv-banner__text"><span>18 handpicked stays</span><h3>Hotels</h3><p>Remarkable hotels and resorts, with private rates and a personal expert who knows every room.</p><a class="lv-outline" href="#">Explore hotels</a></div></div><div class="lv-banner lv-banner--right"><img src="https://images.unsplash.com/photo-1548574505-5e239809ee19?auto=format&fit=crop&w=1600&q=85" alt="" /><div class="lv-banner__text"><span>18 voyages</span><h3>Cruises</h3><p>Small luxury ships, suites with a veranda and itineraries from the Mediterranean to the South Pacific.</p><a class="lv-outline" href="#">Explore cruises</a></div></div></div>
+        </section>
+      </div>
+    </main>
+    <div data-site-footer></div>
+    <script src="js/components.js"></script>
+  </body>
+</html>

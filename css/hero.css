@@ -1,0 +1,120 @@
+/* Shared hero component: only --hero-image and content vary by page. */
+.site-hero {
+  position: relative;
+  isolation: isolate;
+  min-height: 760px;
+  padding: 190px 0 160px;
+  background:
+    linear-gradient(90deg, rgba(7, 20, 14, 0.84), rgba(7, 20, 14, 0.3)),
+    var(--hero-image, none) center / cover no-repeat;
+  color: var(--white);
+}
+
+/* Keep the search popups (calendar, airport lists) above the sections that follow. */
+.site-hero:has(.search-form) {
+  z-index: 2;
+}
+
+/* The home booking panels may have different heights, but must not resize the hero. */
+.site-hero:has(.home-search-shell) {
+  z-index: 2;
+  height: 760px;
+  min-height: 760px;
+  padding-top: 120px; /* keeps the whole search card on the photo */
+}
+
+.site-hero__content {
+  position: relative;
+}
+
+.site-hero__content:has(> [data-booking-form]) {
+  display: block;
+}
+
+.site-hero__content > [data-booking-form] {
+  max-width: 760px;
+  margin-top: 48px;
+}
+
+.site-hero > .search-form {
+  bottom: 48px;
+  transform: none;
+}
+
+.site-hero h1 {
+  max-width: 860px;
+  margin: 0;
+  color: var(--white);
+  font-size: clamp(36px, 4.6vw, 60px);
+}
+
+.site-hero .eyebrow {
+  color: var(--primary);
+}
+
+.site-hero__content > p,
+.site-hero__content > div:first-child > p {
+  max-width: 640px;
+  margin-top: 24px;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 17px;
+}
+
+@media (max-width: 720px) {
+  .site-hero {
+    height: 1200px;
+    min-height: 1200px;
+    padding: 100px 0 96px;
+    background-position: 60% center;
+  }
+
+  .site-hero:has(.home-search-shell) {
+    height: 100vh;
+    padding-top: 100px;
+  }
+
+  .site-hero__content > p,
+  .site-hero__content > div:first-child > p {
+    font-size: 15px;
+  }
+
+  .site-hero h1 {
+    font-size: 32px;
+    line-height: 1.08;
+  }
+
+  .site-hero > .search-form {
+    bottom: auto;
+    transform: none;
+  }
+}
+
+/* Desktop: the heading + search form sit together as one block, centred between the header (96px) and the banner bottom. */
+@media (min-width: 981px) {
+  .site-hero:has(> .search-form) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 96px 0 0;
+  }
+
+  /* .container uses margin: auto, which would also spread the block vertically in flex */
+  .site-hero:has(> .search-form) > .container {
+    margin-block: 0;
+  }
+
+  .site-hero > .search-form {
+    position: relative;
+    right: auto;
+    bottom: auto;
+    left: auto;
+  }
+
+  .site-hero:has(> .search-form) > .site-hero__content + .search-form {
+    margin-top: 20px; /* same gap as the home page */
+  }
+
+  .site-hero:has(.home-search-shell) {
+    padding-top: 186px;
+  }
+}

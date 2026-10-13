@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Card sample — Premium Flights</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="css/index.css" />
+    <style>
+      .sample-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s3); }
+      .sample-grid[hidden] { display: none; }
+      @media (max-width: 980px) { .sample-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+      @media (max-width: 720px) { .sample-grid { grid-template-columns: 1fr; } }
+      /* Same height everywhere: one line per text row, ellipsis if longer */
+      .sample-grid .hotel-card h3,
+      .sample-grid .hotel-card__loc,
+      .sample-grid .hotel-card__dates { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+      /* Compact cards (destinations) have no location/details rows: the photo takes that space so every card keeps the same height */
+      .sample-grid .hotel-card { container-type: inline-size; }
+      .sample-grid .hotel-card__media { aspect-ratio: auto; height: 75cqw; }
+      .sample-grid .hotel-card--compact .hotel-card__media { height: calc(75cqw + 56.5px); }
+      .sample-grid .hotel-card--compact h3 { margin-bottom: 18px; }
+      .sample-eyebrow { color: var(--primary-dark); font-size: 10px; font-weight: 700; letter-spacing: 0.14em; line-height: 18px; text-transform: uppercase; }
+      .hotel-card__stars { line-height: 18px; }
+      .sample-all h3.sample-label { margin: var(--s6) 0 var(--s3); font-size: 20px; }
+    </style>
+  </head>
+  <body>
+    <div data-site-header></div>
+    <main>
+      <section class="deal-catalog">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <span class="eyebrow">Sample · hotel card style</span>
+              <h2>Popular right now</h2>
+            </div>
+            <p>Destinations, hotels and cruises in one card style — same height on every tab.</p>
+          </div>
+          <div class="catalog-tabs" role="tablist" aria-label="Popular">
+            <button type="button" role="tab" aria-selected="true" data-sample-tab="Destinations">Destinations</button>
+            <button type="button" role="tab" aria-selected="false" data-sample-tab="Hotels">Hotels</button>
+            <button type="button" role="tab" aria-selected="false" data-sample-tab="Cruises">Cruises</button>
+          </div>
+          <div class="sample-grid" data-sample-panel="Destinations">
+            <article class="hotel-card hotel-card--compact">
+              <div class="hotel-card__media">
+                <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=800&q=85" alt="Paris" loading="lazy" />
+                
+              </div>
+              <div class="hotel-card__body">
+                <span class="sample-eyebrow">France · Europe</span>
+                <h3>Paris</h3>
+                
+                <div class="hotel-card__bottom"><div><small>From</small><strong>€1,190</strong></div><a href="#">Explore</a></div>
+              </div>
+            </article>
+            <article class="hotel-card hotel-card--compact">
+              <div class="hotel-card__media">
+                <img src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=800&q=85" alt="Tokyo" loading="lazy" />
+                
+              </div>
+              <div class="hotel-card__body">
+                <span class="sample-eyebrow">Japan · Asia</span>
+                <h3>Tokyo</h3>
+                
+                <div class="hotel-card__bottom"><div><small>From</small><strong>€2,480</strong></div><a href="#">Explore</a></div>
+              </div>
+            </article>
+            <article class="hotel-card hotel-card--compact">
+              <div class="hotel-card__media">
+                <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=800&q=85" alt="Dubai" loading="lazy" />
+                
+              </div>
+              <div class="hotel-card__body">
+                <span class="sample-eyebrow">UAE · Middle East</span>
+                <h3>Dubai</h3>
+                
+                <div class="hotel-card__bottom"><div><small>From</small><strong>€1,690</strong></div><a href="#">Explore</a></div>
+              </div>
+            </article>
+          </div>
+          <div class="sample-grid" data-sample-panel="Hotels" hidden>
+            <article class="hotel-card hotel-card--compact">
+              <div class="hotel-card__media">
+                <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=85" alt="Maldives" loading="lazy" />
+                
+              </div>
+              <div class="hotel-card__body">
+                <span class="sample-eyebrow">Indian Ocean</span>
+                <h3>Maldives</h3>
+                
+                <div class="hotel-card__bottom"><div><small>Per night from</small><strong>€390</strong></div><a href="#">Find hotels</a></div>
+              </div>
+            </article>
+            <article class="hotel-card hotel-card--compact">
+              <div class="hotel-card__media">
+                <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=800&q=85" alt="Paris" loading="lazy" />
+                
+              </div>
+              <div class="hotel-card__body">
+                <span class="sample-eyebrow">France · Europe</span>
+                <h3>Paris</h3>
+                
+                <div class="hotel-card__bottom"><div><small>Per night from</small><strong>€220</strong></div><a href="#">Find hotels</a></div>
+              </div>
+            </article>
+            <article class="hotel-card hotel-card--compact">
+              <div class="hotel-card__media">
+                <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=800&q=85" alt="Dubai" loading="lazy" />
+                
+              </div>
+              <div class="hotel-card__body">
+                <span class="sample-eyebrow">UAE · Middle East</span>
+                <h3>Dubai</h3>
+                
+                <div class="hotel-card__bottom"><div><small>Per night from</small><strong>€260</strong></div><a href="#">Find hotels</a></div>
+              </div>
+            </article>
+          </div>
+          <div class="sample-grid" data-sample-panel="Cruises" hidden>
+            <article class="hotel-card hotel-card--compact">
+              <div class="hotel-card__media">
+                <img src="https://images.unsplash.com/photo-1548574505-5e239809ee19?auto=format&fit=crop&w=800&q=85" alt="Mediterranean" loading="lazy" />
+                
+              </div>
+              <div class="hotel-card__body">
+                <span class="sample-eyebrow">Southern Europe</span>
+                <h3>Mediterranean</h3>
+                
+                <div class="hotel-card__bottom"><div><small>Per person from</small><strong>€1,490</strong></div><a href="#">Find cruises</a></div>
+              </div>
+            </article>
+            <article class="hotel-card hotel-card--compact">
+              <div class="hotel-card__media">
+                <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=800&q=85" alt="Norwegian Fjords" loading="lazy" />
+                
+              </div>
+              <div class="hotel-card__body">
+                <span class="sample-eyebrow">Northern Europe</span>
+                <h3>Norwegian Fjords</h3>
+                
+                <div class="hotel-card__bottom"><div><small>Per person from</small><strong>€1,890</strong></div><a href="#">Find cruises</a></div>
+              </div>
+            </article>
+            <article class="hotel-card hotel-card--compact">
+              <div class="hotel-card__media">
+                <img src="https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=800&q=85" alt="Caribbean" loading="lazy" />
+                
+              </div>
+              <div class="hotel-card__body">
+                <span class="sample-eyebrow">Americas</span>
+                <h3>Caribbean</h3>
+                
+                <div class="hotel-card__bottom"><div><small>Per person from</small><strong>€1,690</strong></div><a href="#">Find cruises</a></div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+      <section class="sample-all" style="background: var(--light)">
+        <div class="container">
+          <div class="section-heading"><div><span class="eyebrow">Side by side</span><h2>All three types in one row</h2></div><p>Карточки разных типов рядом — видно, что высота совпадает.</p></div>
+          <div class="sample-grid">
+            <article class="hotel-card hotel-card--compact">
+              <div class="hotel-card__media">
+                <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=800&q=85" alt="Paris" loading="lazy" />
+                
+              </div>
+              <div class="hotel-card__body">
+                <span class="sample-eyebrow">France · Europe</span>
+                <h3>Paris</h3>
+                
+                <div class="hotel-card__bottom"><div><small>From</small><strong>€1,190</strong></div><a href="#">Explore</a></div>
+              </div>
+            </article>
+            <article class="hotel-card hotel-card--compact">
+              <div class="hotel-card__media">
+                <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=85" alt="Maldives" loading="lazy" />
+                
+              </div>
+              <div class="hotel-card__body">
+                <span class="sample-eyebrow">Indian Ocean</span>
+                <h3>Maldives</h3>
+                
+                <div class="hotel-card__bottom"><div><small>Per night from</small><strong>€390</strong></div><a href="#">Find hotels</a></div>
+              </div>
+            </article>
+            <article class="hotel-card hotel-card--compact">
+              <div class="hotel-card__media">
+                <img src="https://images.unsplash.com/photo-1548574505-5e239809ee19?auto=format&fit=crop&w=800&q=85" alt="Mediterranean" loading="lazy" />
+                
+              </div>
+              <div class="hotel-card__body">
+                <span class="sample-eyebrow">Southern Europe</span>
+                <h3>Mediterranean</h3>
+                
+                <div class="hotel-card__bottom"><div><small>Per person from</small><strong>€1,490</strong></div><a href="#">Find cruises</a></div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+    <div data-site-footer></div>
+    <script src="js/components.js"></script>
+    <script>
+      const sampleTabs = document.querySelectorAll("[data-sample-tab]");
+      sampleTabs.forEach((tab) => tab.addEventListener("click", () => {
+        sampleTabs.forEach((t) => t.setAttribute("aria-selected", String(t === tab)));
+        document.querySelectorAll("[data-sample-panel]").forEach((p) => (p.hidden = p.dataset.samplePanel !== tab.dataset.sampleTab));
+      }));
+    </script>
+  </body>
+</html>

@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Grand Travel Club — handpicked luxury hotels and resorts with private rates and a personal travel expert."
+    />
+    <title>All Hotels — Grand Travel Club</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="css/index.css" />
+  </head>
+  <body>
+    <div data-site-header></div>
+
+    <main id="top">
+      <section class="site-hero" style="--hero-image: url('https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=2000&q=80')">
+        <div class="container site-hero__content">
+          <span class="eyebrow eyebrow--light">Stays worth the journey</span>
+          <h1>Exceptional hotels,<br />personally chosen</h1>
+        </div>
+        <form class="search-form flight-search flight-search--initial container" id="search" data-hotel-search>
+          <div class="search-form__top">
+            <h2>Where would you like to stay?</h2>
+          </div>
+          <div class="search-form__fields flight-search__fields home-search__hotel-fields">
+            <label class="search-form__field flight-search__field" data-hotel-city-field>
+              <span class="sr-only">Destination</span>
+              <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7Zm0 10a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z" /></svg>
+              <input name="destination" type="text" placeholder="City, hotel or resort" autocomplete="off" aria-expanded="false" required />
+            </label>
+            <div class="search-form__field flight-search__field" data-hotel-date-range-field>
+              <span class="sr-only">Check-in — Check-out</span>
+              <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M7 2h2v2h6V2h2v2h3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h3V2Zm13 8H4v10h16V10ZM4 8h16V6H4v2Z" /></svg>
+              <input data-hotel-date-display aria-label="Check-in and check-out dates" aria-expanded="false" readonly />
+              <input name="checkin" type="hidden" data-hotel-checkin />
+              <input name="checkout" type="hidden" data-hotel-checkout />
+            </div>
+            <label class="search-form__field flight-search__field">
+              <span class="sr-only">Guests</span>
+              <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10Zm0-2a3 3 0 1 1 0-6 3 3 0 0 1 0 6Zm0 3c-5 0-9 2.5-9 6v2h18v-2c0-3.5-4-6-9-6Zm-7 6c0-2 3-4 7-4s7 2 7 4H5Z" /></svg>
+              <select name="guests" aria-label="Guests">
+                <option>1 guest</option>
+                <option selected>2 guests</option>
+                <option>3 guests</option>
+                <option>4 guests</option>
+              </select>
+              <span class="ui-chevron ui-chevron--down" aria-hidden="true"></span>
+            </label>
+            <button class="button button--primary" type="submit">Search hotels <span class="ui-chevron ui-chevron--right" aria-hidden="true"></span></button>
+          </div>
+
+
+          <p class="search-form__message" role="status"></p>
+        </form>
+      </section>
+
+      <section class="deal-catalog destinations-catalog" id="destinations">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <span class="eyebrow">Explore our collection</span>
+              <h2>Where we stay</h2>
+            </div>
+            <p>
+              18 handpicked hotels and resorts across 4 regions. Pick a region to narrow the list —
+              your expert will secure the best room and rate.
+            </p>
+          </div>
+          <div class="deal-catalog__filters deal-catalog__filters--tabs paris-deals__filters" role="group" aria-label="Hotel regions">
+            <button class="is-active" type="button" data-region="all" aria-pressed="true">All hotels</button>
+            <button type="button" data-region="europe" aria-pressed="false">Europe</button>
+            <button type="button" data-region="middle-east" aria-pressed="false">Middle East</button>
+            <button type="button" data-region="asia" aria-pressed="false">Asia</button>
+            <button type="button" data-region="islands" aria-pressed="false">Islands</button>
+          </div>
+          <div class="destinations-catalog__grid">
+            <article class="hotel-card" data-region="europe">
+              <div class="hotel-card__media">
+                <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=800&q=85" alt="Maison Paris" loading="lazy" />
+              </div>
+              <div class="hotel-card__body">
+                <span class="hotel-card__stars" aria-label="5 stars">★★★★★</span>
+                <h3>Maison Paris</h3>
+                <p class="hotel-card__loc">Saint-Germain, Paris</p>
+                <div class="hotel-card__chips"><span>Breakfast</span><span>Late checkout</span><span>Upgrade on arrival</span></div>
+                <div class="hotel-card__bottom"><div><small>Per night from</small><strong>€520</strong></div><a href="#search" data-hotel-destination="Paris, France">Find stay</a></div>
+              </div>
+            </article>
+            <article class="hotel-card" data-region="europe">
+              <div class="hotel-card__media">
+                <img src="https://images.unsplash.com/photo-1455587734955-081b22074882?auto=format&fit=crop&w=800&q=85" alt="The Kensington" loading="lazy" />
+              </div>
+              <div class="hotel-card__body">
+                <span class="hotel-card__stars" aria-label="5 stars">★★★★★</span>
+                <h3>The Kensington</h3>
+                <p class="hotel-card__loc">Kensington, London</p>
+                <div class="hotel-card__chips"><span>Breakfast</span><span>Late checkout</span><span>Free cancellation</span></div>
+                <div class="hotel-card__bottom"><div><small>Per night from</small><strong>€470</strong></div><a href="#search" data-hotel-destination="London, United Kingdom">Find stay</a></div>
+              </div>
+            </article>
+            <article class="hotel-card" data-region="europe">
+              <div class="hotel-card__media">
+                <img src="https://images.unsplash.com/photo-1445019980597-93fa8acb246c?auto=format&fit=crop&w=800&q=85" alt="Aegean House" loading="lazy" />
+              </div>
+              <div class="hotel-card__body">
+                <span class="hotel-card__stars" aria-label="5 stars">★★★★★</span>
+                <h3>Aegean House</h3>
+                <p class="hotel-card__loc">Oia, Santorini</p>
+                <div class="hotel-card__chips"><span>Private plunge pool</span><span>Breakfast</span><span>Airport transfer</span></div>
+                <div class="hotel-card__bottom"><div><small>Per night from</small><strong>€580</strong></div><a href="#search" data-hotel-destination="Santorini, Greece">Find stay</a></div>
+              </div>
+            </article>
+            <article class="hotel-card" data-region="europe">
+              <div class="hotel-card__media">
+                <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=800&q=85" alt="Palazzo Roma" loading="lazy" />
+              </div>
+              <div class="hotel-card__body">
+                <span class="hotel-card__stars" aria-label="5 stars">★★★★★</span>
+                <h3>Palazzo Roma</h3>
+                <p class="hotel-card__loc">Via Veneto, Rome</p>
+                <div class="hotel-card__chips"><span>Breakfast</span><span>City view</span><span>Free cancellation</span></div>
+                <div class="hotel-card__bottom"><div><small>Per night from</small><strong>€490</strong></div><a href="#search" data-hotel-destination="Rome, Italy">Find stay</a></div>
+              </div>
+            </article>
+            <article class="hotel-card" data-region="europe">
+              <div class="hotel-card__media">
+                <img src="https://images.unsplash.com/photo-1561501900-3701fa6a0864?auto=format&fit=crop&w=800&q=85" alt="Villa Amalfi" loading="lazy" />
+              </div>
+              <div class="hotel-card__body">
+                <span class="hotel-card__stars" aria-label="5 stars">★★★★★</span>
+                <h3>Villa Amalfi</h3>
+                <p class="hotel-card__loc">Positano, Amalfi Coast</p>
+                <div class="hotel-card__chips"><span>Sea view</span><span>Breakfast</span><span>Boat transfer</span></div>
+                <div class="hotel-card__bottom"><div><small>Per night from</small><strong>€640</strong></div><a href="#search" data-hotel-destination="Amalfi Coast, Italy">Find stay</a></div>
+              </div>
+            </article>
+            <article class="hotel-card" data-region="europe">
+              <div class="hotel-card__media">
+                <img src="https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?auto=format&fit=crop&w=800&q=85" alt="Alpine Lodge" loading="lazy" />
+              </div>
+              <div class="hotel-card__body">
+                <span class="hotel-card__stars" aria-label="5 stars">★★★★★</span>
+                <h3>Alpine Lodge</h3>
+                <p class="hotel-card__loc">Zermatt, Switzerland</p>
+                <div class="hotel-card__chips"><span>Mountain view</span><span>Spa access</span><span>Ski shuttle</span></div>
+                <div class="hotel-card__bottom"><div><small>Per night from</small><strong>€560</strong></div><a href="#search" data-hotel-destination="Zermatt, Switzerland">Find stay</a></div>
+              </div>
+            </article>
+            <article class="hotel-card" data-region="middle-east">
+              <div class="hotel-card__media">
+                <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=800&q=85" alt="Desert Palm" loading="lazy" />
+              </div>
+              <div class="hotel-card__body">
+                <span class="hotel-card__stars" aria-label="5 stars">★★★★★</span>
+                <h3>Desert Palm</h3>
+                <p class="hotel-card__loc">Al Barsha, Dubai</p>
+                <div class="hotel-card__chips"><span>Airport transfer</span><span>Private pool</span><span>Spa credit</span></div>
+                <div class="hotel-card__bottom"><div><small>Per night from</small><strong>€610</strong></div><a href="#search" data-hotel-destination="Dubai, UAE">Find stay</a></div>
+              </div>
+            </article>
+            <article class="hotel-card" data-region="middle-east">
+              <div class="hotel-card__media">
+                <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=800&q=85" alt="Marina Tower" loading="lazy" />
+              </div>
+              <div class="hotel-card__body">
+                <span class="hotel-card__stars" aria-label="5 stars">★★★★★</span>
+                <h3>Marina Tower</h3>
+                <p class="hotel-card__loc">Dubai Marina, Dubai</p>
+                <div class="hotel-card__chips"><span>Breakfast</span><span>Marina view</span><span>Club lounge</span></div>
+                <div class="hotel-card__bottom"><div><small>Per night from</small><strong>€450</strong></div><a href="#search" data-hotel-destination="Dubai, UAE">Find stay</a></div>
+              </div>
+            </article>
+            <article class="hotel-card" data-region="middle-east">
+              <div class="hotel-card__media">
+                <img src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?auto=format&fit=crop&w=800&q=85" alt="Pearl Doha" loading="lazy" />
+              </div>
+              <div class="hotel-card__body">
+                <span class="hotel-card__stars" aria-label="5 stars">★★★★★</span>
+                <h3>Pearl Doha</h3>
+                <p class="hotel-card__loc">The Pearl, Doha</p>
+                <div class="hotel-card__chips"><span>Breakfast</span><span>Beach access</span><span>Free cancellation</span></div>
+                <div class="hotel-card__bottom"><div><small>Per night from</small><strong>€420</strong></div><a href="#search" data-hotel-destination="Doha, Qatar">Find stay</a></div>
+              </div>
+            </article>
+            <article class="hotel-card" data-region="middle-east">
+              <div class="hotel-card__media">
+                <img src="https://images.unsplash.com/photo-1564501049412-61c2a3083791?auto=format&fit=crop&w=800&q=85" alt="Oman Sands" loading="lazy" />
+              </div>
+              <div class="hotel-card__body">
+                <span class="hotel-card__stars" aria-label="5 stars">★★★★★</span>
+                <h3>Oman Sands</h3>
+                <p class="hotel-card__loc">Muscat, Oman</p>
+                <div class="hotel-card__chips"><span>Breakfast</span><span>Pool villa</span><span>Airport transfer</span></div>
+                <div class="hotel-card__bottom"><div><small>Per night from</small><strong>€380</strong></div><a href="#search" data-hotel-destination="Muscat, Oman">Find stay</a></div>
+              </div>
+            </article>
+            <article class="hotel-card" data-region="asia">
+              <div class="hotel-card__media">
+                <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=800&q=85" alt="Ubud Retreat" loading="lazy" />
+              </div>
+              <div class="hotel-card__body">
+                <span class="hotel-card__stars" aria-label="5 stars">★★★★★</span>
+                <h3>Ubud Retreat</h3>
+                <p class="hotel-card__loc">Ubud, Bali</p>
+                <div class="hotel-card__chips"><span>Breakfast</span><span>Daily spa credit</span><span>Morning yoga</span></div>
+                <div class="hotel-card__bottom"><div><small>Per night from</small><strong>€390</strong></div><a href="#search" data-hotel-destination="Bali, Indonesia">Find stay</a></div>
+              </div>
+            </article>
+            <article class="hotel-card" data-region="asia">
+              <div class="hotel-card__media">
+                <img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&w=800&q=85" alt="Bali Jungle Suites" loading="lazy" />
+              </div>
+              <div class="hotel-card__body">
+                <span class="hotel-card__stars" aria-label="5 stars">★★★★★</span>
+                <h3>Bali Jungle Suites</h3>
+                <p class="hotel-card__loc">Canggu, Bali</p>
+                <div class="hotel-card__chips"><span>Breakfast</span><span>Private garden</span><span>Free cancellation</span></div>
+                <div class="hotel-card__bottom"><div><small>Per night from</small><strong>€340</strong></div><a href="#search" data-hotel-destination="Bali, Indonesia">Find stay</a></div>
+              </div>
+            </article>
+            <article class="hotel-card" data-region="asia">
+              <div class="hotel-card__media">
+                <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=800&q=85" alt="Phuket Cliff" loading="lazy" />
+              </div>
+              <div class="hotel-card__body">
+                <span class="hotel-card__stars" aria-label="5 stars">★★★★★</span>
+                <h3>Phuket Cliff</h3>
+                <p class="hotel-card__loc">Kata Beach, Phuket</p>
+                <div class="hotel-card__chips"><span>Infinity pool</span><span>Breakfast</span><span>Airport transfer</span></div>
+                <div class="hotel-card__bottom"><div><small>Per night from</small><strong>€360</strong></div><a href="#search" data-hotel-destination="Phuket, Thailand">Find stay</a></div>
+              </div>
+            </article>
+            <article class="hotel-card" data-region="asia">
+              <div class="hotel-card__media">
+                <img src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=800&q=85" alt="Tokyo Skyline" loading="lazy" />
+              </div>
+              <div class="hotel-card__body">
+                <span class="hotel-card__stars" aria-label="5 stars">★★★★★</span>
+                <h3>Tokyo Skyline</h3>
+                <p class="hotel-card__loc">Ginza, Tokyo</p>
+                <div class="hotel-card__chips"><span>Breakfast</span><span>City view</span><span>Late checkout</span></div>
+                <div class="hotel-card__bottom"><div><small>Per night from</small><strong>€540</strong></div><a href="#search" data-hotel-destination="Tokyo, Japan">Find stay</a></div>
+              </div>
+            </article>
+            <article class="hotel-card" data-region="islands">
+              <div class="hotel-card__media">
+                <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=85" alt="Soneva Fushi" loading="lazy" />
+              </div>
+              <div class="hotel-card__body">
+                <span class="hotel-card__stars" aria-label="5 stars">★★★★★</span>
+                <h3>Soneva Fushi</h3>
+                <p class="hotel-card__loc">Baa Atoll, Maldives</p>
+                <div class="hotel-card__chips"><span>Breakfast</span><span>Seaplane transfer</span><span>Free cancellation</span></div>
+                <div class="hotel-card__bottom"><div><small>Per night from</small><strong>€890</strong></div><a href="#search" data-hotel-destination="Maldives">Find stay</a></div>
+              </div>
+            </article>
+            <article class="hotel-card" data-region="islands">
+              <div class="hotel-card__media">
+                <img src="https://images.unsplash.com/photo-1573843981267-be1999ff37cd?auto=format&fit=crop&w=800&q=85" alt="Coral Reef Villas" loading="lazy" />
+              </div>
+              <div class="hotel-card__body">
+                <span class="hotel-card__stars" aria-label="5 stars">★★★★★</span>
+                <h3>Coral Reef Villas</h3>
+                <p class="hotel-card__loc">South Malé Atoll, Maldives</p>
+                <div class="hotel-card__chips"><span>Overwater villa</span><span>All meals</span><span>Seaplane transfer</span></div>
+                <div class="hotel-card__bottom"><div><small>Per night from</small><strong>€820</strong></div><a href="#search" data-hotel-destination="Maldives">Find stay</a></div>
+              </div>
+            </article>
+            <article class="hotel-card" data-region="islands">
+              <div class="hotel-card__media">
+                <img src="https://images.unsplash.com/photo-1584132967334-10e028bd69f7?auto=format&fit=crop&w=800&q=85" alt="Seychelles Bay" loading="lazy" />
+              </div>
+              <div class="hotel-card__body">
+                <span class="hotel-card__stars" aria-label="5 stars">★★★★★</span>
+                <h3>Seychelles Bay</h3>
+                <p class="hotel-card__loc">Mahé, Seychelles</p>
+                <div class="hotel-card__chips"><span>Breakfast</span><span>Beach access</span><span>Airport transfer</span></div>
+                <div class="hotel-card__bottom"><div><small>Per night from</small><strong>€690</strong></div><a href="#search" data-hotel-destination="Seychelles">Find stay</a></div>
+              </div>
+            </article>
+            <article class="hotel-card" data-region="islands">
+              <div class="hotel-card__media">
+                <img src="https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=800&q=85" alt="Mauritius Lagoon" loading="lazy" />
+              </div>
+              <div class="hotel-card__body">
+                <span class="hotel-card__stars" aria-label="5 stars">★★★★★</span>
+                <h3>Mauritius Lagoon</h3>
+                <p class="hotel-card__loc">Belle Mare, Mauritius</p>
+                <div class="hotel-card__chips"><span>Half board</span><span>Lagoon view</span><span>Spa credit</span></div>
+                <div class="hotel-card__bottom"><div><small>Per night from</small><strong>€610</strong></div><a href="#search" data-hotel-destination="Mauritius">Find stay</a></div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <div class="search-sticky" data-search-sticky aria-label="Current search">
+      <div class="container search-sticky__inner">
+        <span><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7Zm0 10a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z" /></svg><b data-sticky-fields="[name='destination']" data-sticky-city data-sticky-empty="Anywhere"></b></span>
+        <span><svg aria-hidden="true" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15" rx="2" /><path d="M3.5 10h17M8 3v4M16 3v4" /></svg><b data-sticky-fields="[data-hotel-date-display]" data-sticky-empty="Any dates"></b></span>
+        <span><svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4" /><path d="M4.5 20a7.5 7.5 0 0 1 15 0" /></svg><b data-sticky-fields="[name='guests']"></b></span>
+        <a class="button" href="#search" data-sticky-edit data-focus="[name='destination']">Change search</a>
+      </div>
+    </div>
+
+    <nav class="contact-bar" data-contact-bar aria-label="Contact a travel expert">
+      <a href="tel:+37322888088"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z" /></svg>Call</a>
+      <a href="https://wa.me/37322888088" target="_blank" rel="noopener"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4V5Z" /><path d="M8 10h8M8 13h5" /></svg>WhatsApp</a>
+    </nav>
+
+    <div data-site-footer></div>
+    <script src="js/components.js"></script>
+    <script src="js/date-range-calendar.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/custom-selects.js"></script>
+    <script src="js/paris.js"></script>
+    <script src="js/search-helpers.js"></script>
+  </body>
+</html>
